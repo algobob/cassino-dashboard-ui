@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import CrashView from "../views/Crash/CrashView.vue";
 import PresentationView from "../views/Presentation/PresentationView.vue";
 import AboutView from "../views/LandingPages/AboutUs/AboutView.vue";
 import ContactView from "../views/LandingPages/ContactUs/ContactView.vue";
@@ -145,6 +146,11 @@ const router = createRouter({
       path: "/sections/elements/typography",
       name: "el-typography",
       component: ElTypography,
+    },
+    {
+      path: "/blaze/crash",
+      name: "about",
+      component: CrashView,
     },
   ],
 });
