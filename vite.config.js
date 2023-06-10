@@ -11,4 +11,14 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  server: {
+    proxy: {
+      // with options: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
+      '/creu': {
+        target: 'http://localhost:6969',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/creu/, 'api'),
+      },
+     }}
 });

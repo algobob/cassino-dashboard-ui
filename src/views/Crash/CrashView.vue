@@ -1,57 +1,46 @@
 <script setup>
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
 
 // Sections components
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 import View from "../../layouts/sections/components/View.vue";
 
-// Navbars page components
-import NavbarDark from "../../layouts/sections/navigation/navbars/components/NavbarDark.vue";
-
-// Navbars page components codes
-import { navbarDarkCode } from "../../layouts/sections/navigation/navbars/components/codes.js";
-import DefaultInfoCard from "@/examples/cards/infoCards/DefaultInfoCard.vue";
+import MediaVelas from "./components/MediaVelas.vue"
+import ContagemCores from "./components/ContagemCores.vue"
+import MaterialInput from "@/components/MaterialInput.vue";
 
 
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
 
+const media_intervalos = ref({})
+const contagem_cores = ref({})
+
 //hook
 onMounted(() => {
   setNavPills();
+
+  fetch('/creu/blaze/crash/media/velas')
+  .then(response => response.json())
+  .then(data => media_intervalos.value = data)
+
+  fetch('/creu/blaze/crash/contagemCores')
+  .then(response => response.json())
+  .then(data => contagem_cores.value = data)
 });
+
 </script>
 <template>
   <BaseLayout title="Blaze - Crash">
-    <div class="card" style="width: 30%;" >
-      <div class="card-header">
-        <h5 class="card-title">Média de velas</h5>
-      </div>
-      <div class="card-body">
-        <div style="display: flex;">
-
-        <div class="card" style="width: auto;">
-          <div class="card-body">
-            <h5 class="card-title">3X</h5>
-            <p class="card-text"><mark>10min</mark></p>
-          </div>
-        </div>
-
-        <div class="card" style="width: auto; margin: 0 10px;">
-          <div class="card-body">
-            <h5 class="card-title">5X</h5>
-            <p class="card-text"><mark>10min</mark></p>
-          </div>
-        </div>
-
-        <div class="card" style="width: auto;">
-          <div class="card-body">
-            <h5 class="card-title">10X</h5>
-            <p class="card-text"><mark>10min</mark></p>
-          </div>
-        </div>
-        </div>
-      </div>
+    <MaterialInput
+   class="input-group-static"
+   label="Quantidade de Velas"
+   type="number"
+   placeholder="200"
+ />
+    <div style="display: flex;" class="mt-2">
+      <MediaVelas :media_intervalos="media_intervalos" />
+      <ContagemCores :contagem_cores = "contagem_cores" />
     </div>
   </BaseLayout>
 </template>
