@@ -12,6 +12,7 @@ export default defineConfig({
     },
   },
   server: {
+    port: 8080,
     proxy: {
       // with options: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
       '/creu': {
