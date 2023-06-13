@@ -5,14 +5,21 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue({
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => {
+          return tag.startsWith('apexchart') // (return true)
+        }
+      }
+    }
+  })],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
   server: {
-    port: 8080,
     proxy: {
       // with options: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
       '/creu': {
