@@ -1,7 +1,5 @@
-FROM pierrezemb/gostatic
-WORKDIR /react-vite-app
+FROM node:16-alpine
+WORKDIR /app
 COPY package.json ./
-RUN npm install --silent
-COPY . ./
-CMD ["npm", "run", "build"]
-COPY ./dist/ /srv/http/
+RUN npm i --silent
+CMD ["npm", "run", "prod"]
