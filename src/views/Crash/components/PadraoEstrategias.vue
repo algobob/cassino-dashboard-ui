@@ -25,6 +25,14 @@ const props = defineProps(['estrategias'])
     <div class="card-body">
       <div style="display: flex; align-items: center;" class="mb-2">
         <div class="numberCircle">5X</div>
+        <h4 class="m-2">+ 3 min ====> {{ props.estrategias['5x3min'] }}</h4>
+      </div>
+      <div style="display: flex; align-items: center;" class="mb-2">
+        <div class="numberCircle">10X</div>
+        <h4 class="m-2">+ 3 min ====> {{ props.estrategias['10x3min'] }}</h4>
+      </div>
+      <div style="display: flex; align-items: center;" class="mb-2">
+        <div class="numberCircle">5X</div>
         <h4 class="m-2">+ 5 min ====> {{ props.estrategias['5x5min'] }}</h4>
       </div>
       <div style="display: flex; align-items: center;" class="mb-2">
