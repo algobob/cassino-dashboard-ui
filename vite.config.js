@@ -28,5 +28,6 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/creu/, 'api'),
       },
-     }}
+     },
+    port: 8080}
 });
