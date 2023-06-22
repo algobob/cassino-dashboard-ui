@@ -19,20 +19,27 @@ const estrategias = ref({})
 const contagem_cores = ref({})
 const media_intervalos = ref({})
 const qtd_velas = ref("200")
+// const notification = inject('notification')
 
 const load = () => {
-  fetch('/creu/blaze/crash/dashboard/'+qtd_velas.value)
-  .then(response => response.json())
-  .then(data => {
-    estrategias.value = data['estrategias']
-    contagem_cores.value = data['contagem_cores']
-    media_intervalos.value = data['media_intervalos']
-  })
+  fetch('/creu/blaze/crash/dashboard/' + qtd_velas.value)
+    .then(response => response.json())
+    .then(data => {
+      estrategias.value = data['estrategias']
+      contagem_cores.value = data['contagem_cores']
+      media_intervalos.value = data['media_intervalos']
+      // notification.show('Hello World', {
+      //     body: 'This is an example!'
+      //   }, {})
+    })
 }
 
 //hook
 onMounted(() => {
   setNavPills();
+  setInterval(() => {
+    load()
+  }, 60000)
   load();
 });
 

@@ -15,9 +15,25 @@
 </style>
 
 <script setup>
+import { onMounted, watch } from 'vue';
+
 const props = defineProps({
   estrategias: Object
-  })
+})
+
+const alertIfAnyStrategy100 = (value) => {
+  const asString = JSON.stringify(value)
+  console.log(asString)
+  if (asString.includes("100%")) {
+    var audio = new Audio('https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3');
+    audio.play();
+  }
+}
+
+watch(() => props.estrategias, (estrategias, prevEstrategias) => { 
+    alertIfAnyStrategy100(prevEstrategias)
+})
+
 </script>
 <template>
   <div class="card" style="width: 35%;">
@@ -29,7 +45,7 @@ const props = defineProps({
         <div class="numberCircle">5X</div>
         <h4 class="m-2">+ 3 min ====> {{ estrategias?.a?.assertividade }} - {{ estrategias?.a?.vela_selecionada }}x</h4>
       </div>
-       <div style="display: flex; align-items: center;" class="mb-2">
+      <div style="display: flex; align-items: center;" class="mb-2">
         <div class="numberCircle">10X</div>
         <h4 class="m-2">+ 3 min ====> {{ estrategias?.b?.assertividade }} - {{ estrategias?.b?.vela_selecionada }}x</h4>
       </div>
