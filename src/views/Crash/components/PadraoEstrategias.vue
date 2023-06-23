@@ -15,23 +15,26 @@
 </style>
 
 <script setup>
-import { onMounted, watch } from 'vue';
+import { watch } from 'vue';
 
 const props = defineProps({
   estrategias: Object
 })
 
+const audio = new Audio('https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3');
+
 const alertIfAnyStrategy100 = (value) => {
   const asString = JSON.stringify(value)
   console.log(asString)
   if (asString.includes("100%")) {
-    var audio = new Audio('https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3');
-    audio.play();
+    // audio.play();
   }
 }
 
 watch(() => props.estrategias, (estrategias, prevEstrategias) => { 
+  if (JSON.stringify(estrategias) !== JSON.stringify(prevEstrategias)) {
     alertIfAnyStrategy100(prevEstrategias)
+  }
 })
 
 </script>

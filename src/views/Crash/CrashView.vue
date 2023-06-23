@@ -10,6 +10,7 @@ import PadraoEstrategias from "./components/PadraoEstrategias.vue"
 import ContagemCores from "./components/ContagemCores.vue"
 import GraficoLinha from "./components/GraficoLinha.vue"
 import Clock from "./components/Clock.vue"
+import TabelaCrashes from "./components/TabelaCrashes/TabelaCrashes.vue"
 import MaterialAlert from "@/components/MaterialAlert.vue";
 
 //nav-pills
@@ -18,6 +19,7 @@ import setNavPills from "@/assets/js/nav-pills";
 const estrategias = ref({})
 const contagem_cores = ref({})
 const media_intervalos = ref({})
+const velas = ref([])
 const qtd_velas = ref("200")
 // const notification = inject('notification')
 
@@ -28,6 +30,7 @@ const load = () => {
       estrategias.value = data['estrategias']
       contagem_cores.value = data['contagem_cores']
       media_intervalos.value = data['media_intervalos']
+      velas.value = data['velas']
       // notification.show('Hello World', {
       //     body: 'This is an example!'
       //   }, {})
@@ -39,7 +42,7 @@ onMounted(() => {
   setNavPills();
   setInterval(() => {
     load()
-  }, 60000)
+  }, 30000)
   load();
 });
 
@@ -64,6 +67,9 @@ onMounted(() => {
       <MediaVelas :media_intervalos="media_intervalos" />
       <ContagemCores :contagem_cores="contagem_cores" />
       <!-- <GraficoLinha :contagem_cores = "contagem_cores" /> -->
+    </div>
+    <div>
+      <TabelaCrashes :velas="velas"/>
     </div>
 
   </BaseLayout>
