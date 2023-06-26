@@ -24,7 +24,7 @@ const qtd_velas = ref("200")
 // const notification = inject('notification')
 
 const load = () => {
-  fetch('/creu/blaze/crash/dashboard/' + qtd_velas.value)
+  fetch('/api/blaze/crash/dashboard/' + qtd_velas.value)
     .then(response => response.json())
     .then(data => {
       estrategias.value = data['estrategias']
