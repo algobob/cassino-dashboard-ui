@@ -31,7 +31,7 @@ const alertIfAnyStrategy100 = (value) => {
   }
 }
 
-watch(() => props.estrategias, (estrategias, prevEstrategias) => { 
+watch(() => props.estrategias, (estrategias, prevEstrategias) => {
   if (JSON.stringify(estrategias) !== JSON.stringify(prevEstrategias)) {
     alertIfAnyStrategy100(prevEstrategias)
   }
@@ -39,30 +39,52 @@ watch(() => props.estrategias, (estrategias, prevEstrategias) => {
 
 </script>
 <template>
-  <div class="card" style="width: 35%;">
+  <div class="card" style="width: 1000%;">
     <div class="card-header">
       <h5 class="card-title">Estrategias - Probabilidades</h5>
     </div>
-    <div class="card-body">
-      <div style="display: flex; align-items: center;" class="mb-2">
-        <div class="numberCircle">5X</div>
-        <h4 class="m-2">+ 3 min ====> {{ estrategias?.a?.assertividade }} - {{ estrategias?.a?.vela_selecionada }}x</h4>
+    <div class="card-body" style="display: flex;">
+      <div >
+        <div style="display: flex; align-items: center;" class="mb-2">
+          <div class="numberCircle">3X</div>
+          <h4 class="m-2">+ 3 min ====> {{ estrategias?.aaa?.assertividade }} - {{ estrategias?.aaa?.vela_selecionada }}x
+          </h4>
+        </div>
+
+        <div style="display: flex; align-items: center;" class="mb-2">
+          <div class="numberCircle">5X</div>
+          <h4 class="m-2">+ 3 min ====> {{ estrategias?.a?.assertividade }} - {{ estrategias?.a?.vela_selecionada }}x</h4>
+        </div>
+        <div style="display: flex; align-items: center;" class="mb-2">
+          <div class="numberCircle">10X</div>
+          <h4 class="m-2">+ 3 min ====> {{ estrategias?.b?.assertividade }} - {{ estrategias?.b?.vela_selecionada }}x</h4>
+        </div>
+        <div style="display: flex; align-items: center;" class="mb-2">
+          <div class="numberCircle">3X</div>
+          <h4 class="m-2">+ 5 min ====> {{ estrategias?.aa?.assertividade }} - {{ estrategias?.aa?.vela_selecionada }}x
+          </h4>
+        </div>
+        <div style="display: flex; align-items: center;" class="mb-2">
+          <div class="numberCircle">5X</div>
+          <h4 class="m-2">+ 5 min ====> {{ estrategias?.c?.assertividade }} - {{ estrategias?.c?.vela_selecionada }}x</h4>
+        </div>
+        <div style="display: flex; align-items: center;" class="mb-2">
+          <div class="numberCircle">10X</div>
+          <h4 class="m-2">+ 5 min ====> {{ estrategias?.d?.assertividade }} - {{ estrategias?.d?.vela_selecionada }}x</h4>
+        </div>
       </div>
-      <div style="display: flex; align-items: center;" class="mb-2">
-        <div class="numberCircle">10X</div>
-        <h4 class="m-2">+ 3 min ====> {{ estrategias?.b?.assertividade }} - {{ estrategias?.b?.vela_selecionada }}x</h4>
-      </div>
-      <div style="display: flex; align-items: center;" class="mb-2">
-        <div class="numberCircle">5X</div>
-        <h4 class="m-2">+ 5 min ====> {{ estrategias?.c?.assertividade }} - {{ estrategias?.c?.vela_selecionada }}x</h4>
-      </div>
-      <div style="display: flex; align-items: center;" class="mb-2">
-        <div class="numberCircle">10X</div>
-        <h4 class="m-2">+ 5 min ====> {{ estrategias?.d?.assertividade }} - {{ estrategias?.d?.vela_selecionada }}x</h4>
-      </div>
-      <div style="display: flex; align-items: center;" class="mb-2">
-        <div class="numberCircle">3X</div>
-        <h4 class="m-2">+ (soma digitos) min ====> {{ estrategias?.e?.assertividade }} - {{ estrategias?.e?.vela_selecionada }}x</h4>
+      <div>
+        <div style="display: flex; align-items: center;" class="mb-2">
+          <div class="numberCircle">3X</div>
+          <h4 class="m-2">+ (soma digitos) min ====> {{ estrategias?.e?.assertividade }} - {{
+            estrategias?.e?.vela_selecionada }}x</h4>
+        </div>
+        <div style="display: flex; align-items: center;" class="mb-2">
+          <div class="numberCircle">5X</div>
+          <h4 class="m-2">+ (soma digitos) min ====> {{ estrategias?.f?.assertividade }} - {{
+            estrategias?.f?.vela_selecionada }}x</h4>
+        </div>
+
       </div>
     </div>
   </div>

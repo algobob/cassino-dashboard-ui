@@ -62,8 +62,10 @@ onMounted(() => {
   </MaterialAlert> -->
     </div>
 
+    <div style="width: 100%;: ;" class="mt-2">
+    <PadraoEstrategias :estrategias="estrategias" />
+    </div>
     <div style="display: flex;" class="mt-2">
-      <PadraoEstrategias :estrategias="estrategias" />
       <MediaVelas :media_intervalos="media_intervalos" />
       <ContagemCores :contagem_cores="contagem_cores" />
       <!-- <GraficoLinha :contagem_cores = "contagem_cores" /> -->
