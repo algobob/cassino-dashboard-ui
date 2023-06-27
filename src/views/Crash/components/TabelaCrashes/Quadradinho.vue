@@ -42,7 +42,6 @@
   line-break: anywhere;
   font-size: 13px;
   text-align: center;
-
 }
 
 .quadradinho:hover {

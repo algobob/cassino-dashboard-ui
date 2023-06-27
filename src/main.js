@@ -3,6 +3,9 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 import VueApexCharts from "vue3-apexcharts";
+import VueNativeNotification from 'vue-native-notification'
+import Popper from "vue3-popper";
+
 
 // Nucleo Icons
 import "./assets/css/nucleo-icons.css";
@@ -16,4 +19,6 @@ app.use(createPinia());
 app.use(router);
 app.use(materialKit);
 app.use(VueApexCharts);
+app.use(Popper);
+// app.use(VueNativeNotification);
 app.mount("#app");

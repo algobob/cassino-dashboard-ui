@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 
 // Sections components
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";

@@ -1,4 +1,4 @@
-# fly.toml file generated for cassino-dashboard-ui on 2023-06-20T00:14:45-03:00
+# fly.toml file generated for cassino-dashboard-ui on 2023-06-20T12:15:58-03:00
 
 app = "cassino-dashboard-ui"
 kill_signal = "SIGINT"
@@ -6,10 +6,14 @@ kill_timeout = 5
 processes = []
 
 [build]
-  builder = "heroku/buildpacks:20"
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8080"
 
 [experimental]
   auto_rollback = true
+
 
 [[services]]
   http_checks = []

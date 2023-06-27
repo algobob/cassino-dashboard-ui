@@ -60,6 +60,10 @@ watch(() => props.estrategias, (estrategias, prevEstrategias) => {
         <div class="numberCircle">10X</div>
         <h4 class="m-2">+ 5 min ====> {{ estrategias?.d?.assertividade }} - {{ estrategias?.d?.vela_selecionada }}x</h4>
       </div>
+      <div style="display: flex; align-items: center;" class="mb-2">
+        <div class="numberCircle">3X</div>
+        <h4 class="m-2">+ (soma digitos) min ====> {{ estrategias?.e?.assertividade }} - {{ estrategias?.e?.vela_selecionada }}x</h4>
+      </div>
     </div>
   </div>
 </template>
