@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 
 // Sections components
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
@@ -11,7 +11,6 @@ import ContagemCores from "./components/ContagemCores.vue"
 import GraficoLinha from "./components/GraficoLinha.vue"
 import Clock from "./components/Clock.vue"
 import TabelaCrashes from "./components/TabelaCrashes/TabelaCrashes.vue"
-import MaterialAlert from "@/components/MaterialAlert.vue";
 
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
@@ -21,7 +20,6 @@ const contagem_cores = ref({})
 const media_intervalos = ref({})
 const velas = ref([])
 const qtd_velas = ref("200")
-// const notification = inject('notification')
 
 const load = () => {
   fetch('/api/blaze/crash/dashboard/' + qtd_velas.value)
@@ -31,19 +29,18 @@ const load = () => {
       contagem_cores.value = data['contagem_cores']
       media_intervalos.value = data['media_intervalos']
       velas.value = data['velas']
-      // notification.show('Hello World', {
-      //     body: 'This is an example!'
-      //   }, {})
     })
 }
+const evtSource = new EventSource("/ingested");
+evtSource.onmessage = (event) => {
+  console.log(`message: ${event.data}`);
+  load()
+};
 
 //hook
 onMounted(() => {
   setNavPills();
-  setInterval(() => {
-    load()
-  }, 30000)
-  load();
+  load()
 });
 
 </script>
@@ -56,14 +53,10 @@ onMounted(() => {
       </label>
       <button class="mt-2" @click="load">Load</button>
       <Clock />
-
-      <!-- <MaterialAlert v-if="loadClicked" class="mt-2" style="width: fit-content;" color="success" fontWeight="bold">
-   Atualizado com sucesso!
-  </MaterialAlert> -->
     </div>
 
     <div style="width: 100%;: ;" class="mt-2">
-    <PadraoEstrategias :estrategias="estrategias" />
+      <PadraoEstrategias :estrategias="estrategias" />
     </div>
     <div style="display: flex;" class="mt-2">
       <MediaVelas :media_intervalos="media_intervalos" />
@@ -71,7 +64,7 @@ onMounted(() => {
       <!-- <GraficoLinha :contagem_cores = "contagem_cores" /> -->
     </div>
     <div>
-      <TabelaCrashes :velas="velas"/>
+      <TabelaCrashes :velas="velas" />
     </div>
 
   </BaseLayout>
