@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRoute } from 'vue-router'
 
 // Sections components
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
@@ -19,18 +20,23 @@ const estrategias = ref({})
 const contagem_cores = ref({})
 const media_intervalos = ref({})
 const velas = ref([])
+const qtd_velas_total = ref(0)
 const qtd_velas = ref("200")
+const route = useRoute()
+const platform = route.params.platform
 
 const load = () => {
-  fetch('/api/blaze/crash/dashboard/' + qtd_velas.value)
+  fetch(`/api/${platform}/crash/dashboard/${qtd_velas.value}`)
     .then(response => response.json())
     .then(data => {
       estrategias.value = data['estrategias']
       contagem_cores.value = data['contagem_cores']
       media_intervalos.value = data['media_intervalos']
       velas.value = data['velas']
+      qtd_velas_total.value = data['qtd_velas_total']
     })
 }
+
 const evtSource = new EventSource("/ingested");
 evtSource.onmessage = (event) => {
   console.log(`message: ${event.data}`);
@@ -53,6 +59,7 @@ onMounted(() => {
       </label>
       <button class="mt-2" @click="load">Load</button>
       <Clock />
+      <p>Quantidade de velas no banco: {{ qtd_velas_total }}</p>
     </div>
 
     <div style="width: 100%;: ;" class="mt-2">

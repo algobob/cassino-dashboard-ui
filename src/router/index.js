@@ -148,7 +148,7 @@ const router = createRouter({
       component: ElTypography,
     },
     {
-      path: "/blaze/crash",
+      path: "/:platform/crash",
       name: "about",
       component: CrashView,
     },
