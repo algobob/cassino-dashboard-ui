@@ -25,7 +25,11 @@ export default defineConfig({
   ,
   server: {
     proxy: {
-      '/api': 'https://cassino-online-api-production.up.railway.app',
+      '/api': {
+        target: 'https://cassino-online-api-production.up.railway.app',
+        secure: false,
+        changeOrigin: true
+      },
       // '/ingested': 'http://127.0.0.1:5000'
       '/ingested': 'https://cassino-database-manager-production.up.railway.app'
      },
