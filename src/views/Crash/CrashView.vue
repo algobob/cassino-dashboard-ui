@@ -61,7 +61,6 @@ onMounted(() => {
       </label>
       <button class="mt-2" @click="load">Load</button>
       <Clock />
-      <p>Quantidade de velas no banco: {{ qtd_velas_total }}</p>
     </div>
 
     <div style="width: 100%;: ;" class="mt-2">
