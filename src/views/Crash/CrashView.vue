@@ -39,7 +39,7 @@ const load = () => {
     })
 }
 
-const evtSource = new EventSource("/ingested");
+const evtSource = new EventSource("https://cassino-database-manager-production.up.railway.app/ingested");
 evtSource.onmessage = (event) => {
   console.log(`message: ${event.data}`);
   load()
