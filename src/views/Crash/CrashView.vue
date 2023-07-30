@@ -12,7 +12,7 @@ import ContagemCores from "./components/ContagemCores.vue"
 import GraficoLinha from "./components/GraficoLinha.vue"
 import Clock from "./components/Clock.vue"
 import TabelaCrashes from "./components/TabelaCrashes/TabelaCrashes.vue"
-
+import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
 
@@ -25,8 +25,10 @@ const qtd_velas = ref("200")
 const route = useRoute()
 const platform = route.params.platform
 
+const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
+
 const load = () => {
-  fetch(`/api/${platform}/crash/dashboard/${qtd_velas.value}`)
+  fetch(`${apiHost}/api/${platform}/crash/dashboard/${qtd_velas.value}`)
     .then(response => response.json())
     .then(data => {
       estrategias.value = data['estrategias']
@@ -51,7 +53,7 @@ onMounted(() => {
 
 </script>
 <template>
-  <BaseLayout title="Blaze - Crash">
+  <BaseLayout :title="`${startCase(platform)} - Crash`">
     <div style="width: 30%; display:inline;">
       <label for="qtdVelas">
         Quantidade de velas:
