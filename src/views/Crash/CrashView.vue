@@ -61,6 +61,10 @@ onMounted(() => {
       </label>
       <button class="mt-2" @click="load">Load</button>
       <Clock />
+      <audio controls autoplay>
+        <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
     <div style="width: 100%;: ;" class="mt-2">

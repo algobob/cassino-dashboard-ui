@@ -1,6 +1,24 @@
 <script setup>
+import { watch } from 'vue';
+
 const props = defineProps(['contagem_cores'])
 console.log(props.contagem_cores)
+
+const audio = new Audio('https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3');
+
+const alertIfVelasAcima50 = (value) => {
+  const percentageVerde = value?.percentageVerde
+  console.log(percentageVerde)
+  if (percentageVerde.startsWith("4")) {
+    audio.play();
+  }
+}
+
+watch(() => props.contagem_cores, (contagemCores, prevContagemCores) => {
+  if (JSON.stringify(contagemCores) !== JSON.stringify(prevContagemCores)) {
+    alertIfVelasAcima50(contagemCores)
+  }
+})
 
 </script>
 <template>
