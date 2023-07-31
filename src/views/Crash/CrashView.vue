@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useRoute } from 'vue-router'
 
 // Sections components
@@ -24,7 +24,7 @@ const qtd_velas_total = ref(0)
 const qtd_velas = ref("200")
 const route = useRoute()
 const platform = route.params.platform
-
+const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 
 const load = () => {
@@ -51,6 +51,18 @@ onMounted(() => {
   load()
 });
 
+const alertIfVelasAcima50 = (value) => {
+  const percentageVerde = value?.percentageVerde
+  console.log(percentageVerde)
+  if (percentageVerde.startsWith("5")) {
+    audio.value.play();
+  }
+}
+
+watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
+    alertIfVelasAcima50(contagemCores)
+})
+
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Crash`">
@@ -61,7 +73,7 @@ onMounted(() => {
       </label>
       <button class="mt-2" @click="load">Load</button>
       <Clock />
-      <audio controls autoplay>
+      <audio ref="audio" controls>
         <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
