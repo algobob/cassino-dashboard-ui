@@ -54,7 +54,7 @@ onMounted(() => {
 const alertIfVelasAcima50 = (value) => {
   const percentageVerde = value?.percentageVerde
   console.log(percentageVerde)
-  if (percentageVerde.startsWith("5")) {
+  if (percentageVerde.startsWith("52")) {
     audio.value.play();
   }
 }
