@@ -53,8 +53,10 @@ onMounted(() => {
 
 const alertIfVelasAcima50 = (value) => {
   const percentageVerde = value?.percentageVerde
-  console.log(percentageVerde)
-  if (percentageVerde.startsWith("52")) {
+  const isPercentageHigherThan = parseInt(percentageVerde.slice(0,2)) >= 52
+  console.log(parseInt(percentageVerde.slice(0,2)))
+
+  if (isPercentageHigherThan) {
     audio.value.play();
   }
 }
