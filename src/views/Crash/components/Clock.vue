@@ -6,7 +6,7 @@
     /* position: absolute; */
     /* left: 50%;
     top: 50%; */
-    transform: translate(140%, -30%);
+    /* transform: translate(140%, -30%); */
     color: #daf6ff;
     text-shadow: 0 0 20px rgba(10, 175, 230, 1), 0 0 20px rgba(10, 175, 230, 0);
     background-color: red;

@@ -7,7 +7,8 @@ import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 import View from "../../layouts/sections/components/View.vue";
 
 import MediaVelas from "./components/MediaVelas.vue"
-import PadraoEstrategias from "./components/PadraoEstrategias.vue"
+import PadraoEstrategiasMinutagem from "./components/PadraoEstrategiasMinutagem.vue"
+import PadraoEstrategiasSomaDigitos from "./components/PadraoEstrategiasSomaDigitos.vue"
 import ContagemCores from "./components/ContagemCores.vue"
 import GraficoLinha from "./components/GraficoLinha.vue"
 import Clock from "./components/Clock.vue"
@@ -53,8 +54,8 @@ onMounted(() => {
 
 const alertIfVelasAcima50 = (value) => {
   const percentageVerde = value?.percentageVerde
-  const isPercentageHigherThan = parseInt(percentageVerde.slice(0,2)) >= 52
-  console.log(parseInt(percentageVerde.slice(0,2)))
+  const isPercentageHigherThan = parseInt(percentageVerde.slice(0, 2)) >= 52
+  console.log(parseInt(percentageVerde.slice(0, 2)))
 
   if (isPercentageHigherThan) {
     audio.value.play();
@@ -62,31 +63,50 @@ const alertIfVelasAcima50 = (value) => {
 }
 
 watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
-    alertIfVelasAcima50(contagemCores)
+  alertIfVelasAcima50(contagemCores)
 })
 
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Crash`">
-    <div style="width: 30%; display:inline;">
-      <label for="qtdVelas">
-        Quantidade de velas:
-        <input name="qtdVelas" class="input-group-static" label="Quantidade de Velas" type="number" v-model="qtd_velas" />
-      </label>
-      <button class="mt-2" @click="load">Load</button>
-      <Clock />
-      <audio ref="audio" controls>
-        <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div style="justify-content: space-between;">
+            <label for="qtdVelas">
+              Quantidade de velas:
+              <input name="qtdVelas" class="input-group-static" label="Quantidade de Velas" type="number"
+                v-model="qtd_velas" />
+            </label>
+            <button @click="load">Load</button>
+            <audio ref="audio" controls>
+              <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <Clock />
+        </div>
+      </div>
 
-    <div style="width: 100%;: ;" class="mt-2">
-      <PadraoEstrategias :estrategias="estrategias" />
-    </div>
-    <div style="display: flex;" class="mt-2">
-      <MediaVelas :media_intervalos="media_intervalos" />
-      <ContagemCores :contagem_cores="contagem_cores" />
+      <div class="row" style="justify-content: space-between;">
+        <div class="col-sm">
+          <MediaVelas :media_intervalos="media_intervalos" />
+        </div>
+        <div class="col-sm">
+          <ContagemCores :contagem_cores="contagem_cores" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm">
+          <PadraoEstrategiasMinutagem :estrategias="estrategias" />
+        </div>
+        <div class="col-sm">
+          <PadraoEstrategiasSomaDigitos :estrategias="estrategias" />
+        </div>
+      </div>
       <!-- <GraficoLinha :contagem_cores = "contagem_cores" /> -->
     </div>
     <div>
