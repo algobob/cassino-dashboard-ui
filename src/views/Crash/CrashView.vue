@@ -16,6 +16,7 @@ import TabelaCrashes from "./components/TabelaCrashes/TabelaCrashes.vue"
 import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
+import PadraoEstrategiasAposXx from "./components/PadraoEstrategiasAposXx.vue";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
@@ -96,16 +97,26 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
         </div>
         <div class="col-sm">
           <ContagemCores :contagem_cores="contagem_cores" />
-        </div>
+        </div>        
       </div>
 
+      <div class="row" style="margin: 4% 2%;">
+          <h4 class="card-title">Estrategias - Probabilidades</h4>
+      </div>
+      <div class="row" style="margin: 2%;">
+        <h5 class="mb-1">* Minutagem</h5>
+      </div>
       <div class="row">
-        <div class="col-sm">
-          <PadraoEstrategiasMinutagem :estrategias="estrategias" />
-        </div>
-        <div class="col-sm">
+        <PadraoEstrategiasMinutagem :estrategias="estrategias" />
+      </div>
+      <div class="row">        
+        <div class="col">
           <PadraoEstrategiasSomaDigitos :estrategias="estrategias" />
         </div>
+        <div class="col">
+          <PadraoEstrategiasAposXx :estrategias="estrategias" />
+        </div>
+        <div class="col"></div>
       </div>
       <!-- <GraficoLinha :contagem_cores = "contagem_cores" /> -->
     </div>

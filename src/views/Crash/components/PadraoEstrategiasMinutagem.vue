@@ -22,58 +22,75 @@ const props = defineProps({
 </script>
 <template>
   <div class="card" style="width: 100%; height: fit-content;">
-    <div class="card-header">
-      <h5 class="card-title">Estrategias - Probabilidades</h5>
-    </div>
-    <div class="card-body" style="display: flex;">
-      <div >
-        <h5 class="mb-4">* Minutagem</h5>
-        <div style="display: flex; align-items: center;" class="mb-2">
-          <div class="numberCircle">3X</div>
-          <h4 class="m-2">+ 3 min ====> {{ estrategias?.minutagem?.padrao_min_3x_3min?.assertividade }} - {{ estrategias?.minutagem?.padrao_min_3x_3min?.vela_selecionada }}x
-          </h4>
+    <div class="card-body">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="numberCircle">3X</div>
+              <h4 class="m-2">+ 3 min > {{ estrategias?.minutagem?.padrao_min_3x_3min?.assertividade }} - {{
+                estrategias?.minutagem?.padrao_min_3x_3min?.vela_selecionada }}x
+              </h4>
+            </div>
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="numberCircle">5X</div>
+              <h4 class="m-2">+ 3 min > {{ estrategias?.minutagem?.padrao_min_5x_3min?.assertividade }} - {{
+                estrategias?.minutagem?.padrao_min_5x_3min?.vela_selecionada }}x
+              </h4>
+            </div>
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="numberCircle">10X</div>
+              <h4 class="m-2">+ 3 min > {{ estrategias?.minutagem?.padrao_min_10x_3min?.assertividade }} - {{
+                estrategias?.minutagem?.padrao_min_10x_3min?.vela_selecionada }}x
+              </h4>
+            </div>
+          </div>
+          <div class="col">
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="numberCircle">3X</div>
+              <h4 class="m-2">+ 4 min > {{ estrategias?.minutagem?.padrao_min_3x_4min?.assertividade }} - {{
+                estrategias?.minutagem?.padrao_min_3x_4min?.vela_selecionada }}x
+              </h4>
+            </div>
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="numberCircle">5X</div>
+              <h4 class="m-2">+ 4 min > {{ estrategias?.minutagem?.padrao_min_5x_4min?.assertividade }} - {{
+                estrategias?.minutagem?.padrao_min_5x_4min?.vela_selecionada }}x
+              </h4>
+            </div>
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="numberCircle">10X</div>
+              <h4 class="m-2">+ 4 min > {{ estrategias?.minutagem?.padrao_min_10x_4min?.assertividade }} - {{
+                estrategias?.minutagem?.padrao_min_10x_4min?.vela_selecionada }}x
+              </h4>
+            </div>
+          </div>
+          <div class="col">
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="numberCircle">3X</div>
+              <h4 class="m-2">+ 5 min > {{ estrategias?.minutagem?.padrao_min_3x_5min?.assertividade }} - {{
+                estrategias?.minutagem?.padrao_min_3x_5min?.vela_selecionada }}x
+              </h4>
+            </div>
+
+
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="numberCircle">5X</div>
+              <h4 class="m-2">+ 5 min > {{ estrategias?.minutagem?.padrao_min_5x_5min?.assertividade }} - {{
+                estrategias?.minutagem?.padrao_min_5x_5min?.vela_selecionada }}x
+              </h4>
+            </div>
+
+
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="numberCircle">10X</div>
+              <h4 class="m-2">+ 5 min > {{ estrategias?.minutagem?.padrao_min_10x_5min?.assertividade }} - {{
+                estrategias?.minutagem?.padrao_min_10x_5min?.vela_selecionada }}x
+              </h4>
+            </div>
+          </div>
         </div>
-        <div style="display: flex; align-items: center;" class="mb-2">
-          <div class="numberCircle">3X</div>
-          <h4 class="m-2">+ 4 min ====> {{ estrategias?.minutagem?.padrao_min_3x_4min?.assertividade }} - {{ estrategias?.minutagem?.padrao_min_3x_4min?.vela_selecionada }}x
-          </h4>
-        </div>
-        <div style="display: flex; align-items: center;" class="mb-2">
-          <div class="numberCircle">3X</div>
-          <h4 class="m-2">+ 5 min ====> {{ estrategias?.minutagem?.padrao_min_3x_5min?.assertividade }} - {{ estrategias?.minutagem?.padrao_min_3x_5min?.vela_selecionada }}x
-          </h4>
-        </div>
-        <div style="display: flex; align-items: center;" class="mb-2">
-          <div class="numberCircle">5X</div>
-          <h4 class="m-2">+ 3 min ====> {{ estrategias?.minutagem?.padrao_min_5x_3min?.assertividade }} - {{ estrategias?.minutagem?.padrao_min_5x_3min?.vela_selecionada }}x
-          </h4>
-        </div>
-        <div style="display: flex; align-items: center;" class="mb-2">
-          <div class="numberCircle">5X</div>
-          <h4 class="m-2">+ 4 min ====> {{ estrategias?.minutagem?.padrao_min_5x_4min?.assertividade }} - {{ estrategias?.minutagem?.padrao_min_5x_4min?.vela_selecionada }}x
-          </h4>
-        </div>
-        <div style="display: flex; align-items: center;" class="mb-2">
-          <div class="numberCircle">5X</div>
-          <h4 class="m-2">+ 5 min ====> {{ estrategias?.minutagem?.padrao_min_5x_5min?.assertividade }} - {{ estrategias?.minutagem?.padrao_min_5x_5min?.vela_selecionada }}x
-          </h4>
-        </div>
-        <div style="display: flex; align-items: center;" class="mb-2">
-          <div class="numberCircle">10X</div>
-          <h4 class="m-2">+ 3 min ====> {{ estrategias?.minutagem?.padrao_min_10x_3min?.assertividade }} - {{ estrategias?.minutagem?.padrao_min_10x_3min?.vela_selecionada }}x
-          </h4>
-        </div>
-        <div style="display: flex; align-items: center;" class="mb-2">
-          <div class="numberCircle">10X</div>
-          <h4 class="m-2">+ 4 min ====> {{ estrategias?.minutagem?.padrao_min_10x_4min?.assertividade }} - {{ estrategias?.minutagem?.padrao_min_10x_4min?.vela_selecionada }}x
-          </h4>
-        </div>
-        <div style="display: flex; align-items: center;" class="mb-2">
-          <div class="numberCircle">10X</div>
-          <h4 class="m-2">+ 5 min ====> {{ estrategias?.minutagem?.padrao_min_10x_5min?.assertividade }} - {{ estrategias?.minutagem?.padrao_min_10x_5min?.vela_selecionada }}x
-          </h4>
-        </div>
-      </div>      
+      </div>
       <!-- <div style="margin-left: 40px;">
         <h5 class="mb-4">* Apos Xx</h5>
         <div style="display: flex; align-items: center;" class="mb-2">

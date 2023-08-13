@@ -21,31 +21,28 @@ const props = defineProps({
 
 </script>
 <template>
-  <div class="card" style="width: fit-content; height: fit-content;">
-    <div class="card-header">
-      <h5 class="card-title">Estrategias - Probabilidades</h5>
-    </div>
+  <div class="card" style="width: fit-content; height: fit-content;">   
     <div class="card-body" style="display: flex;">      
       <div>
         <h5 class="mb-4">* Soma digitos</h5>
         <div style="display: flex; align-items: center;" class="mb-2">
           <div class="numberCircle">3X</div>
-          <h4 class="m-2">+ (soma digitos) min ====> {{ estrategias?.soma_digitos?.padrao_soma_digitos_3x?.assertividade }} - {{
+          <h4 class="m-2">+ (digitos) min > {{ estrategias?.soma_digitos?.padrao_soma_digitos_3x?.assertividade }} - {{
             estrategias?.soma_digitos?.padrao_soma_digitos_3x?.vela_selecionada }}x</h4>
         </div>
         <div style="display: flex; align-items: center;" class="mb-2">
           <div class="numberCircle">4X</div>
-          <h4 class="m-2">+ (soma digitos) min ====> {{ estrategias?.soma_digitos?.padrao_soma_digitos_4x?.assertividade }} - {{
+          <h4 class="m-2">+ (digitos) min > {{ estrategias?.soma_digitos?.padrao_soma_digitos_4x?.assertividade }} - {{
             estrategias?.soma_digitos?.padrao_soma_digitos_4x?.vela_selecionada }}x</h4>
         </div>
         <div style="display: flex; align-items: center;" class="mb-2">
           <div class="numberCircle">5X</div>
-          <h4 class="m-2">+ (soma digitos) min ====> {{ estrategias?.soma_digitos?.padrao_soma_digitos_5x?.assertividade }} - {{
+          <h4 class="m-2">+ (digitos) min > {{ estrategias?.soma_digitos?.padrao_soma_digitos_5x?.assertividade }} - {{
             estrategias?.soma_digitos?.padrao_soma_digitos_5x?.vela_selecionada }}x</h4>
         </div>
         <div style="display: flex; align-items: center;" class="mb-2">
           <div class="numberCircle">6X</div>
-          <h4 class="m-2">+ (soma digitos) min ====> {{ estrategias?.soma_digitos?.padrao_soma_digitos_6x?.assertividade }} - {{
+          <h4 class="m-2">+ (digitos) min > {{ estrategias?.soma_digitos?.padrao_soma_digitos_6x?.assertividade }} - {{
             estrategias?.soma_digitos?.padrao_soma_digitos_6x?.vela_selecionada }}x</h4>
         </div>
 

@@ -11,7 +11,7 @@ console.log(props.media_intervalos)
     <div class="card-body">
       <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col-sm">
             <div class="card" style="width: fit-content; height: fit-content;">
               <div class="card-body">
                 <h5 class="card-title">3X</h5>
@@ -19,14 +19,16 @@ console.log(props.media_intervalos)
               </div>
             </div>
           </div>
-          <div class="col">
+          <div class="col-sm">
             <div class="card" style="width: fit-content; height: fit-content;">
               <div class="card-body">
                 <h5 class="card-title">5X</h5>
                 <p class="card-text"><mark>{{ media_intervalos['5x'] }}</mark></p>
               </div>
             </div>
-          </div>
+          </div>          
+        </div>
+        <div class="row">          
           <div class="col">
             <div class="card" style="width: fit-content; height: fit-content">
               <div class="card-body">
