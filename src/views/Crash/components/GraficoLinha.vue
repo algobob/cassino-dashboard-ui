@@ -1,80 +1,47 @@
-<script setup>
+<template>
+  <Line
+    id="my-chart-id"
+    :options="chartOptions"
+    :data="chartData"
+  />
+</template>
 
-const props = defineProps(['contagem_cores'])
-console.log(props.contagem_cores)
+<script>
+import { Line } from 'vue-chartjs'
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js'
 
-const series = [{
-  name: "Desktops",
-  data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-}]
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+)
 
-const chartOptions = {
-  chart: {
-    height: 350,
-    type: 'line',
-    zoom: {
-      enabled: false
+export default {
+  name: 'LineChart',
+  components: { Line },
+  data() {
+    return {
+      chartData: {
+        labels: [ '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x+'],
+        datasets: [ { data: [1.6, 652.62, 1.39, 2.59, 1.43, 1.61, 4.15, 1.28, 3.16, 1.2, 9.12] } ]
+      },
+      chartOptions: {
+        responsive: true
+      }
     }
-  },
-  dataLabels: {
-    enabled: false
-  },
-  stroke: {
-    curve: 'straight'
-  },
-  title: {
-    text: 'Product Trends by Month',
-    align: 'left'
-  },
-  grid: {
-    row: {
-      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-      opacity: 0.5
-    },
-  },
-  xaxis: {
-    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
   }
 }
-
 </script>
-<template>
-  <!-- <div> -->
-    <div id="chart">
-      <apexchart type="line" height="350" :options="chartOptions" :series="series"></apexchart>
-    </div>
-  <!-- </div> -->
-  <!-- <div class="card" style="width: auto; margin: 0 10px;">
-    <div class="card-header">
-      <h5 class="card-title">Contagem de cores</h5>
-    </div>
-    <div class="card-body">
-      <div style="display: flex;">
-
-        <div class="card" style="width: auto;">
-          <div class="card-body">
-            <h5 class="card-title">
-              <div style="width: 40%;
-  height: 0;
-  padding-top: 40%;
-  background-color: black;">&#9632;</div>
-            </h5>
-            <p class="card-text"><mark>{{ contagem_cores.qtdPreta }} ({{ contagem_cores.percentagePreta }}) Pretos</mark></p>
-          </div>
-        </div>
-
-        <div class="card" style="width: auto; margin: 0 10px;">
-          <div class="card-body">
-            <h5 class="card-title">
-              <div style="width: 40%;
-  height: 0;
-  padding-top: 40%;
-  background-color: greenyellow;">&#9632;</div>
-            </h5>
-            <p class="card-text"><mark>{{ contagem_cores.qtdVerde }} ({{ contagem_cores.percentageVerde }}) Verdes</mark></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-</template>

@@ -118,7 +118,6 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
         </div>
         <div class="col"></div>
       </div>
-      <!-- <GraficoLinha :contagem_cores = "contagem_cores" /> -->
     </div>
     <div>
       <TabelaCrashes :velas="velas" />
