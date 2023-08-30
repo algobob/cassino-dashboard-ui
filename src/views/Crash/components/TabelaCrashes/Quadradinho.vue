@@ -72,6 +72,6 @@ const upHere = ref(false)
           {{ velaObj?.vela }}x
         </span>
       </div>
-        <span v-show="upHere">{{ velaObj?.created.split(" ")[4] }}</span>
+        <span v-show="upHere">{{ new Date(velaObj?.created).toLocaleTimeString() }}</span>
   </div>
 </template>
