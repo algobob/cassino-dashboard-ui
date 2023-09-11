@@ -69,14 +69,14 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
 
 </script>
 <template>
-  <BaseLayout :title="`${startCase(platform)} - Crash`">
+  <BaseLayout :title="`${startCase(platform)} - Double`">
     <div class="container">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col">
           <div style="justify-content: space-between;">
             <label for="qtdVelas">
-              Quantidade de velas:
-              <input name="qtdVelas" class="input-group-static" label="Quantidade de Velas" type="number"
+              Quantidade de rodadas:
+              <input name="qtdRolls" class="input-group-static" label="Quantidade de rodadas" type="number"
                 v-model="qtd_velas" />
             </label>
             <button @click="load">Load</button>
@@ -86,42 +86,15 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
             </audio>
           </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col">
           <Clock />
         </div>
-      </div>
-
-      <div class="row" style="justify-content: space-between;">
-        <div class="col-sm">
-          <MediaVelas :media_intervalos="media_intervalos" />
-        </div>
-        <div class="col-sm">
-          <ContagemCores :contagem_cores="contagem_cores" />
-        </div>        
-      </div>
-
-      <div class="row" style="margin: 4% 2%;">
-          <h4 class="card-title">Estrategias - Probabilidades</h4>
-      </div>
-      <div class="row" style="margin: 2%;">
-        <h5 class="mb-1">* Minutagem</h5>
-      </div>
-      <div class="row">
-        <PadraoEstrategiasMinutagem :estrategias="estrategias" />
-      </div>
-      <div class="row">        
-        <div class="col">
-          <PadraoEstrategiasSomaDigitos :estrategias="estrategias" />
-        </div>
-        <div class="col">
-          <PadraoEstrategiasAposXx :estrategias="estrategias" />
-        </div>
         <div class="col"></div>
-      </div>
-    </div>
-    <div>
-      <TabelaCrashes :velas="velas" />
-    </div>
+        <div class="col"></div>
 
+      </div>
+      </div>
+
+     
   </BaseLayout>
 </template>
