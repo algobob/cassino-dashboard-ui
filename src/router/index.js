@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import CrashView from "../views/Cassino/CrashView.vue";
+import CrashDashboard from "../views/Cassino/CrashDashboard.vue";
 import DoubleDashboard from "../views/Cassino/DoubleDashboard.vue";
 import PresentationView from "../views/Presentation/PresentationView.vue";
 import AboutView from "../views/LandingPages/AboutUs/AboutView.vue";
@@ -151,7 +151,7 @@ const router = createRouter({
     {
       path: "/:platform/crash",
       name: "about",
-      component: CrashView,
+      component: CrashDashboard,
     },
     {
       path: "/:platform/double",

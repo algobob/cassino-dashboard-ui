@@ -100,10 +100,10 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
         </div>        
       </div>
 
-      <div class="row" style="margin: 4% 2%;" v-if="velas.length > 0">
+      <!-- <div class="row" style="margin: 4% 2%;" v-if="velas.length > 0">
         <h4>Graficos</h4>
             <GraficoLinha :velas="velas" />
-      </div>
+      </div> -->
       <div class="row" style="margin: 4% 2%;">
           <h4>Estrategias - Probabilidades</h4>
       </div>
