@@ -9,7 +9,7 @@ import View from "../../layouts/sections/components/View.vue";
 import MediaVelas from "./components/MediaVelas.vue"
 import PadraoEstrategiasMinutagem from "./components/PadraoEstrategiasMinutagem.vue"
 import PadraoEstrategiasSomaDigitos from "./components/PadraoEstrategiasSomaDigitos.vue"
-import ContagemCores from "./components/ContagemCores.vue"
+import DoubleContagemCores from "./components/DoubleContagemCores.vue"
 import GraficoLinha from "./components/GraficoLinha.vue"
 import Clock from "./components/Clock.vue"
 import TabelaCrashes from "./components/TabelaCrashes/TabelaCrashes.vue"
@@ -21,23 +21,19 @@ import PadraoEstrategiasAposXx from "./components/PadraoEstrategiasAposXx.vue";
 const estrategias = ref({})
 const contagem_cores = ref({})
 const media_intervalos = ref({})
-const velas = ref([])
+const rolls = ref([])
 const qtd_velas_total = ref(0)
-const qtd_velas = ref("200")
+const qtd_rolls = ref("200")
 const route = useRoute()
 const platform = route.params.platform
 const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 
 const load = () => {
-  fetch(`${apiHost}/api/${platform}/crash/dashboard/${qtd_velas.value}`)
+  fetch(`${apiHost}/api/${platform}/double/dashboard/${qtd_rolls.value}`)
     .then(response => response.json())
     .then(data => {
-      estrategias.value = data['estrategias']
       contagem_cores.value = data['contagem_cores']
-      media_intervalos.value = data['media_intervalos']
-      velas.value = data['velas']
-      qtd_velas_total.value = data['qtd_velas_total']
     })
 }
 
@@ -64,7 +60,7 @@ const alertIfVelasAcima50 = (value) => {
 }
 
 watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
-  alertIfVelasAcima50(contagemCores)
+  // alertIfVelasAcima50(contagemCores)
 })
 
 </script>
@@ -74,7 +70,7 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
       <div class="row">
         <div class="col">
           <div style="justify-content: space-between;">
-            <label for="qtdVelas">
+            <label for="qtdRolls">
               Quantidade de rodadas:
               <input name="qtdRolls" class="input-group-static" label="Quantidade de rodadas" type="number"
                 v-model="qtd_velas" />
@@ -93,7 +89,12 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
         <div class="col"></div>
 
       </div>
+      <div class="row">
+        <div class="col">
+          <DoubleContagemCores :contagem_cores="contagem_cores" />
+        </div>        
       </div>
+    </div>
 
      
   </BaseLayout>
