@@ -1,5 +1,5 @@
 <script setup>
-import whiteroll from "@/assets/img/white-roll.svg";
+// import whiteroll from "@/assets/img/white-roll.svg";
 
 const props = defineProps(['contagem_cores'])
 console.log(props.contagem_cores)
