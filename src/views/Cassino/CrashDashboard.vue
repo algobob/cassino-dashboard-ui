@@ -8,6 +8,7 @@ import View from "../../layouts/sections/components/View.vue";
 
 import MediaVelas from "./components/MediaVelas.vue"
 import PadraoEstrategiasMinutagem from "./components/PadraoEstrategiasMinutagem.vue"
+import PadraoEstrategiasAposPadrao from "./components/PadraoEstrategiasAposPadrao.vue"
 import PadraoEstrategiasSomaDigitos from "./components/PadraoEstrategiasSomaDigitos.vue"
 import ContagemCores from "./components/ContagemCores.vue"
 import GraficoLinha from "./components/GraficoLinha.vue"
@@ -103,6 +104,12 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
      
       <div class="row" style="margin: 4% 2%;">
           <h4>Estrategias - Probabilidades</h4>
+      </div>
+      <div class="row" style="margin: 2%;">
+        <h5 class="mb-1">* Duplo</h5>
+      </div>
+      <div class="row">
+        <PadraoEstrategiasAposPadrao :estrategias="estrategias" />
       </div>
       <div class="row" style="margin: 2%;">
         <h5 class="mb-1">* Minutagem</h5>
