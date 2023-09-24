@@ -9,7 +9,7 @@ import View from "../../layouts/sections/components/View.vue";
 import MediaVelas from "./components/MediaVelas.vue"
 import PadraoEstrategiasMinutagem from "./components/PadraoEstrategiasMinutagem.vue"
 import PadraoEstrategiasSomaDigitos from "./components/PadraoEstrategiasSomaDigitos.vue"
-import DoubleContagemCores from "./components/DoubleContagemCores.vue"
+import DoubleContagemCores from "./components/double/DoubleContagemCores.vue"
 import GraficoLinha from "./components/GraficoLinha.vue"
 import Clock from "./components/Clock.vue"
 import TabelaCrashes from "./components/TabelaCrashes/TabelaCrashes.vue"
@@ -17,9 +17,11 @@ import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
 import PadraoEstrategiasAposXx from "./components/PadraoEstrategiasAposXx.vue";
+import DoubleNumeroCor from "./components/double/DoubleNumeroCor.vue";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
+const numero_cor_probabilidades = ref({})
 const media_intervalos = ref({})
 const rolls = ref([])
 const qtd_velas_total = ref(0)
@@ -34,6 +36,7 @@ const load = () => {
     .then(response => response.json())
     .then(data => {
       contagem_cores.value = data['contagem_cores']
+      numero_cor_probabilidades.value = data['numero_cor_probabilidades']
     })
 }
 
@@ -69,7 +72,7 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
     <div class="container">
       <div class="row">
         <div class="col">
-          <div style="justify-content: space-between;">
+          <div>
             <label for="qtdRolls">
               Quantidade de rodadas:
               <input name="qtdRolls" class="input-group-static" label="Quantidade de rodadas" type="number"
@@ -94,8 +97,11 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
           <DoubleContagemCores :contagem_cores="contagem_cores" />
         </div>        
       </div>
+      <div class="row">
+        <div class="col">
+          <DoubleNumeroCor :numero_cor_probabilidades="numero_cor_probabilidades" />
+        </div>        
+      </div>
     </div>
-
-     
   </BaseLayout>
 </template>

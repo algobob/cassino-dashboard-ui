@@ -27,7 +27,7 @@ console.log(props.contagem_cores)
 <template>
   <div class="card" style="width: auto; margin: 0 10px;">
     <div class="card-header">
-      <h5 class="card-title">Contagem de cores</h5>
+      <h5 class="card-title">Qual % para cada cor?</h5>
     </div>
     <div class="card-body">
       <div style="display: flex;">
@@ -37,7 +37,7 @@ console.log(props.contagem_cores)
             <h5 class="card-title">
               <div class="square black"></div>
             </h5>
-            <p class="card-text"><mark>{{ contagem_cores.qtdPreta }} ({{ contagem_cores.percentagePreta }}) Pretos</mark></p>
+            <p class="card-text"><mark>{{ contagem_cores.qtdPreta }} ({{ contagem_cores.percentagePreta }})</mark></p>
           </div>
         </div>
 
@@ -46,7 +46,7 @@ console.log(props.contagem_cores)
             <h5 class="card-title">
               <div class="square red"></div>
             </h5>
-            <p class="card-text"><mark>{{ contagem_cores.qtdVermelha }} ({{ contagem_cores.percentageVermelha }}) Vermelhas</mark></p>
+            <p class="card-text"><mark>{{ contagem_cores.qtdVermelha }} ({{ contagem_cores.percentageVermelha }})</mark></p>
           </div>
         </div>
         <div class="card" style="width: auto; margin: 0 10px;">
@@ -54,7 +54,7 @@ console.log(props.contagem_cores)
             <h5 class="card-title">
               <div class="square white"></div>
             </h5>
-            <p class="card-text"><mark>{{ contagem_cores.qtdBranca }} ({{ contagem_cores.percentageBranca }}) Brancas</mark></p>
+            <p class="card-text"><mark>{{ contagem_cores.qtdBranca }} ({{ contagem_cores.percentageBranca }})</mark></p>
           </div>
         </div>
       </div>
