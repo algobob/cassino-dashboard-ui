@@ -38,13 +38,6 @@ console.log('creu ', props.numero_cor_probabilidades)
         <div v-for="(value, key) in numero_cor_probabilidades">
           <DoubleNumeroCorProbabilidade :roll="key" :probabilidade="value" />
         </div>
-
-        <!-- <DoubleNumeroCorProbabilidade :roll="3" :probabilidade="200"/>
-        <DoubleNumeroCorProbabilidade :roll="4" :probabilidade="200"/>
-        <DoubleNumeroCorProbabilidade :roll="5" :probabilidade="200"/>
-        <DoubleNumeroCorProbabilidade :roll="9" :probabilidade="200"/> 
-        <DoubleNumeroCorProbabilidade :roll="13" :probabilidade="200"/> -->
-        
       </div>
     </div>
   </div>

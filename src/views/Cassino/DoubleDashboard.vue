@@ -4,19 +4,11 @@ import { useRoute } from 'vue-router'
 
 // Sections components
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
-import View from "../../layouts/sections/components/View.vue";
-
-import MediaVelas from "./components/MediaVelas.vue"
-import PadraoEstrategiasMinutagem from "./components/PadraoEstrategiasMinutagem.vue"
-import PadraoEstrategiasSomaDigitos from "./components/PadraoEstrategiasSomaDigitos.vue"
 import DoubleContagemCores from "./components/double/DoubleContagemCores.vue"
-import GraficoLinha from "./components/GraficoLinha.vue"
 import Clock from "./components/Clock.vue"
-import TabelaCrashes from "./components/TabelaCrashes/TabelaCrashes.vue"
 import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
-import PadraoEstrategiasAposXx from "./components/PadraoEstrategiasAposXx.vue";
 import DoubleNumeroCor from "./components/double/DoubleNumeroCor.vue";
 import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
 
