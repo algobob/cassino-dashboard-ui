@@ -1,4 +1,5 @@
 <script setup>
+import whiteRoll from "@/assets/img/white-roll.png";
 
 const props = defineProps(['roll', 'probabilidade'])
 
@@ -42,7 +43,8 @@ const props = defineProps(['roll', 'probabilidade'])
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">
-          <div class="circle">{{ roll }}</div>
+          <div v-if="roll !== '0'" class="circle">{{ roll }}</div>
+          <img v-if="roll === '0'" class="circle" :src="whiteRoll" alt="White">
         </h5>
         <div class="card-text">
           <div class="square" style="background-color: red;"></div>
