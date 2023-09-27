@@ -18,6 +18,7 @@ import { startCase } from 'lodash';
 import setNavPills from "@/assets/js/nav-pills";
 import PadraoEstrategiasAposXx from "./components/PadraoEstrategiasAposXx.vue";
 import DoubleNumeroCor from "./components/double/DoubleNumeroCor.vue";
+import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
@@ -37,6 +38,7 @@ const load = () => {
     .then(data => {
       contagem_cores.value = data['contagem_cores']
       numero_cor_probabilidades.value = data['numero_cor_probabilidades']
+      rolls.value = data['rolls']
     })
 }
 
@@ -95,12 +97,15 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
       <div class="row">
         <div class="col">
           <DoubleContagemCores :contagem_cores="contagem_cores" />
-        </div>        
+        </div>
       </div>
       <div class="row">
         <div class="col">
           <DoubleNumeroCor :numero_cor_probabilidades="numero_cor_probabilidades" />
-        </div>        
+        </div>
+      </div>
+      <div>
+        <TabelaDouble :rolls="rolls" />
       </div>
     </div>
   </BaseLayout>

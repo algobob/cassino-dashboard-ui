@@ -31,7 +31,7 @@ console.log('creu ', props.numero_cor_probabilidades)
 <template>
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title">Qual probabilidade para cor <mark class="red">VERMELHA</mark> apos numero X?</h5>
+      <h5 class="card-title">Qual probabilidade para cor <mark class="red">VERMELHA</mark> ou <mark class="black">PRETA</mark> apos numero X?</h5>
     </div>
     <div class="card-body">
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
