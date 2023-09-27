@@ -9,7 +9,7 @@ const props = defineProps({
 
 </script>
 <template>
-  <div style="display: flex; flex-wrap: wrap; margin-top: 20px;"> 
+  <div style="display: flex; flex-wrap: wrap; margin-top: 20px; flex-direction: row-reverse;"> 
     <div v-for="velaObj in velas">
       <Quadradinho :velaObj="velaObj" />
     </div>
