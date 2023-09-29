@@ -28,18 +28,19 @@
 
 <script setup>
 const props = defineProps({
+  qtd: Number,
   min: Number,
-  max: Number
+  max: Number,
+  probability: Text
 })
 
 </script>
 <template>
   <div style="display: flex; align-items: center;" class="mb-2">
-    <div class="rectangle">({{ props.min}}-{{ props.max }})x</div>
-    <div class="rectangle">({{ props.min}}-{{ props.max }})x</div>
+    <div v-for="n in qtd" class="rectangle">({{ min}}-{{ max }})x</div>
     <h5 class="font-weight-bold p-2 mt-2"> > </h5>
     <div class="numberCircle">+2X</div>
     <h5 class="font-weight-bold p-2 mt-2"> ? </h5>
-    <h5 class="font-weight-bold p-2 mt-2"><mark>100%</mark></h5>
+    <h5 class="font-weight-bold p-2 mt-2"><mark>{{ probability }}</mark></h5>
   </div>
 </template>
