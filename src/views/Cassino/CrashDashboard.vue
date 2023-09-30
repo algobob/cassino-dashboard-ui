@@ -8,6 +8,7 @@ import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 import MediaVelas from "./components/crash/MediaVelas.vue"
 import PadraoEstrategiasMinutagem from "./components/crash/padroes/PadraoEstrategiasMinutagem.vue"
 import PadraoEstrategiasSurf from "./components/crash/padroes/surf/PadraoEstrategiasSurf.vue"
+import PadraoEstrategiasXadrez from "./components/crash/padroes/xadrez/PadraoEstrategiasXadrez.vue"
 import PadraoEstrategiasSomaDigitos from "./components/crash/padroes/PadraoEstrategiasSomaDigitos.vue"
 import ContagemCores from "./components/crash/ContagemCores.vue"
 import GraficoLinha from "./components/crash/GraficoLinha.vue"
@@ -97,18 +98,18 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
         </div>
         <div class="col-sm">
           <ContagemCores :contagem_cores="contagem_cores" />
-        </div>        
+        </div>
       </div>
-
-     
       <div class="row" style="margin: 4% 2%;">
-          <h4>Estrategias - Probabilidades</h4>
-      </div>
-      <div class="row" style="margin: 2%;">
-        <h5 class="mb-1">* Surf</h5>
+        <h4>Estrategias - Probabilidades</h4>
       </div>
       <div class="row">
-        <PadraoEstrategiasSurf :estrategias="estrategias" />
+        <div class="col">
+          <PadraoEstrategiasSurf :estrategias="estrategias" />
+        </div>
+        <div class="col">
+          <PadraoEstrategiasXadrez :estrategias="estrategias" />
+        </div>
       </div>
       <div class="row" style="margin: 2%;">
         <h5 class="mb-1">* Minutagem</h5>
@@ -116,7 +117,7 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
       <div class="row">
         <PadraoEstrategiasMinutagem :estrategias="estrategias" />
       </div>
-      <div class="row">        
+      <div class="row">
         <div class="col">
           <PadraoEstrategiasSomaDigitos :estrategias="estrategias" />
         </div>

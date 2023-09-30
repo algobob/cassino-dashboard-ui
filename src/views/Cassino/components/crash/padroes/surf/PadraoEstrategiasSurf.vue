@@ -36,18 +36,15 @@ import PadraoSurf from "./PadraoSurf.vue"
 
 </script>
 <template>  
-      <div class="container">
-        <div class="row">
-          <div class="col">
+      <div class="flex-container">
             <div class="card">
               <div class="card-body">
+                <h5 style="margin-bottom: 2%;">* Surf</h5>
                 <PadraoSurf :qtd="2" :min="2" :max="10" :probability="estrategias?.apos_padrao_surf?.duplo_2and10"/>             
                 <PadraoSurf :qtd="2" :min="2" :max="100" :probability="estrategias?.apos_padrao_surf?.duplo_2and100"/>             
                 <PadraoSurf :qtd="3" :min="2" :max="100" :probability="estrategias?.apos_padrao_surf?.triplo_2and100"/>             
                 <PadraoSurf :qtd="4" :min="2" :max="100" :probability="estrategias?.apos_padrao_surf?.quadruplo_2and100"/>             
               </div>
             </div>
-          </div>
-        </div>
       </div>    
 </template>
