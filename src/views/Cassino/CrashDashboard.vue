@@ -24,6 +24,7 @@ const contagem_cores = ref({})
 const media_intervalos = ref({})
 const velas = ref([])
 const qtd_velas_total = ref(0)
+const galho = ref(2)
 const qtd_velas = ref("200")
 const route = useRoute()
 const platform = route.params.platform
@@ -31,7 +32,7 @@ const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 
 const load = () => {
-  fetch(`${apiHost}/api/${platform}/crash/dashboard/${qtd_velas.value}`)
+  fetch(`${apiHost}/api/${platform}/crash/dashboard?qtdVelas=${qtd_velas.value}&qtdGalho=${galho.value}`)
     .then(response => response.json())
     .then(data => {
       estrategias.value = data['estrategias']
@@ -68,6 +69,10 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
   alertIfVelasAcima50(contagemCores)
 })
 
+watch(() => galho.value, (galho, prevGalho) => {
+  load();  
+})
+
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Crash`">
@@ -100,9 +105,19 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
           <ContagemCores :contagem_cores="contagem_cores" />
         </div>
       </div>
-      <div class="row" style="margin: 4% 2%;">
+      <div class="row" style="margin: 2% 0%;">
         <h4>Estrategias - Probabilidades</h4>
       </div>
+      <div class="row">
+        <label for="qtdGalho">
+             <span style="margin-right: 4px;">Galho:</span>
+              <select name="qtdGalho" class="input-group-static w-5" label="Galho" v-model="galho">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+        </label>
+        </div>
       <div class="row">
         <div class="col">
           <PadraoEstrategiasSurf :estrategias="estrategias" />
