@@ -39,7 +39,7 @@ const props = defineProps({
   <div style="display: flex; align-items: center;" class="mb-2">
     <div v-for="n in qtd" class="rectangle">({{ min}}-{{ max }})x</div>
     <h5 class="font-weight-bold p-2 mt-2"> > </h5>
-    <div class="numberCircle">+2X</div>
+    <div class="rectangle"></div>
     <h5 class="font-weight-bold p-2 mt-2"> ? </h5>
     <h5 class="font-weight-bold p-2 mt-2"><mark>{{ probability }}</mark></h5>
   </div>
