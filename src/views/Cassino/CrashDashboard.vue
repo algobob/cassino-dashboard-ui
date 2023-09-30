@@ -4,20 +4,19 @@ import { useRoute } from 'vue-router'
 
 // Sections components
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
-import View from "../../layouts/sections/components/View.vue";
 
-import MediaVelas from "./components/MediaVelas.vue"
-import PadraoEstrategiasMinutagem from "./components/PadraoEstrategiasMinutagem.vue"
-import PadraoEstrategiasSurf from "./components/double/padroes/surf/PadraoEstrategiasSurf.vue"
-import PadraoEstrategiasSomaDigitos from "./components/PadraoEstrategiasSomaDigitos.vue"
-import ContagemCores from "./components/ContagemCores.vue"
-import GraficoLinha from "./components/GraficoLinha.vue"
+import MediaVelas from "./components/crash/MediaVelas.vue"
+import PadraoEstrategiasMinutagem from "./components/crash/padroes/PadraoEstrategiasMinutagem.vue"
+import PadraoEstrategiasSurf from "./components/crash/padroes/surf/PadraoEstrategiasSurf.vue"
+import PadraoEstrategiasSomaDigitos from "./components/crash/padroes/PadraoEstrategiasSomaDigitos.vue"
+import ContagemCores from "./components/crash/ContagemCores.vue"
+import GraficoLinha from "./components/crash/GraficoLinha.vue"
 import Clock from "./components/Clock.vue"
-import TabelaCrashes from "./components/TabelaCrashes/TabelaCrashes.vue"
+import TabelaCrashes from "./components/crash/TabelaCrashes/TabelaCrashes.vue"
 import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
-import PadraoEstrategiasAposXx from "./components/PadraoEstrategiasAposXx.vue";
+import PadraoEstrategiasAposXx from "./components/crash/padroes/PadraoEstrategiasAposXx.vue";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
