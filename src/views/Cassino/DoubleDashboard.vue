@@ -10,26 +10,25 @@ import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
 import DoubleNumeroCor from "./components/double/DoubleNumeroCor.vue";
+import PadraoEstrategiasSurf from "./components/double/padroes/surf/PadraoEstrategiasSurf.vue";
 import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
-const numero_cor_probabilidades = ref({})
-const media_intervalos = ref({})
 const rolls = ref([])
-const qtd_velas_total = ref(0)
 const qtd_rolls = ref("200")
+const galho = ref(2)
 const route = useRoute()
 const platform = route.params.platform
 const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 
 const load = () => {
-  fetch(`${apiHost}/api/${platform}/double/dashboard/${qtd_rolls.value}`)
+  fetch(`${apiHost}/api/${platform}/double/dashboard?qtdRolls=${qtd_rolls.value}&galho=${galho}`)
     .then(response => response.json())
     .then(data => {
       contagem_cores.value = data['contagem_cores']
-      numero_cor_probabilidades.value = data['numero_cor_probabilidades']
+      estrategias.value = data['estrategias']
       rolls.value = data['rolls']
     })
 }
@@ -70,7 +69,7 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
             <label for="qtdRolls">
               Quantidade de rodadas:
               <input name="qtdRolls" class="input-group-static" label="Quantidade de rodadas" type="number"
-                v-model="qtd_velas" />
+                v-model="qtd_rolls" />
             </label>
             <button @click="load">Load</button>
             <audio ref="audio" controls>
@@ -92,8 +91,24 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
         </div>
       </div>
       <div class="row">
+        <h4 class="mt-2">Estrategias</h4>
+      </div>
+      <div class="row">
+        <label for="qtdGalho">
+             <span style="margin-right: 4px;">Galho:</span>
+              <select name="qtdGalho" class="input-group-static w-5" label="Galho" v-model="galho">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+        </label>
+        </div>
+      <div class="row">
+        <PadraoEstrategiasSurf :estrategias="estrategias" />
+      </div>
+      <div class="row">
         <div class="col">
-          <DoubleNumeroCor :numero_cor_probabilidades="numero_cor_probabilidades" />
+          <DoubleNumeroCor :estrategias="estrategias" />
         </div>
       </div>
       <div>

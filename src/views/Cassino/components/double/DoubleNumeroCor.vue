@@ -1,9 +1,7 @@
 <script setup>
 import DoubleNumeroCorProbabilidade from './DoubleNumeroCorProbabilidade.vue';
 
-const props = defineProps(['numero_cor_probabilidades'])
-console.log('creu ', props.numero_cor_probabilidades)
-
+const props = defineProps(['estrategias'])
 </script>
 <style scoped>
 .circle {
@@ -35,7 +33,7 @@ console.log('creu ', props.numero_cor_probabilidades)
     </div>
     <div class="card-body">
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-        <div v-for="(value, key) in numero_cor_probabilidades">
+        <div v-for="(value, key) in estrategias?.numero_cor_probabilidades">
           <DoubleNumeroCorProbabilidade :roll="key" :probabilidade="value" />
         </div>
       </div>
