@@ -20,8 +20,8 @@ const props = defineProps({
 
 </script>
 <template>
-  <div style="display: flex; align-items: center;" class="mb-2">
-    <div v-for="n in qtd" style="display: flex;">
+  <div style="display: flex; align-items: center; gap: 3px;" class="mb-2">
+    <div v-for="n in qtd" style="display: flex; gap: 3px;">
       <div class="rectangle"></div>
       <div class="rectangle" style="background-color: black;"></div>
     </div>

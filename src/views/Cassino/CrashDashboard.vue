@@ -119,10 +119,10 @@ watch(() => galho.value, (galho, prevGalho) => {
         </label>
         </div>
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <PadraoEstrategiasSurf :estrategias="estrategias" />
         </div>
-        <div class="col">
+        <div class="col-6">
           <PadraoEstrategiasXadrez :estrategias="estrategias" />
         </div>
       </div>
