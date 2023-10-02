@@ -70,7 +70,7 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
 })
 
 watch(() => galho.value, (galho, prevGalho) => {
-  load();  
+  load();
 })
 
 </script>
@@ -110,14 +110,20 @@ watch(() => galho.value, (galho, prevGalho) => {
       </div>
       <div class="row">
         <label for="qtdGalho">
-             <span style="margin-right: 4px;">Galho:</span>
-              <select name="qtdGalho" class="input-group-static w-5" label="Galho" v-model="galho">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
+          <span style="margin-right: 4px;">Galho:</span>
+          <select name="qtdGalho" class="input-group-static w-5" label="Galho" v-model="galho">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
         </label>
-        </div>
+      </div>
       <div class="row">
         <div class="col-6">
           <PadraoEstrategiasSurf :estrategias="estrategias" />
