@@ -24,7 +24,7 @@ const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 
 const load = () => {
-  fetch(`${apiHost}/api/${platform}/double/dashboard?qtdRolls=${qtd_rolls.value}&galho=${galho}`)
+  fetch(`${apiHost}/api/${platform}/double/dashboard?qtdRolls=${qtd_rolls.value}&galho=${galho.value}`)
     .then(response => response.json())
     .then(data => {
       contagem_cores.value = data['contagem_cores']
@@ -55,8 +55,8 @@ const alertIfVelasAcima50 = (value) => {
   }
 }
 
-watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
-  // alertIfVelasAcima50(contagemCores)
+watch(() => galho.value, (galho, prevGalho) => {
+  load()
 })
 
 </script>
@@ -65,25 +65,23 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
     <div class="container">
       <div class="row">
         <div class="col">
-          <div>
-            <label for="qtdRolls">
-              Quantidade de rodadas:
-              <input name="qtdRolls" class="input-group-static" label="Quantidade de rodadas" type="number"
-                v-model="qtd_rolls" />
-            </label>
-            <button @click="load">Load</button>
-            <audio ref="audio" controls>
-              <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
+          <div class="card">
+            <div class="card-body">
+              <div style="display: flex; gap: 20px; flex-direction: column;">
+                <Clock />
+                <div style="display: flex; gap: 10px;">
+                  <span> Rodadas: </span>
+                  <input name="qtdRolls" v-model="qtd_rolls" style="height: 30px;" />
+                  <button @click="load" style="height: 30px;">Load</button>
+                </div>
+                <audio ref="audio" controls>
+                  <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col">
-          <Clock />
-        </div>
-        <div class="col"></div>
-        <div class="col"></div>
-
       </div>
       <div class="row">
         <div class="col">
@@ -95,21 +93,19 @@ watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
       </div>
       <div class="row">
         <label for="qtdGalho">
-             <span style="margin-right: 4px;">Galho:</span>
-              <select name="qtdGalho" class="input-group-static w-5" label="Galho" v-model="galho">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
+          <span style="margin-right: 4px;">Galho:</span>
+          <select name="qtdGalho" class="input-group-static w-5" label="Galho" v-model="galho">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
         </label>
-        </div>
+      </div>
       <div class="row">
         <PadraoEstrategiasSurf :estrategias="estrategias" />
       </div>
       <div class="row">
-        <div class="col">
-          <DoubleNumeroCor :estrategias="estrategias" />
-        </div>
+        <DoubleNumeroCor :estrategias="estrategias" />
       </div>
       <div>
         <TabelaDouble :rolls="rolls" />
