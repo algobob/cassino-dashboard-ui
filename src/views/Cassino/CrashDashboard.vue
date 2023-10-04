@@ -57,7 +57,7 @@ onMounted(() => {
 
 const alertIfVelasAcima50 = (value) => {
   const percentageVerde = value?.percentageVerde
-  const isPercentageHigherThan = parseInt(percentageVerde.slice(0, 2)) >= 52
+  const isPercentageHigherThan = parseInt(percentageVerde.slice(0, 2)) >= 51
   console.log(parseInt(percentageVerde.slice(0, 2)))
 
   if (isPercentageHigherThan) {
