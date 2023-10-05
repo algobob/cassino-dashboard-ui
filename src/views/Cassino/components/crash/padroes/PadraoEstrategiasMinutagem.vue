@@ -41,7 +41,7 @@ const props = defineProps({
             <!-- <div class="card-header">
               <h5>Minutos:</h5>
             </div> -->
-            <div style="display: flex; gap: 40px;">
+            <div style="display: flex; gap: 30px;">
               <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
                 <div style="display: flex; align-items: center; justify-content: center; ">
                   <div class="rectangle">00</div>
@@ -149,7 +149,7 @@ const props = defineProps({
         </div>
       </div>
       <div class="col">
-        <div class="card">
+        <div class="card" style="width: fit-content;">
           <div class="card-body">
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="numberCircle">3X</div>

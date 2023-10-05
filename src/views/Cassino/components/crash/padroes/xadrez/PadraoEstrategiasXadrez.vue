@@ -8,7 +8,7 @@ import PadraoXadrez from "./PadraoXadrez.vue"
 
 </script>
 <template>  
-      <div class="flex-container">
+      <div class="flex-container" style="width: fit-content;">
             <div class="card">
               <div class="card-body">
                 <h5 style="margin-bottom: 2%;">* Xadrez</h5>

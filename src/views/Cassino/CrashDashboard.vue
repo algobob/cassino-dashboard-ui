@@ -11,6 +11,7 @@ import PadraoEstrategiasSurf from "./components/crash/padroes/surf/PadraoEstrate
 import PadraoEstrategiasXadrez from "./components/crash/padroes/xadrez/PadraoEstrategiasXadrez.vue"
 import PadraoEstrategiasSomaDigitos from "./components/crash/padroes/PadraoEstrategiasSomaDigitos.vue"
 import ContagemCores from "./components/crash/ContagemCores.vue"
+import Caixa from "./components/crash/Caixa.vue"
 import GraficoLinha from "./components/crash/GraficoLinha.vue"
 import Clock from "./components/Clock.vue"
 import TabelaCrashes from "./components/crash/TabelaCrashes/TabelaCrashes.vue"
@@ -25,6 +26,7 @@ const media_intervalos = ref({})
 const velas = ref([])
 const qtd_velas_total = ref(0)
 const galho = ref(2)
+const balance = ref(0)
 const qtd_velas = ref("200")
 const route = useRoute()
 const platform = route.params.platform
@@ -40,6 +42,7 @@ const load = () => {
       media_intervalos.value = data['media_intervalos']
       velas.value = data['velas']
       qtd_velas_total.value = data['qtd_velas_total']
+      balance.value = data['balance']
     })
 }
 
@@ -78,7 +81,7 @@ watch(() => galho.value, (galho, prevGalho) => {
   <BaseLayout :title="`${startCase(platform)} - Crash`">
     <div class="container">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col">
           <div style="justify-content: space-between;">
             <label for="qtdVelas">
               Quantidade de velas:
@@ -92,8 +95,11 @@ watch(() => galho.value, (galho, prevGalho) => {
             </audio>
           </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col">
           <Clock />
+        </div>
+        <div class="col">
+          <Caixa :balance="balance"/>
         </div>
       </div>
 
