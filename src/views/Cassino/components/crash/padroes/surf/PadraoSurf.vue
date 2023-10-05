@@ -14,6 +14,7 @@
 
 <script setup>
 const props = defineProps({
+  isGreen: Boolean,
   qtd: Number,
   probability: Text
 })
@@ -21,7 +22,7 @@ const props = defineProps({
 </script>
 <template>
   <div style="display: flex; align-items: center; gap: 3px;" class="mb-2">
-    <div v-for="n in qtd" class="rectangle"></div>
+    <div v-for="n in qtd" class="rectangle" :style="{ backgroundColor: isGreen ? 'greenyellow' : 'black' }"></div>
     <h5 class="font-weight-bold p-2 mt-2"> > </h5>
     <div class="rectangle"></div>
     <h5 class="font-weight-bold p-2 mt-2"> ? </h5>
