@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 // Sections components
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 import DoubleContagemCores from "./components/double/DoubleContagemCores.vue"
+import Caixa from "./components/double/Caixa.vue"
 import Clock from "./components/Clock.vue"
 import { startCase } from 'lodash';
 //nav-pills
@@ -15,6 +16,7 @@ import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
+const balance = ref({})
 const rolls = ref([])
 const qtd_rolls = ref("200")
 const galho = ref(2)
@@ -30,6 +32,7 @@ const load = () => {
       contagem_cores.value = data['contagem_cores']
       estrategias.value = data['estrategias']
       rolls.value = data['rolls']
+      balance.value = data['balance']
     })
 }
 
@@ -81,6 +84,9 @@ watch(() => galho.value, (galho, prevGalho) => {
               </div>
             </div>
           </div>
+        </div>
+        <div class="col">
+          <Caixa :balance="balance"/>
         </div>
       </div>
       <div class="row">

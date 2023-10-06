@@ -27,7 +27,7 @@ const props = defineProps(['estrategias'])
 </style>
 
 <template>
-  <div class="card">
+  <div class="card" style="width: fit-content;">
     <div class="card-header">
       <h5 class="card-title">Qual probabilidade para cor <mark class="red">VERMELHA</mark> ou <mark class="black">PRETA</mark> apos numero X?</h5>
     </div>

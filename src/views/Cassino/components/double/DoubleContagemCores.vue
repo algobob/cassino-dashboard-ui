@@ -25,7 +25,7 @@ console.log(props.contagem_cores)
 </style>
 
 <template>
-  <div class="card" style="width: auto; margin: 0 10px;">
+  <div class="card" style="width: fit-content; margin: 0 10px;">
     <div class="card-header">
       <h5 class="card-title">Qual % para cada cor?</h5>
     </div>
