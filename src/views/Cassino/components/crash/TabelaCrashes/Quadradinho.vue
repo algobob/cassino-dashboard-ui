@@ -44,15 +44,11 @@
   text-align: center;
 }
 
-.quadradinho:hover {
-  border: 2px solid blue;
-  transition: 0.3s;
+.hora {
+  font-size: 13px;
+  font-weight: 800;
 }
 
-.quadradinhoPreto:hover {
-  border: 2px solid red;
-  transition: 0.3s;
-}
 </style>
 <script setup>
 import { ref } from "vue";
@@ -67,11 +63,11 @@ const upHere = ref(false)
 <template>
   <div style="display: flex; justify-content: center; align-items: center;flex-direction: column;">
       <div :class="{quadradinhoPreto: velaObj?.vela < 2,
-        quadradinho: velaObj?.vela >= 2}" @mouseover="upHere = true" @mouseleave="upHere = false">
+        quadradinho: velaObj?.vela >= 2}">
         <span>
           {{ velaObj?.vela }}x
         </span>
       </div>
-        <span v-show="upHere">{{ new Date(velaObj?.created*1000).toLocaleTimeString() }}</span>
+        <span class="hora">{{ new Date(velaObj?.created*1000).toLocaleTimeString('pt-BR') }}</span>
   </div>
 </template>
