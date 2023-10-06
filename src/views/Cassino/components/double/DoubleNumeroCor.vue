@@ -27,11 +27,11 @@ const props = defineProps(['estrategias'])
 </style>
 
 <template>
-  <div class="card" style="width: fit-content;">
-    <div class="card-header">
-      <h5 class="card-title">Qual probabilidade para cor <mark class="red">VERMELHA</mark> ou <mark class="black">PRETA</mark> apos numero X?</h5>
+  <div  style="width: fit-content; margin-top: 20px;">
+    <div >
+      <h5 >Qual probabilidade para cor <mark class="red">VERMELHA</mark> ou <mark class="black">PRETA</mark> apos numero X?</h5>
     </div>
-    <div class="card-body">
+    <div >
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
         <div v-for="(value, key) in estrategias?.numero_cor_probabilidades">
           <DoubleNumeroCorProbabilidade :roll="key" :probabilidade="value" />

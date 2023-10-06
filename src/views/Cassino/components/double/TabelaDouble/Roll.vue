@@ -9,8 +9,6 @@
   color: #000;
   text-align: center;
   font: 22px Arial, sans-serif;
-  margin: 0 2px;
-
 }
 
 .red-circle {
@@ -23,8 +21,6 @@
   color: red;
   text-align: center;
   font: 22px Arial, sans-serif;
-  margin: 0 2px;
-
 }
 
 .white-roll {
@@ -81,30 +77,25 @@
 }
 </style>
 <script setup>
-import { ref } from "vue";
 import whiteRoll from "@/assets/img/white-roll.png";
 
 const props = defineProps({
   roll: Object
 })
 
-const upHere = ref(false)
+const rollTime = new Date(props.roll.created*1000)
 
 </script>
 <template>
-  <div style="display: flex;  gap: 20px; margin-bottom: 6px;">
-      <!-- <div class="red-circle"> {{ roll?.roll }}</div> -->
+  <div style="display: flex; flex-direction: column; margin-bottom: 6px; text-align: center; align-content: center;">
       <div v-if="roll?.color !== 'white'" :class="{
         'red-circle': roll?.color === 'red',
-        'black-circle': roll?.color === 'black'}"
-        @mouseover="upHere = true" @mouseleave="upHere = false">
+        'black-circle': roll?.color === 'black'}">
         <span>
           {{ roll?.roll }}
         </span>
       </div>
       <img v-if="roll?.color === 'white'" class="white-roll" :src="whiteRoll" alt="White">
-      <!-- <img class="black-circle" :src="whiteRoll" alt="White"> -->
-
-        <!-- <span v-show="upHere">{{ new Date(roll?.created*1000).toLocaleTimeString() }}</span> -->
+      <span class="hora">{{ rollTime.getHours() }}:{{ rollTime.getMinutes() < 10? "0"+rollTime.getMinutes() : rollTime.getMinutes() }}</span>
   </div>
 </template>
