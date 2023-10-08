@@ -136,15 +136,6 @@ watch(() => galho.value, (galho, prevGalho) => {
       <div class="row">
         <PadraoEstrategiasMinutagem :estrategias="estrategias" />
       </div>
-      <div class="row">
-        <div class="col">
-          <PadraoEstrategiasSomaDigitos :estrategias="estrategias" />
-        </div>
-        <!-- <div class="col">
-          <PadraoEstrategiasAposXx :estrategias="estrategias" />
-        </div> -->
-        <div class="col"></div>
-      </div>
     </div>
     <div>
       <TabelaCrashes :velas="velas" />

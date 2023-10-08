@@ -37,62 +37,59 @@ const props = defineProps({
     <div class="row">
       <div class="col">
         <h4 style="text-decoration: underline; margin-bottom: 40px;">Minutagem</h4>
-        <!-- <div class="card-header">
-              <h5>Minutos:</h5>
-            </div> -->
         <h5 style="text-decoration: underline;">Minuto fixo</h5>
         <div style="display: flex; gap: 30px; margin-top: 40px;">
           <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
             <div style="display: flex; align-items: center; justify-content: center; ">
               <div class="rectangle">00</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['0'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['0'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">01</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['1'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['1'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">02</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['2'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['2'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">03</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['3'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['3'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">04</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['4'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['4'] }}
               </h4>
             </div>
           </div>
           <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">05</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['5'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['5'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">06</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['6'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['6'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">07</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['7'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['7'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">08</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['8'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['8'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">09</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['9'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.minutos_fixo['9'] }}
               </h4>
             </div>
           </div>
@@ -102,56 +99,41 @@ const props = defineProps({
         <h5 style="text-decoration: underline; margin-top: 80px;">Intervalo de X min</h5>
         <div style="display: flex; gap: 30px; margin-top: 40px;">
           <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
-            <div style="display: flex; align-items: center; justify-content: center; ">
-              <div class="rectangle">00</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['0'] }}
-              </h4>
-            </div>
-            <div style="display: flex; align-items: center;" class="mb-2">
-              <div class="rectangle">01</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['1'] }}
-              </h4>
-            </div>
-            <div style="display: flex; align-items: center;" class="mb-2">
-              <div class="rectangle">02</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['2'] }}
-              </h4>
-            </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">03</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['3'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.intervalos['3'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">04</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['4'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.intervalos['4'] }}
+              </h4>
+            </div>
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="rectangle">05</div>
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.intervalos['5'] }}
+              </h4>
+            </div>
+            <div style="display: flex; align-items: center;" class="mb-2">
+              <div class="rectangle">06</div>
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.intervalos['6'] }}
               </h4>
             </div>
           </div>
           <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
             <div style="display: flex; align-items: center;" class="mb-2">
-              <div class="rectangle">05</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['5'] }}
-              </h4>
-            </div>
-            <div style="display: flex; align-items: center;" class="mb-2">
-              <div class="rectangle">06</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['6'] }}
-              </h4>
-            </div>
-            <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">07</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['7'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.intervalos['7'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">08</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['8'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.intervalos['8'] }}
               </h4>
             </div>
             <div style="display: flex; align-items: center;" class="mb-2">
               <div class="rectangle">09</div>
-              <h4 class="m-2"> > {{ estrategias?.padroes?.minutos['9'] }}
+              <h4 class="m-2"> > {{ estrategias?.minutagem?.intervalos['9'] }}
               </h4>
             </div>
           </div>
