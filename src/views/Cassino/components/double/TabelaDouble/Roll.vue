@@ -83,7 +83,7 @@ const props = defineProps({
   roll: Object
 })
 
-const rollTime = new Date(props.roll.created*1000)
+const rollTime = new Date(props.roll.created*1000).toLocaleTimeString('pt-BR').split(':')
 
 </script>
 <template>
@@ -96,6 +96,6 @@ const rollTime = new Date(props.roll.created*1000)
         </span>
       </div>
       <img v-if="roll?.color === 'white'" class="white-roll" :src="whiteRoll" alt="White">
-      <span class="hora">{{ rollTime.getHours() }}:{{ rollTime.getMinutes() < 10? "0"+rollTime.getMinutes() : rollTime.getMinutes() }}</span>
+      <span class="hora">{{ rollTime[0] }}:{{ rollTime[1] }}</span>
   </div>
 </template>

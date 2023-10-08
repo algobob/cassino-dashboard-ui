@@ -11,6 +11,7 @@ import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
 import DoubleNumeroCor from "./components/double/DoubleNumeroCor.vue";
+import PadraoEstrategiasMinutagem from "./components/double/padroes/minutagem/PadraoEstrategiasMinutagem.vue";
 import PadraoEstrategiasSurf from "./components/double/padroes/surf/PadraoEstrategiasSurf.vue";
 import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
 
@@ -118,6 +119,9 @@ watch(() => galho.value, (galho, prevGalho) => {
       </div>
       <div class="row">
         <DoubleNumeroCor :estrategias="estrategias" />
+      </div>
+      <div class="row">
+        <PadraoEstrategiasMinutagem :estrategias="estrategias" />
       </div>
       <div>
         <TabelaDouble :rolls="rolls" />
