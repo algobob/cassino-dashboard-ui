@@ -18,7 +18,6 @@ import TabelaCrashes from "./components/crash/TabelaCrashes/TabelaCrashes.vue"
 import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
-import PadraoEstrategiasAposXx from "./components/crash/padroes/PadraoEstrategiasAposXx.vue";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
@@ -82,13 +81,11 @@ watch(() => galho.value, (galho, prevGalho) => {
     <div class="container">
       <div class="row">
         <div class="col">
-          <div style="justify-content: space-between;">
-            <label for="qtdVelas">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
               Quantidade de velas:
-              <input name="qtdVelas" class="input-group-static" label="Quantidade de Velas" type="number"
-                v-model="qtd_velas" />
-            </label>
-            <button @click="load">Load</button>
+              <input name="qtdVelas" label="Quantidade de Velas" type="number"
+                v-model="qtd_velas" style="width: fit-content;"/>
+                <button @click="load" style="width: fit-content;">Load</button>
             <audio ref="audio" controls>
               <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
               Your browser does not support the audio element.
@@ -111,8 +108,8 @@ watch(() => galho.value, (galho, prevGalho) => {
           <ContagemCores :contagem_cores="contagem_cores" />
         </div>
       </div>
-      <div class="row" style="margin: 2% 0%;">
-        <h4>Estrategias - Probabilidades</h4>
+      <div class="row">
+        <h4 style="margin-top: 40px; margin-bottom: 40px; text-decoration: underline;">Estrategias</h4>
       </div>
       <div class="row">
         <label for="qtdGalho">
@@ -135,9 +132,6 @@ watch(() => galho.value, (galho, prevGalho) => {
       </div>
       <div class="row">
         <PadraoEstrategiasXadrez :estrategias="estrategias" />
-      </div>
-      <div class="row" style="margin: 2%;">
-        <h5 class="mb-1">* Minutagem</h5>
       </div>
       <div class="row">
         <PadraoEstrategiasMinutagem :estrategias="estrategias" />

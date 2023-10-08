@@ -21,10 +21,10 @@ const props = defineProps({
 
 </script>
 <template>
-          <h5 class="mb-4">* Soma digitos</h5>
-
-  <div class="card" style="width: fit-content; height: fit-content;">   
-    <div class="card-body" style="display: flex;">      
+  
+  <div style="width: fit-content; height: fit-content;">   
+    <h5 style="text-decoration: underline; margin-bottom: 40px;">Soma digitos</h5>
+    <div  style="display: flex;">      
       <div>
         <div style="display: flex; align-items: center;" class="mb-2">
           <div class="numberCircle">3X</div>
