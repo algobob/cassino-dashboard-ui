@@ -15,8 +15,8 @@
 <script setup>
 
 const props = defineProps({
-  minute: Text,
-  probabilidade: Text
+  minute: String,
+  probabilidade: String
 })
 
 </script>

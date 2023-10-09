@@ -19,9 +19,9 @@
 <script setup>
 const props = defineProps({
   qtd: Number,
-  color: Text,
-  targetColor: Text,
-  probability: Text
+  color: String,
+  targetColor: String,
+  probability: String
 })
 
 console.log(props.probability)
