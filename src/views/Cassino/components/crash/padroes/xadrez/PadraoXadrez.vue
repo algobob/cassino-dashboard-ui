@@ -15,7 +15,7 @@
 <script setup>
 const props = defineProps({
   qtd: Number,
-  probability: Text
+  probability: String
 })
 
 </script>

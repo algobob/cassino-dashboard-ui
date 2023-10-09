@@ -25,6 +25,7 @@ const media_intervalos = ref({})
 const velas = ref([])
 const qtd_velas_total = ref(0)
 const galho = ref(2)
+const targetVela = ref(2)
 const balance = ref(0)
 const qtd_velas = ref("200")
 const route = useRoute()
@@ -33,7 +34,7 @@ const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 
 const load = () => {
-  fetch(`${apiHost}/api/${platform}/crash/dashboard?qtdVelas=${qtd_velas.value}&qtdGalho=${galho.value}`)
+  fetch(`${apiHost}/api/${platform}/crash/dashboard?qtdVelas=${qtd_velas.value}&qtdGalho=${galho.value}&targetVela=${targetVela.value}`)
     .then(response => response.json())
     .then(data => {
       estrategias.value = data['estrategias']
@@ -75,6 +76,10 @@ watch(() => galho.value, (galho, prevGalho) => {
   load();
 })
 
+watch(() => targetVela.value, (targetVela, prevTargetVela) => {
+  load();
+})
+
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Crash`">
@@ -112,20 +117,16 @@ watch(() => galho.value, (galho, prevGalho) => {
         <h4 style="margin-top: 40px; margin-bottom: 40px; text-decoration: underline;">Estrategias</h4>
       </div>
       <div class="row">
-        <label for="qtdGalho">
-          <span style="margin-right: 4px;">Galho:</span>
-          <select name="qtdGalho" class="input-group-static w-5" label="Galho" v-model="galho">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-          </select>
-        </label>
+        <div style="display: flex;">
+          <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
+          <input type="number" v-model="galho" style="width: 60px;" />
+        </div>
+      </div>
+      <div class="row">
+        <div style="display: flex;">
+          <span style="margin-right: 22px; font-size: large; width: fit-content;">Vela:</span>
+          <input type="number" v-model="targetVela" style="width: 60px;" />
+        </div>
       </div>
       <div class="row">
         <PadraoEstrategiasSurf :estrategias="estrategias" />

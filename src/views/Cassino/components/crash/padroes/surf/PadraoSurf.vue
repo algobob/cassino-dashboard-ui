@@ -16,7 +16,7 @@
 const props = defineProps({
   isGreen: Boolean,
   qtd: Number,
-  probability: Text
+  probability: String
 })
 
 </script>
