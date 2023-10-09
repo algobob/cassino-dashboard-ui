@@ -26,17 +26,22 @@ const props = defineProps({
 <template>
   <div class="container" style="margin-bottom: 40px; margin-top: 40px;">
     <div class="row">
+      <h4 style="text-decoration: underline;">Minutagem</h4>
+      <h5 style="text-decoration: underline;margin-top: 40px;">Minuto fixo</h5>
       <div class="col">
-        <h4 style="text-decoration: underline;">Minutagem</h4>
-        <h5 style="text-decoration: underline;margin-top: 40px;">Minuto fixo</h5>
-        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos.red" color="red" />
-        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos?.black" color="black" />
+        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos.red" color="red" isMinFixo="true" />
       </div>
       <div class="col">
-        <h5 style="text-decoration: underline; margin-top: 80px;">Intervalo de X min</h5>
-        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.intervalos?.red" color="red" />
-        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.intervalos?.black" color="black" />
+        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos?.black" color="black" isMinFixo="true" />
       </div>
     </div>
-  </div>
-</template>
+    <div class="row">
+      <h5 style="text-decoration: underline; margin-top: 80px;">Intervalo de X min</h5>
+      <div class="col">
+        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.intervalos?.red" color="red" />
+      </div>
+      <div class="col">
+<MinutosProbabilidades :probabilidades="estrategias?.minutagem?.intervalos?.black" color="black" />
+</div>
+    </div>
+</div></template>

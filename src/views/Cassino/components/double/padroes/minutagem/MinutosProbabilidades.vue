@@ -21,10 +21,9 @@ const props = defineProps({
     default: () => {},
     required: true,
   },
-  color: String
+  color: String,
+  isMinFixo: Boolean
 })
-
-console.log('probabilidades ', props.probabilidades)
 
 </script>
 <template>
@@ -34,21 +33,21 @@ console.log('probabilidades ', props.probabilidades)
         <div style="display: flex; gap: 30px; margin-top: 40px;">
           <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
             <RollMinuteProbability minute="03"
-              :probabilidade="probabilidades['3'].probabilidade"  />
+              :probabilidade="probabilidades['3'].probabilidade" :isMinFixo="isMinFixo"  />
               <RollMinuteProbability minute="04"
-              :probabilidade="probabilidades['4'].probabilidade"  />
+              :probabilidade="probabilidades['4'].probabilidade" :isMinFixo="isMinFixo"  />
               <RollMinuteProbability minute="05"
-              :probabilidade="probabilidades['5'].probabilidade"  />
+              :probabilidade="probabilidades['5'].probabilidade" :isMinFixo="isMinFixo"  />
               <RollMinuteProbability minute="06"
-              :probabilidade="probabilidades['6'].probabilidade"  />
+              :probabilidade="probabilidades['6'].probabilidade" :isMinFixo="isMinFixo" />
           </div>
           <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
             <RollMinuteProbability minute="07"
-              :probabilidade="probabilidades['7'].probabilidade"  />
+              :probabilidade="probabilidades['7'].probabilidade" :isMinFixo="isMinFixo" />
               <RollMinuteProbability minute="08"
-              :probabilidade="probabilidades['8'].probabilidade"  />
+              :probabilidade="probabilidades['8'].probabilidade" :isMinFixo="isMinFixo" />
               <RollMinuteProbability minute="09"
-              :probabilidade="probabilidades['9'].probabilidade"  />
+              :probabilidade="probabilidades['9'].probabilidade"  :isMinFixo="isMinFixo"/>
           </div>
         </div>
       </div>

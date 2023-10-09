@@ -16,14 +16,23 @@
 
 const props = defineProps({
   minute: String,
-  probabilidade: String
+  probabilidade: String,
+  isMinFixo: Boolean
 })
 
+const min = parseInt(props.minute)
+const now = new Date()
+now.setMinutes(now.getMinutes()+min)
+
+const nowStr = now.toLocaleTimeString('pt-BR', { hour12: false}).split(':')
 </script>
 <template>
-    <div style="display: flex; align-items: center;" class="mb-2">
+    <div style="display: flex; flex-direction: column;" class="m-2">
+      <div style="display: flex;">
       <div class="rectangle">{{ minute }}</div>
-      <h4 class="m-2"> > {{ probabilidade }}
-      </h4>
+      <h4> > {{ probabilidade }} </h4>
+    </div>
+      <span v-if="!isMinFixo" class="mb-2"> (Prox: {{ nowStr[0] }}:{{ nowStr[1] }})
+  </span>
     </div>
 </template>
