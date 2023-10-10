@@ -6,10 +6,10 @@ import { useRoute } from 'vue-router'
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 
 import MediaVelas from "./components/crash/MediaVelas.vue"
-import PadraoEstrategiasMinutagem from "./components/crash/padroes/PadraoEstrategiasMinutagem.vue"
+import PadraoEstrategiasMinutagem from "./components/crash/padroes/minutagem/PadraoEstrategiasMinutagem.vue"
 import PadraoEstrategiasSurf from "./components/crash/padroes/surf/PadraoEstrategiasSurf.vue"
 import PadraoEstrategiasXadrez from "./components/crash/padroes/xadrez/PadraoEstrategiasXadrez.vue"
-import PadraoEstrategiasSomaDigitos from "./components/crash/padroes/PadraoEstrategiasSomaDigitos.vue"
+import PadraoEstrategiasSomaDigitos from "./components/crash/padroes/minutagem/PadraoEstrategiasSomaDigitos.vue"
 import ContagemCores from "./components/crash/ContagemCores.vue"
 import Caixa from "./components/crash/Caixa.vue"
 import GraficoLinha from "./components/crash/GraficoLinha.vue"
