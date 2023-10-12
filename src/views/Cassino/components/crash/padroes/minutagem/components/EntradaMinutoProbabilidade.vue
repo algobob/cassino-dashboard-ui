@@ -17,10 +17,11 @@ const props = defineProps({
   vela: String,
   probabilidade: String,
   minuto: String,
+  isMinutoFixo: Boolean
 })
 
 const proxEntrada = new Date()
-proxEntrada.setMinutes(proxEntrada.getMinutes() + parseInt(props.minuto))
+proxEntrada.setMinutes(props.isMinutoFixo ? parseInt(props.minuto)+10 : proxEntrada.getMinutes()+parseInt(props.minuto))
 console.log('proxEntrada ', proxEntrada)
 
 const proxEntradaStr = proxEntrada.toLocaleTimeString('pt-BR',{ hour: "2-digit", minute: "2-digit" }).split(':')

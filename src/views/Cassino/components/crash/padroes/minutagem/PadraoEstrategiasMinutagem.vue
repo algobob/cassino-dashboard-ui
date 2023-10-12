@@ -44,18 +44,18 @@ const props = defineProps({
         <h5 style="text-decoration: underline;">Minuto fixo</h5>
         <div style="display: flex; gap: 30px; margin-top: 40px;">
           <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
-            <EntradaMinutoProbabilidade minuto="00" :probabilidade="estrategias?.minutagem?.minutos_fixo['0']" />
-            <EntradaMinutoProbabilidade minuto="01" :probabilidade="estrategias?.minutagem?.minutos_fixo['1']" />
-            <EntradaMinutoProbabilidade minuto="02" :probabilidade="estrategias?.minutagem?.minutos_fixo['2']" />
-            <EntradaMinutoProbabilidade minuto="03" :probabilidade="estrategias?.minutagem?.minutos_fixo['3']" />
-            <EntradaMinutoProbabilidade minuto="04" :probabilidade="estrategias?.minutagem?.minutos_fixo['4']" />
+            <EntradaMinutoProbabilidade minuto="00" :probabilidade="estrategias?.minutagem?.minutos_fixo['0']" isMinutoFixo="true" />
+            <EntradaMinutoProbabilidade minuto="01" :probabilidade="estrategias?.minutagem?.minutos_fixo['1']" isMinutoFixo="true" />
+            <EntradaMinutoProbabilidade minuto="02" :probabilidade="estrategias?.minutagem?.minutos_fixo['2']" isMinutoFixo="true" />
+            <EntradaMinutoProbabilidade minuto="03" :probabilidade="estrategias?.minutagem?.minutos_fixo['3']" isMinutoFixo="true" />
+            <EntradaMinutoProbabilidade minuto="04" :probabilidade="estrategias?.minutagem?.minutos_fixo['4']" isMinutoFixo="true" />
           </div>
           <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
-            <EntradaMinutoProbabilidade minuto="05" :probabilidade="estrategias?.minutagem?.minutos_fixo['5']" />
-            <EntradaMinutoProbabilidade minuto="06" :probabilidade="estrategias?.minutagem?.minutos_fixo['6']" />
-            <EntradaMinutoProbabilidade minuto="07" :probabilidade="estrategias?.minutagem?.minutos_fixo['7']" />
-            <EntradaMinutoProbabilidade minuto="08" :probabilidade="estrategias?.minutagem?.minutos_fixo['8']" />
-            <EntradaMinutoProbabilidade minuto="09" :probabilidade="estrategias?.minutagem?.minutos_fixo['9']" />
+            <EntradaMinutoProbabilidade minuto="05" :probabilidade="estrategias?.minutagem?.minutos_fixo['5']" isMinutoFixo="true" />
+            <EntradaMinutoProbabilidade minuto="06" :probabilidade="estrategias?.minutagem?.minutos_fixo['6']" isMinutoFixo="true" />
+            <EntradaMinutoProbabilidade minuto="07" :probabilidade="estrategias?.minutagem?.minutos_fixo['7']" isMinutoFixo="true" />
+            <EntradaMinutoProbabilidade minuto="08" :probabilidade="estrategias?.minutagem?.minutos_fixo['8']" isMinutoFixo="true" />
+            <EntradaMinutoProbabilidade minuto="09" :probabilidade="estrategias?.minutagem?.minutos_fixo['9']" isMinutoFixo="true" />
           </div>
         </div>
       </div>
