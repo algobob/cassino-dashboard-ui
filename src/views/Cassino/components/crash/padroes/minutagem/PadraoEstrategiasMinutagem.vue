@@ -79,27 +79,27 @@ const props = defineProps({
         <h5 style="text-decoration: underline;margin-bottom: 40px; margin-top: 40px;">Inntervalo X min apos velas X</h5>
         <div class="col">
           <EntradaMinutoAposVelaProbabilidade vela="3X" minuto="3"
-            :probabilidade="estrategias?.minutagem?.padrao_min_3x_3min?.assertividade" />
+            :probabilidade="estrategias?.minutagem?.intervalos_para_vela?.vela['3x']?.minuto['3'].assertividade" />
           <EntradaMinutoAposVelaProbabilidade vela="3X" minuto="4"
-            :probabilidade="estrategias?.minutagem?.padrao_min_3x_4min?.assertividade" />
+          :probabilidade="estrategias?.minutagem?.intervalos_para_vela?.vela['3x']?.minuto['4'].assertividade" />
           <EntradaMinutoAposVelaProbabilidade vela="3X" minuto="5"
-            :probabilidade="estrategias?.minutagem?.padrao_min_3x_5min?.assertividade" />
+          :probabilidade="estrategias?.minutagem?.intervalos_para_vela?.vela['3x']?.minuto['5'].assertividade" />
         </div>
         <div class="col">
           <EntradaMinutoAposVelaProbabilidade vela="5X" minuto="3"
-            :probabilidade="estrategias?.minutagem?.padrao_min_5x_3min?.assertividade" />
+          :probabilidade="estrategias?.minutagem?.intervalos_para_vela?.vela['5x']?.minuto['3'].assertividade" />
           <EntradaMinutoAposVelaProbabilidade vela="5X" minuto="4"
-            :probabilidade="estrategias?.minutagem?.padrao_min_5x_4min?.assertividade" />
+          :probabilidade="estrategias?.minutagem?.intervalos_para_vela?.vela['5x']?.minuto['4'].assertividade" />
           <EntradaMinutoAposVelaProbabilidade vela="5X" minuto="5"
-            :probabilidade="estrategias?.minutagem?.padrao_min_5x_5min?.assertividade" />
+          :probabilidade="estrategias?.minutagem?.intervalos_para_vela?.vela['5x']?.minuto['5'].assertividade" />
         </div>
         <div class="col">
           <EntradaMinutoAposVelaProbabilidade vela="10X" minuto="3"
-            :probabilidade="estrategias?.minutagem?.padrao_min_10x_3min?.assertividade" />
+          :probabilidade="estrategias?.minutagem?.intervalos_para_vela?.vela['10x']?.minuto['3'].assertividade" />
           <EntradaMinutoAposVelaProbabilidade vela="10X" minuto="4"
-            :probabilidade="estrategias?.minutagem?.padrao_min_10x_4min?.assertividade" />
+          :probabilidade="estrategias?.minutagem?.intervalos_para_vela?.vela['10x']?.minuto['4'].assertividade" />
           <EntradaMinutoAposVelaProbabilidade vela="10X" minuto="5"
-            :probabilidade="estrategias?.minutagem?.padrao_min_10x_5min?.assertividade" />
+          :probabilidade="estrategias?.minutagem?.intervalos_para_vela?.vela['10x']?.minuto['5'].assertividade" />
       </div>
     </div>
   </div>
