@@ -33,9 +33,10 @@ const platform = route.params.platform
 const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 const loaded = ref(false)
+const minProbabilidade = ref(90)
 
 const load = () => {
-  fetch(`${apiHost}/api/${platform}/crash/dashboard?qtdVelas=${qtd_velas.value}&qtdGalho=${galho.value}&targetVela=${targetVela.value}`)
+  fetch(`${apiHost}/api/${platform}/crash/dashboard?minProbabilidade=${minProbabilidade.value}&qtdVelas=${qtd_velas.value}&qtdGalho=${galho.value}&targetVela=${targetVela.value}`)
     .then(response => response.json())
     .then(data => {
       estrategias.value = data['estrategias']
@@ -79,6 +80,10 @@ watch(() => galho.value, (galho, prevGalho) => {
 })
 
 watch(() => targetVela.value, (targetVela, prevTargetVela) => {
+  load();
+})
+
+watch(() => minProbabilidade.value, (targetMinProbabilidade, prevMinProbabilidade) => {
   load();
 })
 
@@ -128,6 +133,12 @@ watch(() => targetVela.value, (targetVela, prevTargetVela) => {
         <div style="display: flex;">
           <span style="margin-right: 22px; font-size: large; width: fit-content;">Vela:</span>
           <input type="number" v-model="targetVela" style="width: 60px;" />
+        </div>
+      </div>
+      <div class="row">
+        <div style="display: flex;">
+          <span style="margin-right: 10px; font-size: large; width: fit-content;">Min %:</span>
+          <input type="number" v-model="minProbabilidade" style="width: 60px;" />
         </div>
       </div>
       <div class="row">
