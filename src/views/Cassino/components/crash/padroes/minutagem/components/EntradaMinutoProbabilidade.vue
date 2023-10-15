@@ -22,14 +22,17 @@ const props = defineProps({
 
 const proxEntrada = new Date()
 proxEntrada.setMinutes(props.isMinutoFixo ? parseInt(props.minuto)+10 : proxEntrada.getMinutes()+parseInt(props.minuto))
-console.log('proxEntrada ', proxEntrada)
+// console.log('proxEntrada ', proxEntrada)
 
 const proxEntradaStr = proxEntrada.toLocaleTimeString('pt-BR',{ hour: "2-digit", minute: "2-digit" }).split(':')
-console.log('proxEntradaStr ', proxEntradaStr)
+// console.log('proxEntradaStr ', proxEntradaStr)
+
+const isProbabilidadeMaiorIgual90 = parseInt(props.probabilidade.split('%')[0]) >= 90
+console.log('isProbabilidadeMaiorIgual90 ', isProbabilidadeMaiorIgual90)
 
 </script>
 <template>
-  <div style="display: flex; flex-direction: column; " class="mb-2">
+  <div style="display: flex; flex-direction: column;" v-if="isProbabilidadeMaiorIgual90">
     <div style="display: flex; align-items: center; gap: 5px;">
       <div class="rectangle">{{ minuto }}</div>
       <h4> > {{ probabilidade }} </h4>

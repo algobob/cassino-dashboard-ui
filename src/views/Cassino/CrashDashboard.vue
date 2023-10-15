@@ -32,6 +32,7 @@ const route = useRoute()
 const platform = route.params.platform
 const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
+const loaded = ref(false)
 
 const load = () => {
   fetch(`${apiHost}/api/${platform}/crash/dashboard?qtdVelas=${qtd_velas.value}&qtdGalho=${galho.value}&targetVela=${targetVela.value}`)
@@ -43,6 +44,7 @@ const load = () => {
       velas.value = data['velas']
       qtd_velas_total.value = data['qtd_velas_total']
       balance.value = data['balance']
+      loaded.value = true
     })
 }
 
@@ -64,7 +66,7 @@ const alertIfVelasAcima50 = (value) => {
   console.log(parseInt(percentageVerde.slice(0, 2)))
 
   if (isPercentageHigherThan) {
-    audio.value.play();
+    audio?.value?.play();
   }
 }
 
@@ -83,7 +85,7 @@ watch(() => targetVela.value, (targetVela, prevTargetVela) => {
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Crash`">
-    <div class="container">
+    <div class="container" v-if="loaded">
       <div class="row">
         <div class="col">
           <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -91,7 +93,7 @@ watch(() => targetVela.value, (targetVela, prevTargetVela) => {
               <input name="qtdVelas" label="Quantidade de Velas" type="number"
                 v-model="qtd_velas" style="width: fit-content;"/>
                 <button @click="load" style="width: fit-content;">Load</button>
-            <audio ref="audio" controls>
+            <audio ref="audio" controls muted>
               <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
               Your browser does not support the audio element.
             </audio>
@@ -129,13 +131,13 @@ watch(() => targetVela.value, (targetVela, prevTargetVela) => {
         </div>
       </div>
       <div class="row">
-        <PadraoEstrategiasSurf :estrategias="estrategias" />
+        <PadraoEstrategiasSurf :surf="estrategias?.padroes?.surf" />
       </div>
       <div class="row">
-        <PadraoEstrategiasXadrez :estrategias="estrategias" />
+        <PadraoEstrategiasXadrez :xadrez="estrategias?.padroes?.xadrez" />
       </div>
       <div class="row">
-        <PadraoEstrategiasMinutagem :estrategias="estrategias" />
+        <PadraoEstrategiasMinutagem :minutagem="estrategias?.minutagem" />
       </div>
     </div>
     <div>

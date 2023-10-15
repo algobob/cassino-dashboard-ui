@@ -21,10 +21,10 @@ const props = defineProps({
 
 const proxEntrada = new Date()
 proxEntrada.setMinutes(proxEntrada.getMinutes() + parseInt(props.minuto))
-console.log('proxEntrada ', proxEntrada)
+// console.log('proxEntrada ', proxEntrada)
 
 const proxEntradaStr = proxEntrada.toLocaleTimeString('pt-BR',{ hour: "2-digit", minute: "2-digit" }).split(':')
-console.log('proxEntradaStr ', proxEntradaStr)
+// console.log('proxEntradaStr ', proxEntradaStr)
 
 </script>
 <template>
