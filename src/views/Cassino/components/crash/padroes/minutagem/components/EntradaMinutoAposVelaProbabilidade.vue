@@ -15,7 +15,7 @@
 <script setup>
 const props = defineProps({
   vela: String,
-  probabilidade: String,
+  probabilidade: Number,
   minuto: String,
 })
 
@@ -28,10 +28,10 @@ const proxEntradaStr = proxEntrada.toLocaleTimeString('pt-BR',{ hour: "2-digit",
 
 </script>
 <template>
-  <div style="display: flex; flex-direction: column; " class="mb-2">
+  <div style="display: flex; flex-direction: column; " class="mb-2" v-show="probabilidade">
     <div style="display: flex; align-items: center; gap: 5px;">
       <div class="rectangle">{{ vela }}</div>
-      <h4>+ {{ minuto }} min > {{ probabilidade }} </h4>
+      <h4>+ {{ minuto }} min > {{ probabilidade }}% </h4>
     </div>
     <span class="mb-2"> (Prox: {{ proxEntradaStr[0] }}:{{ proxEntradaStr[1] }}) </span>
   </div>

@@ -16,16 +16,20 @@
 const props = defineProps({
   isGreen: Boolean,
   qtd: Number,
-  probability: String
+  probability: Number
 })
 
 </script>
 <template>
-  <div style="display: flex; align-items: center; gap: 3px;" class="mb-2">
-    <div v-for="n in qtd" class="rectangle" :style="{ backgroundColor: isGreen ? 'greenyellow' : 'black' }"></div>
+  <div style="display: flex; align-items: center; gap: 3px;" class="mb-2" v-show="probability">
+    <div v-for="n in qtd" style="display: flex; gap: 3px;">
+      <div class="rectangle" :style="{ backgroundColor: isGreen ? 'greenyellow' : 'black' }"></div>
+      <div class="rectangle" :style="{ backgroundColor: isGreen ? 'greenyellow' : 'black' }"></div>
+    </div>
+      
     <h5 class="font-weight-bold p-2 mt-2"> > </h5>
     <div class="rectangle"></div>
     <h5 class="font-weight-bold p-2 mt-2"> ? </h5>
-    <h5 class="font-weight-bold p-2 mt-2"><mark>{{ probability }}</mark></h5>
+    <h5 class="font-weight-bold p-2 mt-2"><mark>{{ probability }}%</mark></h5>
   </div>
 </template>

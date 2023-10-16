@@ -21,7 +21,7 @@ import setNavPills from "@/assets/js/nav-pills";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
-const media_intervalos = ref({})
+const media_velas = ref({})
 const velas = ref([])
 const qtd_velas_total = ref(0)
 const galho = ref(2)
@@ -33,7 +33,7 @@ const platform = route.params.platform
 const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 const loaded = ref(false)
-const minProbabilidade = ref(90)
+const minProbabilidade = ref(50)
 
 const load = () => {
   fetch(`${apiHost}/api/${platform}/crash/dashboard?minProbabilidade=${minProbabilidade.value}&qtdVelas=${qtd_velas.value}&qtdGalho=${galho.value}&targetVela=${targetVela.value}`)
@@ -41,7 +41,7 @@ const load = () => {
     .then(data => {
       estrategias.value = data['estrategias']
       contagem_cores.value = data['contagem_cores']
-      media_intervalos.value = data['media_intervalos']
+      media_velas.value = data['media_velas']
       velas.value = data['velas']
       qtd_velas_total.value = data['qtd_velas_total']
       balance.value = data['balance']
@@ -114,7 +114,7 @@ watch(() => minProbabilidade.value, (targetMinProbabilidade, prevMinProbabilidad
 
       <div class="row" style="justify-content: space-between;">
         <div class="col-sm">
-          <MediaVelas :media_intervalos="media_intervalos" />
+          <MediaVelas :media_velas="media_velas" />
         </div>
         <div class="col-sm">
           <ContagemCores :contagem_cores="contagem_cores" />
