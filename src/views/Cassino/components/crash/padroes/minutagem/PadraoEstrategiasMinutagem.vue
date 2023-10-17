@@ -77,27 +77,27 @@ const props = defineProps({
         <h5 style="text-decoration: underline;margin-bottom: 40px; margin-top: 40px;">Intervalo X min apos velas X</h5>
         <div class="col">
           <EntradaMinutoAposVelaProbabilidade vela="3X" minuto="3"
-            :probabilidade="minutagem?.intervalos_para_vela?.vela['3x']?.minuto['3']?.probabilidade" />
+            :data="minutagem?.intervalos_para_vela?.vela['3x']?.minuto['3']" />
           <EntradaMinutoAposVelaProbabilidade vela="3X" minuto="4"
-          :probabilidade="minutagem?.intervalos_para_vela?.vela['3x']?.minuto['4']?.probabilidade" />
+          :data="minutagem?.intervalos_para_vela?.vela['3x']?.minuto['4']" />
           <EntradaMinutoAposVelaProbabilidade vela="3X" minuto="5"
-          :probabilidade="minutagem?.intervalos_para_vela?.vela['3x']?.minuto['5']?.probabilidade" />
+          :data="minutagem?.intervalos_para_vela?.vela['3x']?.minuto['5']" />
         </div>
         <div class="col">
           <EntradaMinutoAposVelaProbabilidade vela="5X" minuto="3"
-          :probabilidade="minutagem?.intervalos_para_vela?.vela['5x']?.minuto['3']?.probabilidade" />
+          :data="minutagem?.intervalos_para_vela?.vela['5x']?.minuto['3']" />
           <EntradaMinutoAposVelaProbabilidade vela="5X" minuto="4"
-          :probabilidade="minutagem?.intervalos_para_vela?.vela['5x']?.minuto['4']?.probabilidade" />
+          :data="minutagem?.intervalos_para_vela?.vela['5x']?.minuto['4']" />
           <EntradaMinutoAposVelaProbabilidade vela="5X" minuto="5"
-          :probabilidade="minutagem?.intervalos_para_vela?.vela['5x']?.minuto['5']?.probabilidade" />
+          :data="minutagem?.intervalos_para_vela?.vela['5x']?.minuto['5']" />
         </div>
         <div class="col">
           <EntradaMinutoAposVelaProbabilidade vela="10X" minuto="3"
-          :probabilidade="minutagem?.intervalos_para_vela?.vela['10x']?.minuto['3']?.probabilidade" />
+          :data="minutagem?.intervalos_para_vela?.vela['10x']?.minuto['3']" />
           <EntradaMinutoAposVelaProbabilidade vela="10X" minuto="4"
-          :probabilidade="minutagem?.intervalos_para_vela?.vela['10x']?.minuto['4']?.probabilidade" />
+          :data="minutagem?.intervalos_para_vela?.vela['10x']?.minuto['4']" />
           <EntradaMinutoAposVelaProbabilidade vela="10X" minuto="5"
-          :probabilidade="minutagem?.intervalos_para_vela?.vela['10x']?.minuto['5']?.probabilidade" />
+          :data="minutagem?.intervalos_para_vela?.vela['10x']?.minuto['5']" />
       </div>
     </div>
   </div>

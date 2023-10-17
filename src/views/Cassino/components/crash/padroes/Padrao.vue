@@ -32,19 +32,17 @@ import { ref } from "vue";
 const hover = ref(false)
 
 const props = defineProps({
-  isGreen: Boolean,
-  qtd: Number,
+  padrao: Array,
   data: Object
 })
 
 </script>
 <template>
   <div style="display: flex; align-items: center; gap: 3px; position: relative;"
-   class="mb-2" v-show="probability" @mouseover="hover = true" @mouseleave="hover = false">
+   class="mb-2" v-if="data" @mouseover="hover = true" @mouseleave="hover = false">
    <span class="tooltiptext" v-if="hover">{{ data['hit'] }}/{{ data['tried'] }}</span>
-    <div v-for="n in qtd" style="display: flex; gap: 3px;">
-      <div class="rectangle" :style="{ backgroundColor: isGreen ? 'greenyellow' : 'black' }"></div>
-      <div class="rectangle" :style="{ backgroundColor: isGreen ? 'greenyellow' : 'black' }"></div>
+    <div v-for="n in padrao" style="display: flex; gap: 3px;">
+      <div class="rectangle" :style="{ backgroundColor: n >= 2 ? 'greenyellow' : 'black' }"></div>
     </div>
       
     <h5 class="font-weight-bold p-2 mt-2"> > </h5>

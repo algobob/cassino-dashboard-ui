@@ -8,6 +8,7 @@ import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 import MediaVelas from "./components/crash/MediaVelas.vue"
 import PadraoEstrategiasMinutagem from "./components/crash/padroes/minutagem/PadraoEstrategiasMinutagem.vue"
 import PadraoEstrategiasSurf from "./components/crash/padroes/surf/PadraoEstrategiasSurf.vue"
+import Padroes from "./components/crash/padroes/Padroes.vue"
 import PadraoEstrategiasXadrez from "./components/crash/padroes/xadrez/PadraoEstrategiasXadrez.vue"
 import PadraoEstrategiasSomaDigitos from "./components/crash/padroes/minutagem/PadraoEstrategiasSomaDigitos.vue"
 import ContagemCores from "./components/crash/ContagemCores.vue"
@@ -35,8 +36,26 @@ const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-productio
 const loaded = ref(false)
 const minProbabilidade = ref(50)
 
+const url = () => {
+  return `${apiHost}/api/${platform}/crash/dashboard?
+          minProbabilidade=${minProbabilidade.value}&
+          qtdVelas=${qtd_velas.value}&
+          qtdGalho=${galho.value}&
+          targetVela=${targetVela.value}&
+          padrao=2,2,2&
+          padrao=2,1,2&
+          padrao=1,2,1&
+          padrao=2,2,1&
+          padrao=2,2,2,2&
+          padrao=2,2,2,2,2&
+          padrao=1,1,1&
+          padrao=1,1,1,1`.replace(/ /g,'')
+}
+
 const load = () => {
-  fetch(`${apiHost}/api/${platform}/crash/dashboard?minProbabilidade=${minProbabilidade.value}&qtdVelas=${qtd_velas.value}&qtdGalho=${galho.value}&targetVela=${targetVela.value}`)
+  const urlDashboard = url()
+  console.log('urlDashboard ', urlDashboard)
+  fetch(urlDashboard)
     .then(response => response.json())
     .then(data => {
       estrategias.value = data['estrategias']
@@ -142,11 +161,11 @@ watch(() => minProbabilidade.value, (targetMinProbabilidade, prevMinProbabilidad
         </div>
       </div>
       <div class="row">
-        <PadraoEstrategiasSurf :surf="estrategias?.padroes?.surf" />
+        <Padroes :padroes="estrategias?.padroes" />
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <PadraoEstrategiasXadrez :xadrez="estrategias?.padroes?.xadrez" />
-      </div>
+      </div> -->
       <div class="row">
         <PadraoEstrategiasMinutagem :minutagem="estrategias?.minutagem" />
       </div>
