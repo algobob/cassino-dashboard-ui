@@ -39,20 +39,18 @@ const props = defineProps({
 })
 
 const proxEntrada = new Date()
-console.log('proxEntrada ', proxEntrada)
 const minutoAsInt = parseInt(props.minuto)
-const entradaForMinutoFixo = (minutoAsInt % 10) + minutoAsInt + 10
+const entradaForMinutoFixo = proxEntrada.getMinutes()-(proxEntrada.getMinutes() % 10) + (minutoAsInt + 10)
 const entradaForIntervalo = proxEntrada.getMinutes()+parseInt(props.minuto)
 
 proxEntrada.setMinutes(props.isMinutoFixo ? entradaForMinutoFixo : entradaForIntervalo )
 
 const proxEntradaStr = proxEntrada.toLocaleTimeString('pt-BR',{ hour: "2-digit", minute: "2-digit" }).split(':')
-// console.log('proxEntradaStr ', proxEntradaStr)
 
 </script>
 <template>
   <div style="display: flex; flex-direction: column; align-items: center; position: relative;" 
-  v-show="data" @mouseover="hover = true" @mouseleave="hover = false" >
+  v-if="data" @mouseover="hover = true" @mouseleave="hover = false" >
     <span class="tooltiptext" v-if="hover">{{ data['hit'] }}/{{ data['tried'] }}</span>
     <div style="display: flex; align-items: center; gap: 5px;">
       <div class="rectangle">{{ minuto }}</div>
