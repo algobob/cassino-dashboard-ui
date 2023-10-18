@@ -65,7 +65,7 @@ watch(() => galho.value, (galho, prevGalho) => {
 
 </script>
 <template>
-  <BaseLayout :title="`${startCase(platform)} - Double`">
+  <BaseLayout :title="`${startCase(platform)} - Double`" v-if="estrategias">
     <div class="container">
       <div class="row">
         <div class="col">
@@ -118,7 +118,7 @@ watch(() => galho.value, (galho, prevGalho) => {
         <PadraoEstrategiasSurf :estrategias="estrategias" />
       </div>
       <div class="row">
-        <DoubleNumeroCor :estrategias="estrategias" />
+        <DoubleNumeroCor :data="estrategias?.numero_cor_probabilidades" />
       </div>
       <div class="row">
         <PadraoEstrategiasMinutagem :estrategias="estrategias" />

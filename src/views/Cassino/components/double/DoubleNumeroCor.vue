@@ -1,7 +1,7 @@
 <script setup>
 import DoubleNumeroCorProbabilidade from './DoubleNumeroCorProbabilidade.vue';
 
-const props = defineProps(['estrategias'])
+const props = defineProps(['data'])
 </script>
 <style scoped>
 .circle {
@@ -27,14 +27,14 @@ const props = defineProps(['estrategias'])
 </style>
 
 <template>
-  <div  style="width: fit-content; margin-top: 20px;">
+  <div  style="width: fit-content; margin-top: 20px;" v-if="data">
     <div >
       <h5 >Qual probabilidade para cor <mark class="red">VERMELHA</mark> ou <mark class="black">PRETA</mark> apos numero X?</h5>
     </div>
     <div >
       <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-        <div v-for="(value, key) in estrategias?.numero_cor_probabilidades">
-          <DoubleNumeroCorProbabilidade :roll="key" :probabilidade="value" />
+        <div v-for="(value, key) in data">
+          <DoubleNumeroCorProbabilidade :roll="key" :data="value" />
         </div>
       </div>
     </div>

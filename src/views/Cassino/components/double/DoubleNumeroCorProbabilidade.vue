@@ -1,9 +1,3 @@
-<script setup>
-import whiteRoll from "@/assets/img/white-roll.png";
-
-const props = defineProps(['roll', 'probabilidade'])
-
-</script>
 <style scoped>
 .circle {
   border-radius: 50%;
@@ -36,10 +30,32 @@ const props = defineProps(['roll', 'probabilidade'])
 .red {
   background-color: red;
 }
-</style>
 
+.tooltiptext {
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  position: absolute;
+  z-index: 1;
+}
+</style>
+<script setup>
+import whiteRoll from "@/assets/img/white-roll.png";
+import { ref } from "vue";
+
+const hoverRed = ref(false)
+const hoverBlack = ref(false)
+const props = defineProps(['roll', 'data'])
+
+</script>
 <template>
-  <div style="display: flex; justify-content: center;">
+  <div style="display: flex; justify-content: center;" v-if="roll && data">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">
@@ -47,10 +63,12 @@ const props = defineProps(['roll', 'probabilidade'])
           <img v-if="roll === '0'" class="circle" :src="whiteRoll" alt="White">
         </h5>
         <div class="card-text">
-          <div class="square" style="background-color: red;"></div>
-          <p class=""><mark> {{ probabilidade.red }}%</mark></p>
-          <div class="square" style="background-color: black;"></div>
-          <p class="card-text mt-2"><mark> {{ probabilidade.black }}%</mark></p>
+          <span class="tooltiptext" v-if="hoverRed">{{ data['red']['hit'] }}/{{ data['red']['tried'] }}</span>
+          <div class="square" style="background-color: red; position: relative" @mouseover="hoverRed = true" @mouseleave="hoverRed = false"></div>
+          <p><mark> {{ data['red']['probabilidade'] }}%</mark></p>
+          <span class="tooltiptext" v-if="hoverBlack">{{ data['black']['hit'] }}/{{ data['black']['tried'] }}</span>
+          <div class="square" style="background-color: black; position: relative;" @mouseover="hoverBlack = true" @mouseleave="hoverBlack = false"></div>
+          <p class="card-text mt-2"><mark> {{ data['black']['probabilidade'] }}%</mark></p>
         </div>
       </div>
     </div>
