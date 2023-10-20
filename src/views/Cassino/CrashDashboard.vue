@@ -7,10 +7,8 @@ import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 
 import MediaVelas from "./components/crash/MediaVelas.vue"
 import PadraoEstrategiasMinutagem from "./components/crash/padroes/minutagem/PadraoEstrategiasMinutagem.vue"
-import PadraoEstrategiasSurf from "./components/crash/padroes/surf/PadraoEstrategiasSurf.vue"
 import Padroes from "./components/crash/padroes/Padroes.vue"
-import PadraoEstrategiasXadrez from "./components/crash/padroes/xadrez/PadraoEstrategiasXadrez.vue"
-import PadraoEstrategiasSomaDigitos from "./components/crash/padroes/minutagem/PadraoEstrategiasSomaDigitos.vue"
+import Padrao from "./components/crash/padroes/Padrao.vue"
 import ContagemCores from "./components/crash/ContagemCores.vue"
 import Caixa from "./components/crash/Caixa.vue"
 import GraficoLinha from "./components/crash/GraficoLinha.vue"
@@ -49,6 +47,8 @@ const url = () => {
           padrao=2,2,2,2&
           padrao=2,2,2,2,2&
           padrao=1,1,1&
+          padrao=2,2,1,1&
+          padrao=1,1,2,2&
           padrao=2,1,2,1&
           padrao=2,1,2,1,2,1&
           padrao=1,1,1,1,1&
@@ -144,6 +144,10 @@ watch(() => minProbabilidade.value, (targetMinProbabilidade, prevMinProbabilidad
         </div>
       </div>
       <div class="row">
+        <h4 style="margin-top: 40px; margin-bottom: 40px; text-decoration: underline;">ENTRAR AGORA? </h4>
+        <Padrao :padrao="estrategias?.entrada_agora?.padrao" :data="estrategias?.entrada_agora?.probabilidade" />
+      </div>
+      <div class="row">
         <h4 style="margin-top: 40px; margin-bottom: 40px; text-decoration: underline;">Estrategias</h4>
       </div>
       <div class="row">
@@ -167,9 +171,6 @@ watch(() => minProbabilidade.value, (targetMinProbabilidade, prevMinProbabilidad
       <div class="row">
         <Padroes :padroes="estrategias?.padroes" />
       </div>
-      <!-- <div class="row">
-        <PadraoEstrategiasXadrez :xadrez="estrategias?.padroes?.xadrez" />
-      </div> -->
       <div class="row">
         <PadraoEstrategiasMinutagem :minutagem="estrategias?.minutagem" />
       </div>
