@@ -12,7 +12,7 @@ import { startCase } from 'lodash';
 import setNavPills from "@/assets/js/nav-pills";
 import DoubleNumeroCor from "./components/double/DoubleNumeroCor.vue";
 import PadraoEstrategiasMinutagem from "./components/double/padroes/minutagem/PadraoEstrategiasMinutagem.vue";
-import PadraoEstrategiasSurf from "./components/double/padroes/surf/PadraoEstrategiasSurf.vue";
+import PadroesCores from "./components/double/padroes/surf/PadroesCores.vue";
 import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
 
 const estrategias = ref({})
@@ -27,7 +27,18 @@ const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 
 const load = () => {
-  fetch(`${apiHost}/api/${platform}/double/dashboard?qtdRolls=${qtd_rolls.value}&galho=${galho.value}`)
+  fetch(`${apiHost}/api/${platform}/double/dashboard?
+  qtdRolls=${qtd_rolls.value}&
+  galho=${galho.value}&
+  padrao=r,r,r&
+  padrao=b,b,b&
+  padrao=r,r,r,r&
+  padrao=b,b,b,b&
+  padrao=r,r,r,r,r&
+  padrao=b,b,b,b,b&
+  padrao=r,r,r,r,r,r&
+  padrao=b,b,b,b,b,b&
+  `.replace(/ /g,''))
     .then(response => response.json())
     .then(data => {
       contagem_cores.value = data['contagem_cores']
@@ -75,7 +86,7 @@ watch(() => galho.value, (galho, prevGalho) => {
                 <Clock />
                 <div style="display: flex; gap: 10px;">
                   <span> Rodadas: </span>
-                  <input name="qtdRolls" v-model="qtd_rolls" style="height: 30px;" />
+                  <input name="qtdRolls" type="number" v-model="qtd_rolls" style="height: 30px;" />
                   <button @click="load" style="height: 30px;">Load</button>
                 </div>
                 <audio ref="audio" controls>
@@ -115,7 +126,7 @@ watch(() => galho.value, (galho, prevGalho) => {
         </label>
       </div>
       <div class="row">
-        <PadraoEstrategiasSurf :data="estrategias?.surf" />
+        <PadroesCores :data="estrategias?.padroes" />
       </div>
       <div class="row">
         <DoubleNumeroCor :data="estrategias?.numero_cor_probabilidades" />
