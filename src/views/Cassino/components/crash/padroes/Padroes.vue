@@ -21,6 +21,11 @@ import Padrao from "./Padrao.vue"
           <Padrao :padrao="[2,2,2,2,2]" :data="padroes['2,2,2,2,2']" />
           <Padrao :padrao="[1,1,1]" :data="padroes['1,1,1']" />
           <Padrao :padrao="[1,1,1,1]" :data="padroes['1,1,1,1']" />
+          <Padrao :padrao="[1,1,1,1,1]" :data="padroes['1,1,1,1,1']" />
+          <Padrao :padrao="[1,1,1,1,1,1]" :data="padroes['1,1,1,1,1,1']" />
+          <Padrao :padrao="[1,1,1,1]" :data="padroes['1,1,1,1']" />
+          <Padrao :padrao="[2,1,2,1]" :data="padroes['2,1,2,1']" />
+          <Padrao :padrao="[2,1,2,1,2,1]" :data="padroes['2,1,2,1,2,1']" />
           <!-- <PadraoSurf :qtd="3" :isGreen="true" :data="surf?.verde[3]" /> -->
         </div>
         <div>
