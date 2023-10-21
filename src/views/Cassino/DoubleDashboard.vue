@@ -21,6 +21,7 @@ const balance = ref({})
 const rolls = ref([])
 const qtd_rolls = ref("200")
 const galho = ref(2)
+const minProbabilidade = ref(50)
 const route = useRoute()
 const platform = route.params.platform
 const audio = ref()
@@ -30,6 +31,7 @@ const load = () => {
   fetch(`${apiHost}/api/${platform}/double/dashboard?
   qtdRolls=${qtd_rolls.value}&
   galho=${galho.value}&
+  minProbabilidade=${minProbabilidade.value}&
   padrao=r,r,r&
   padrao=b,b,b&
   padrao=r,r,r,r&
@@ -74,6 +76,13 @@ watch(() => galho.value, (galho, prevGalho) => {
   load()
 })
 
+watch(() => qtd_rolls.value, (qtdRolls, prevQtdRolls) => {
+  load()
+})
+watch(() => minProbabilidade.value, (minProbabilidade, prevMinProbabilidade) => {
+  load()
+})
+
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Double`" v-if="estrategias">
@@ -87,7 +96,6 @@ watch(() => galho.value, (galho, prevGalho) => {
                 <div style="display: flex; gap: 10px;">
                   <span> Rodadas: </span>
                   <input name="qtdRolls" type="number" v-model="qtd_rolls" style="height: 30px;" />
-                  <button @click="load" style="height: 30px;">Load</button>
                 </div>
                 <audio ref="audio" controls>
                   <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
@@ -124,6 +132,10 @@ watch(() => galho.value, (galho, prevGalho) => {
             <option value="9">9</option>
           </select>
         </label>
+        <div style="display: flex; gap: 10px;">
+          <span> Min %: </span>
+          <input name="minProbabilidade" type="number" v-model="minProbabilidade" style="height: 30px; width: 60px;" />
+        </div>
       </div>
       <div class="row">
         <PadroesCores :data="estrategias?.padroes" />
