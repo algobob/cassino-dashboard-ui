@@ -4,9 +4,9 @@
   width: 52px;
   height: 50px;
   padding: 10px;
-  background: #fff;
+  background: black;
   border: 3px solid #000;
-  color: #000;
+  color: white;
   text-align: center;
   font: 22px Arial, sans-serif;
 }
@@ -16,9 +16,9 @@
   width: 52px;
   height: 50px;
   padding: 10px;
-  background: #fff;
+  background: red;
   border: 3px solid red;
-  color: red;
+  color: white;
   text-align: center;
   font: 22px Arial, sans-serif;
 }
@@ -33,47 +33,6 @@
   color: white;
   text-align: center;
   margin: 0 2px;
-}
-
-.quadradinhoPreto {
-  width: 54px;
-  height: 44px;
-  padding: 3px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid black;
-  background-color: black;
-  margin: 4px 4px 0 4px;
-  transition: 0.3s;  
-}
-
-.quadradinho span {
-  font-weight: 600;
-  color: black;
-  line-break: anywhere;
-  font-size: 13px;
-  text-align: center;
-
-}
-
-.quadradinhoPreto span {
-  font-weight: 600;
-  color: white;
-  line-break: anywhere;
-  font-size: 13px;
-  text-align: center;
-}
-
-.quadradinho:hover {
-  border: 2px solid blue;
-  transition: 0.3s;
-}
-
-.quadradinhoPreto:hover {
-  border: 2px solid red;
-  transition: 0.3s;
 }
 </style>
 <script setup>
