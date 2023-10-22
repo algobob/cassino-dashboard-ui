@@ -54,7 +54,7 @@ const props = defineProps({
 
 </script>
 <template>
-  <div style="display: flex; align-items: center; position: relative;" v-if="Object.keys(data['red']).length">
+  <div style="display: flex; align-items: center; position: relative;" v-if="data['red']">
     <span class="tooltiptext" v-if="hover">{{ data['red']['hit'] }}/{{ data['red']['tried'] }}</span>
     <div v-for="p in padrao" @mouseover="hover = true" @mouseleave="hover = false"
     :class="{ 'red-circle': p === 'r', 'black-circle': p === 'b', 'white-circle': p === 'w' }"></div>
@@ -63,7 +63,7 @@ const props = defineProps({
     <h5 class="font-weight-bold p-2"> ? </h5>
     <h5 class="font-weight-bold p-2"><mark>{{ data['red']['probabilidade'] }}%</mark></h5>
   </div>
-  <div style="display: flex; align-items: center; position: relative;" v-if="Object.keys(data['black']).length">
+  <div style="display: flex; align-items: center; position: relative;" v-if="data['black']">
     <span class="tooltiptext" v-if="hover">{{ data['black']['hit'] }}/{{ data['black']['tried'] }}</span>
     <div v-for="p in padrao" @mouseover="hover = true" @mouseleave="hover = false"
     :class="{ 'red-circle': p === 'r', 'black-circle': p === 'b', 'white-circle': p === 'w' }"></div>
