@@ -20,6 +20,7 @@ const contagem_cores = ref({})
 const balance = ref({})
 const rolls = ref([])
 const qtd_rolls = ref("200")
+const targetColor = ref("*")
 const galho = ref(2)
 const minProbabilidade = ref(50)
 const route = useRoute()
@@ -32,6 +33,7 @@ const load = () => {
   qtdRolls=${qtd_rolls.value}&
   galho=${galho.value}&
   minProbabilidade=${minProbabilidade.value}&
+  targetColor=${targetColor.value}&
   padrao=w&
   padrao=w,w&
   padrao=w,r&
@@ -94,6 +96,9 @@ watch(() => qtd_rolls.value, (qtdRolls, prevQtdRolls) => {
 watch(() => minProbabilidade.value, (minProbabilidade, prevMinProbabilidade) => {
   load()
 })
+watch(() => targetColor.value, (targetColor, prevTargetColor) => {
+  load()
+})
 
 </script>
 <template>
@@ -137,6 +142,15 @@ watch(() => minProbabilidade.value, (minProbabilidade, prevMinProbabilidade) => 
         <div style="display: flex; gap: 10px;">
           <span> Min %: </span>
           <input name="minProbabilidade" type="number" v-model="minProbabilidade" style="height: 30px; width: 60px;" />
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <label for="targetColor">Cor:</label>
+          <select name="colors" id="colors" v-model="targetColor">
+            <option value="*">Todas</option>
+            <option value="red">Vermelha</option>
+            <option value="black">Preta</option>
+            <option value="white">Branca</option>
+          </select>
         </div>
       </div>
       <div class="row">
