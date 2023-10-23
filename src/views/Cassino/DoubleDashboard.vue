@@ -54,6 +54,14 @@ const load = () => {
   padrao=b,b,b,b,b&
   padrao=r,r,r,r,r,r&
   padrao=b,b,b,b,b,b&
+  padrao=b,r,b,r&
+  padrao=b,r,b,r,b&
+  padrao=r,b,r,b&
+  padrao=r,b,r,b,r&
+  padrao=r,r,b,r,r&
+  padrao=r,r,b,r,r,b&
+  padrao=b,b,r,b,b&
+  padrao=b,b,r,b,b,r&
   `.replace(/ /g,''))
     .then(response => response.json())
     .then(data => {
