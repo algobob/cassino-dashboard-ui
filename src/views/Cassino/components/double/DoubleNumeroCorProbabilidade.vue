@@ -63,13 +63,21 @@ const props = defineProps(['roll', 'data'])
           <img v-if="roll === '0'" class="circle" :src="whiteRoll" alt="White">
         </h5>
         <div class="card-text">
-          <span class="tooltiptext" v-if="hoverRed">{{ data['red']['hit'] }}/{{ data['red']['tried'] }}</span>
-          <div class="square" style="background-color: red; position: relative" @mouseover="hoverRed = true" @mouseleave="hoverRed = false"></div>
-          <p><mark> {{ data['red']['probabilidade'] }}%</mark></p>
-          <span class="tooltiptext" v-if="hoverBlack">{{ data['black']['hit'] }}/{{ data['black']['tried'] }}</span>
-          <div class="square" style="background-color: black; position: relative;" @mouseover="hoverBlack = true" @mouseleave="hoverBlack = false"></div>
-          <p class="card-text mt-2"><mark> {{ data['black']['probabilidade'] }}%</mark></p>
+          <div v-if="data['red']">
+            <span class="tooltiptext" v-if="hoverRed">{{ data['red']['hit'] }}/{{ data['red']['tried'] }}</span>
+            <div class="square" style="background-color: red; position: relative" @mouseover="hoverRed = true"
+              @mouseleave="hoverRed = false"></div>
+            <p><mark> {{ data['red']['probabilidade'] }}%</mark></p>
+          </div>
+          <div v-if="data['black']">
+
+            <span class="tooltiptext" v-if="hoverBlack">{{ data['black']['hit'] }}/{{ data['black']['tried'] }}</span>
+            <div class="square" style="background-color: black; position: relative;" @mouseover="hoverBlack = true"
+              @mouseleave="hoverBlack = false"></div>
+            <p class="card-text mt-2"><mark> {{ data['black']['probabilidade'] }}%</mark></p>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
