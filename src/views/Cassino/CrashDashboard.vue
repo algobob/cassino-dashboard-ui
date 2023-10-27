@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 // Sections components
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 
-import MediaVelas from "./components/crash/MediaVelas.vue"
+import MediaVelas from "./components/crash/MediaVelas/MediaVelas.vue"
 import PadraoEstrategiasMinutagem from "./components/crash/padroes/minutagem/PadraoEstrategiasMinutagem.vue"
 import Padroes from "./components/crash/padroes/Padroes.vue"
 import Padrao from "./components/crash/padroes/Padrao.vue"
