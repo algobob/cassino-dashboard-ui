@@ -62,7 +62,7 @@ const load = () => {
   padrao=r,r,b,r,r,b&
   padrao=b,b,r,b,b&
   padrao=b,b,r,b,b,r&
-  `.replace(/ /g,''))
+  `.replace(/ /g, ''))
     .then(response => response.json())
     .then(data => {
       contagem_cores.value = data['contagem_cores']
@@ -94,20 +94,6 @@ const alertIfVelasAcima50 = (value) => {
   }
 }
 
-watch(() => galho.value, (galho, prevGalho) => {
-  load()
-})
-
-watch(() => qtd_rolls.value, (qtdRolls, prevQtdRolls) => {
-  load()
-})
-watch(() => minProbabilidade.value, (minProbabilidade, prevMinProbabilidade) => {
-  load()
-})
-watch(() => targetColor.value, (targetColor, prevTargetColor) => {
-  load()
-})
-
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Double`" v-if="estrategias">
@@ -118,20 +104,12 @@ watch(() => targetColor.value, (targetColor, prevTargetColor) => {
             <div class="card-body">
               <div style="display: flex; gap: 20px; flex-direction: column;">
                 <Clock />
-                <div style="display: flex; gap: 10px;">
-                  <span> Rodadas: </span>
-                  <input name="qtdRolls" type="number" v-model="qtd_rolls" style="height: 30px;" />
-                </div>
-                <audio ref="audio" controls>
-                  <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
               </div>
             </div>
           </div>
         </div>
         <div class="col">
-          <Caixa :balance="balance"/>
+          <Caixa :balance="balance" />
         </div>
       </div>
       <div class="row">
@@ -143,22 +121,29 @@ watch(() => targetColor.value, (targetColor, prevTargetColor) => {
         <h4 class="mt-2">Estrategias</h4>
       </div>
       <div class="row">
-        <div style="display: flex;">
-          <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
-          <input type="number" v-model="galho" style="width: 60px;" />
-        </div>
-        <div style="display: flex; gap: 10px;">
-          <span> Min %: </span>
-          <input name="minProbabilidade" type="number" v-model="minProbabilidade" style="height: 30px; width: 60px;" />
-        </div>
-        <div style="display: flex; gap: 10px;">
-          <label for="targetColor">Cor:</label>
-          <select name="colors" id="colors" v-model="targetColor">
-            <option value="*">Todas</option>
-            <option value="red">Vermelha</option>
-            <option value="black">Preta</option>
-            <option value="white">Branca</option>
-          </select>
+        <div style="display: flex; gap: 2%; flex-wrap: wrap; margin-bottom: 5%;">
+          <div style="display: flex; gap: 10px;">
+            <span> Rodadas: </span>
+            <input name="qtdRolls" type="number" v-model="qtd_rolls" style="height: 30px; width: 70px;" />
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
+            <input type="number" v-model="galho" style="width: 60px;" />
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <span> Min %: </span>
+            <input name="minProbabilidade" type="number" v-model="minProbabilidade" style="height: 30px; width: 60px;" />
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <label for="targetColor">Cor:</label>
+            <select name="colors" id="colors" v-model="targetColor">
+              <option value="*">Todas</option>
+              <option value="red">Vermelha</option>
+              <option value="black">Preta</option>
+              <option value="white">Branca</option>
+            </select>
+          </div>
+          <button @click="load" style="width: fit-content; ">Load</button>
         </div>
       </div>
       <div class="row">
