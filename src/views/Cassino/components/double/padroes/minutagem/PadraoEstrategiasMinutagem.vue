@@ -24,15 +24,15 @@ const props = defineProps({
 
 </script>
 <template>
-  <div class="container" style="margin-bottom: 40px; margin-top: 40px;">
+  <div class="container" style="margin-bottom: 40px; margin-top: 40px;" v-if="estrategias">
     <div class="row">
       <h4 style="text-decoration: underline;">Minutagem</h4>
       <h5 style="text-decoration: underline;margin-top: 40px;">Minuto fixo</h5>
       <div class="col">
-        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos.red" color="red" isMinFixo="true" />
+        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos?.red" color="red" isMinFixo />
       </div>
       <div class="col">
-        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos?.black" color="black" isMinFixo="true" />
+        <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos?.black" color="black" isMinFixo />
       </div>
     </div>
     <div class="row">
