@@ -27,9 +27,12 @@
 </style>
 
 <script setup>
-
 import EntradaMinutoAposVelaProbabilidade from './components/EntradaMinutoAposVelaProbabilidade.vue';
 import EntradaMinutoProbabilidade from './components/EntradaMinutoProbabilidade.vue';
+import { Collapse } from 'vue-collapsed'
+import { ref } from 'vue'
+
+const isExpanded = ref(true)
 
 const props = defineProps({
   minutagem: Object
@@ -38,11 +41,11 @@ const props = defineProps({
 </script>
 <template>
   <div class="container">
+    <h4 style="text-decoration: underline; margin-bottom: 40px;" @click="isExpanded = !isExpanded">Minutagem</h4>
+    <Collapse :when="isExpanded">
     <div class="row">
       <div class="col">
-        <h4 style="text-decoration: underline; margin-bottom: 40px;">Minutagem</h4>
         <h5 style="text-decoration: underline;">Minuto fixo</h5>
-        <!-- <div style="display: flex; gap: 30px; margin-top: 40px;"> -->
           <div style="display: flex; flex-flow: column wrap; margin-top: 40px; align-items: center; width: 180px; max-height: 450px; gap: 20px;" class="mb-2">
             <EntradaMinutoProbabilidade minuto="00" :data="minutagem?.minutos_fixo['0']" :isMinutoFixo="true" />
             <EntradaMinutoProbabilidade minuto="01" :data="minutagem?.minutos_fixo['1']" :isMinutoFixo="true" />
@@ -55,13 +58,12 @@ const props = defineProps({
             <EntradaMinutoProbabilidade minuto="08" :data="minutagem?.minutos_fixo['8']" :isMinutoFixo="true" />
             <EntradaMinutoProbabilidade minuto="09" :data="minutagem?.minutos_fixo['9']" :isMinutoFixo="true" />
           </div>
-        <!-- </div> -->
-      </div>
-      <div class="col">
-        <h5 style="text-decoration: underline; margin-top: 80px;">Intervalo de X min</h5>
-        <div style="display: flex; gap: 30px; margin-top: 40px;">
-          <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
-            <EntradaMinutoProbabilidade minuto="03" :data="minutagem?.intervalos['3']" />
+        </div>
+        <div class="col">
+          <h5 style="text-decoration: underline; margin-top: 80px;">Intervalo de X min</h5>
+          <div style="display: flex; gap: 30px; margin-top: 40px;">
+            <div style="display: flex; flex-direction: column; align-items: center; width: 180px;" class="mb-2">
+              <EntradaMinutoProbabilidade minuto="03" :data="minutagem?.intervalos['3']" />
             <EntradaMinutoProbabilidade minuto="04" :data="minutagem?.intervalos['4']" />
             <EntradaMinutoProbabilidade minuto="05" :data="minutagem?.intervalos['5']" />
             <EntradaMinutoProbabilidade minuto="06" :data="minutagem?.intervalos['6']" />
@@ -101,4 +103,5 @@ const props = defineProps({
       </div>
     </div>
   </div>
+</Collapse>
 </div></template>
