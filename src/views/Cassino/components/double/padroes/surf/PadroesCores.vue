@@ -3,10 +3,10 @@ const props = defineProps({
   data: Object
 })
 
-// import { Collapse } from 'vue-collapsed'
-// import { ref } from 'vue'
+import { Collapse } from 'vue-collapsed'
+import { ref } from 'vue'
 
-// const isExpanded = ref(false)
+const isExpanded = ref(true)
 
 console.log(props.estrategias)
 import PadraoCor from "./PadraoCor.vue"
@@ -15,10 +15,9 @@ import PadraoCor from "./PadraoCor.vue"
 <template>
   <div style="display: flex; gap: 20px; flex-wrap: wrap;" v-if="data">
     <div>
-      <h4>* Surf</h4>
-      <!-- <h4 @click="isExpanded = !isExpanded">* Surf</h4> -->
+      <h4 @click="isExpanded = !isExpanded">* Padroes</h4>
       <!-- <div class="card"> -->
-        <!-- <Collapse :when="isExpanded"> -->
+        <Collapse :when="isExpanded">
         <div class="card-body">
           <div style="display: flex; gap: 60px;">
             <div style="display: flex; flex-direction: column;">
@@ -53,7 +52,7 @@ import PadraoCor from "./PadraoCor.vue"
             </div>
           </div>
         </div>
-      <!-- </Collapse> -->
+      </Collapse>
       <!-- </div> -->
     </div>
   </div>
