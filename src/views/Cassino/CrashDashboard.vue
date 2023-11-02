@@ -99,16 +99,10 @@ const alertIfVelasAcima50 = (value) => {
   <BaseLayout :title="`${startCase(platform)} - Crash`">
     <div class="container" v-if="loaded">
       <div class="row">
-        <div class="col">
-          <audio ref="audio" controls muted>
-            <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-        <div class="col">
+        <div class="col-3">
           <Clock />
         </div>
-        <div class="col">
+        <div class="col-3">
           <Caixa :balance="balance" />
         </div>
       </div>

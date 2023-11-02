@@ -30,7 +30,7 @@ console.log(props.balance)
 
 </style>
 <template>
-  <div class="container d-flex caixa" style="justify-content: right;">
+  <div class="container d-flex">
   <div class="card p-3">
     <div class="card-bottom pt-3 px-3 mb-2">
       <div class="d-flex flex-row justify-content-between text-align-center">
