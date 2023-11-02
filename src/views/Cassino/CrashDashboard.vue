@@ -53,7 +53,7 @@ const url = () => {
           padrao=2,1,2,1,2,1&
           padrao=1,1,1,1,1&
           padrao=1,1,1,1,1,1&
-          padrao=1,1,1,1`.replace(/ /g,'')
+          padrao=1,1,1,1`.replace(/ /g, '')
 }
 
 const load = () => {
@@ -94,44 +94,22 @@ const alertIfVelasAcima50 = (value) => {
   }
 }
 
-watch(() => contagem_cores.value, (contagemCores, prevContagemCores) => {
-  alertIfVelasAcima50(contagemCores)
-})
-
-watch(() => galho.value, (galho, prevGalho) => {
-  load();
-})
-
-watch(() => targetVela.value, (targetVela, prevTargetVela) => {
-  load();
-})
-
-watch(() => minProbabilidade.value, (targetMinProbabilidade, prevMinProbabilidade) => {
-  load();
-})
-
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Crash`">
     <div class="container" v-if="loaded">
       <div class="row">
         <div class="col">
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-              Quantidade de velas:
-              <input name="qtdVelas" label="Quantidade de Velas" type="number"
-                v-model="qtd_velas" style="width: fit-content;"/>
-                <button @click="load" style="width: fit-content;">Load</button>
-            <audio ref="audio" controls muted>
-              <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </div>
+          <audio ref="audio" controls muted>
+            <source src="https://www.myinstants.com/media/sounds/111-pokemon-recovery.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
         </div>
         <div class="col">
           <Clock />
         </div>
         <div class="col">
-          <Caixa :balance="balance"/>
+          <Caixa :balance="balance" />
         </div>
       </div>
 
@@ -151,21 +129,25 @@ watch(() => minProbabilidade.value, (targetMinProbabilidade, prevMinProbabilidad
         <h4 style="margin-top: 40px; margin-bottom: 40px; text-decoration: underline;">Estrategias</h4>
       </div>
       <div class="row">
-        <div style="display: flex;">
-          <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
-          <input type="number" v-model="galho" style="width: 60px;" />
-        </div>
-      </div>
-      <div class="row">
-        <div style="display: flex;">
-          <span style="margin-right: 22px; font-size: large; width: fit-content;">Vela:</span>
-          <input type="number" v-model="targetVela" style="width: 60px;" />
-        </div>
-      </div>
-      <div class="row">
-        <div style="display: flex;">
-          <span style="margin-right: 10px; font-size: large; width: fit-content;">Min %:</span>
-          <input type="number" v-model="minProbabilidade" style="width: 60px;" />
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div >
+            <span style="margin-right: 12px; font-size: large; width: fit-content;">Velas:</span>
+            <input name="qtdVelas" label="Quantidade de Velas" type="number" v-model="qtd_velas"
+              style="width: 6%;" />
+          </div>
+          <div style="display: flex;">
+            <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
+            <input type="number" v-model="galho" style="width: 60px;" />
+          </div>
+          <div style="display: flex;">
+            <span style="margin-right: 22px; font-size: large; width: fit-content;">Vela:</span>
+            <input type="number" v-model="targetVela" style="width: 60px;" />
+          </div>
+          <div style="display: flex;">
+            <span style="margin-right: 10px; font-size: large; width: fit-content;">Min %:</span>
+            <input type="number" v-model="minProbabilidade" style="width: 60px;" />
+          </div>
+          <button @click="load" style="width: fit-content;">Load</button>
         </div>
       </div>
       <div class="row">
