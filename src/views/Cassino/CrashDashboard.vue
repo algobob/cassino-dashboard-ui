@@ -127,7 +127,7 @@ const alertIfVelasAcima50 = (value) => {
           <div >
             <span style="margin-right: 12px; font-size: large; width: fit-content;">Velas:</span>
             <input name="qtdVelas" label="Quantidade de Velas" type="number" v-model="qtd_velas"
-              style="width: 6%;" />
+              style="width: 60px;" />
           </div>
           <div style="display: flex;">
             <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
