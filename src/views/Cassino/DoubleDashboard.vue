@@ -31,7 +31,7 @@ const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-productio
 const load = () => {
   fetch(`${apiHost}/api/${platform}/double/dashboard?
   qtdRolls=${qtd_rolls.value}&
-  galho=${galho.value}&
+  qtdGalho=${galho.value}&
   minProbabilidade=${minProbabilidade.value}&
   targetColor=${targetColor.value}&
   padrao=w&
