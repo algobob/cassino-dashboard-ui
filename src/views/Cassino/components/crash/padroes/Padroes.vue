@@ -30,6 +30,7 @@ import Padrao from "./Padrao.vue"
           <Padrao :padrao="[1, 1, 1, 1, 1]" :data="padroes['1,1,1,1,1']" />
           <Padrao :padrao="[1, 1, 1, 1, 1, 1]" :data="padroes['1,1,1,1,1,1']" />
           <Padrao :padrao="[1, 1, 1, 1]" :data="padroes['1,1,1,1']" />
+          <Padrao :padrao="[1, 1]" :data="padroes['1,1']" />
           <Padrao :padrao="[2, 1, 2, 1]" :data="padroes['2,1,2,1']" />
           <Padrao :padrao="[2, 1, 2, 1, 2, 1]" :data="padroes['2,1,2,1,2,1']" />
         </div>

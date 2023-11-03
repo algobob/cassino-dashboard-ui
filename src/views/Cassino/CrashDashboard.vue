@@ -53,6 +53,7 @@ const url = () => {
           padrao=2,1,2,1,2,1&
           padrao=1,1,1,1,1&
           padrao=1,1,1,1,1,1&
+          padrao=1,1&
           padrao=1,1,1,1`.replace(/ /g, '')
 }
 
