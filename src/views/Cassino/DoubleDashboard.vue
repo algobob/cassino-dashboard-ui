@@ -45,6 +45,7 @@ const load = () => {
   padrao=b,b,w&
   padrao=r,r,w&
   padrao=b,r,w&
+  padrao=r,b,r&
   padrao=r,b,w&
   padrao=r,r&
   padrao=r,r,r&
@@ -62,6 +63,7 @@ const load = () => {
   padrao=r,b,r,b,r&
   padrao=r,r,b,r,r&
   padrao=r,r,b,r,r,b&
+  padrao=r,r,b,b,r&
   padrao=b,b,r,b,b&
   padrao=b,b,r,b,b,r&
   `.replace(/ /g, ''))

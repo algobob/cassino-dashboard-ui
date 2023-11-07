@@ -34,6 +34,7 @@ import PadraoCor from "./PadraoCor.vue"
               <PadraoCor padrao="b,r,w" :data="data['b,r,w']" />
               <PadraoCor padrao="r,b,w" :data="data['r,b,w']" />
               <PadraoCor padrao="r,r,r" :data="data['r,r,r']" />
+              <PadraoCor padrao="r,b,r" :data="data['r,b,r']" />
               <PadraoCor padrao="r,r" :data="data['r,r']" />
               <PadraoCor padrao="b,b" :data="data['b,b']" />
               <PadraoCor padrao="b,b,b" :data="data['b,b,b']" />
@@ -49,6 +50,7 @@ import PadraoCor from "./PadraoCor.vue"
               <PadraoCor padrao="r,b,r,b,r" :data="data['r,b,r,b,r']" />
               <PadraoCor padrao="r,r,b,r,r" :data="data['r,r,b,r,r']" />
               <PadraoCor padrao="r,r,b,r,r,b" :data="data['r,r,b,r,r,b']" />
+              <PadraoCor padrao="r,r,b,b,r" :data="data['r,r,b,b,r']" />
               <PadraoCor padrao="b,b,r,b,b" :data="data['b,b,r,b,b']" />
               <PadraoCor padrao="b,b,r,b,b,r" :data="data['b,b,r,b,b,r']" />
             </div>
