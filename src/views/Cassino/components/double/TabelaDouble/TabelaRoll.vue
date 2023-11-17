@@ -36,7 +36,7 @@
 }
 </style>
 <script setup>
-import whiteRoll from "@/assets/img/white-roll.png";
+import Roll from "@/views/Cassino/components/double/Roll.vue";
 
 const props = defineProps({
   roll: Object
@@ -47,14 +47,7 @@ const rollTime = new Date(props.roll.created*1000).toLocaleTimeString('pt-BR').s
 </script>
 <template>
   <div style="display: flex; flex-direction: column; margin-bottom: 6px; text-align: center; align-content: center;">
-      <div v-if="roll?.color !== 'white'" :class="{
-        'red-circle': roll?.color === 'red',
-        'black-circle': roll?.color === 'black'}">
-        <span>
-          {{ roll?.roll }}
-        </span>
-      </div>
-      <img v-if="roll?.color === 'white'" class="white-roll" :src="whiteRoll" alt="White">
+      <Roll :color="roll?.color" :roll="roll?.roll"  />
       <span class="hora">{{ rollTime[0] }}:{{ rollTime[1] }}</span>
   </div>
 </template>
