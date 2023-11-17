@@ -35,6 +35,9 @@ const load = () => {
   minProbabilidade=${minProbabilidade.value}&
   targetColor=${targetColor.value}&
   padrao=w&
+  padrao=w,*,*&
+  padrao=w,*,*,*&
+  padrao=w,*,*,*,*&
   padrao=w,w&
   padrao=w,r&
   padrao=w,b&
@@ -66,6 +69,7 @@ const load = () => {
   padrao=r,r,b,b,r&
   padrao=b,b,r,b,b&
   padrao=b,b,r,b,b,r&
+  padrao=w,b,r,b,b,r&
   `.replace(/ /g, ''))
     .then(response => response.json())
     .then(data => {

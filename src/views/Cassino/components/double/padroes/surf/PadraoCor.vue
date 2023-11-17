@@ -27,6 +27,17 @@
   display: inline-block;
   margin-right: 5px;
 }
+
+.gray-circle {
+  height: 40px;
+  width: 40px;
+  background-color: gray;
+  border-radius: 50%;
+  border-color: black;
+  border-style: solid;
+  display: inline-block;
+  margin-right: 5px;
+}
 .tooltiptext {
   width: 120px;
   background-color: black;
@@ -58,7 +69,7 @@ const props = defineProps({
   <div style="display: flex; align-items: center; position: relative;" v-if="data['red']">
     <span class="tooltiptext" v-if="hover">{{ data['red']['hit'] }}/{{ data['red']['tried'] }}</span>
     <div v-for="p in padrao" @mouseover="hover = true" @mouseleave="hover = false"
-    :class="{ 'red-circle': p === 'r', 'black-circle': p === 'b', 'white-circle': p === 'w' }"></div>
+    :class="{ 'red-circle': p === 'r', 'black-circle': p === 'b', 'white-circle': p === 'w', 'gray-circle': p === '*' }"></div>
     <h5 class="font-weight-bold p-2"> > </h5>
     <div class="red-circle"></div>
     <h5 class="font-weight-bold p-2"> ? </h5>
@@ -67,7 +78,7 @@ const props = defineProps({
   <div style="display: flex; align-items: center; position: relative;" v-if="data['black']">
     <span class="tooltiptext" v-if="hover">{{ data['black']['hit'] }}/{{ data['black']['tried'] }}</span>
     <div v-for="p in padrao" @mouseover="hover = true" @mouseleave="hover = false"
-    :class="{ 'red-circle': p === 'r', 'black-circle': p === 'b', 'white-circle': p === 'w' }"></div>
+    :class="{ 'red-circle': p === 'r', 'black-circle': p === 'b', 'white-circle': p === 'w', 'gray-circle': p === '*' }"></div>
     <h5 class="font-weight-bold p-2"> > </h5>
     <div class="black-circle"></div>
     <h5 class="font-weight-bold p-2"> ? </h5>
@@ -76,11 +87,12 @@ const props = defineProps({
   <div style="display: flex; align-items: center; position: relative;" v-if="data['white']">
     <span class="tooltiptext" v-if="hover">{{ data['white']['hit'] }}/{{ data['white']['tried'] }}</span>
     <div v-for="p in padrao" @mouseover="hover = true" @mouseleave="hover = false"
-    :class="{ 'red-circle': p === 'r', 'black-circle': p === 'b', 'white-circle': p === 'w' }"></div>
+    :class="{ 'red-circle': p === 'r', 'black-circle': p === 'b', 'white-circle': p === 'w', 'gray-circle': p === '*' }"></div>
     <h5 class="font-weight-bold p-2"> > </h5>
     <div class="white-circle"></div>
     <h5 class="font-weight-bold p-2"> ? </h5>
     <h5 class="font-weight-bold p-2"><mark>{{ data['white']['probabilidade'] }}%</mark></h5>
   </div>
+  
 </div>
 </template>

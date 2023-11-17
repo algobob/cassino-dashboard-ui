@@ -22,6 +22,9 @@ import PadraoCor from "./PadraoCor.vue"
           <div style="display: flex; gap: 60px;">
             <div style="display: flex; flex-direction: column;">
               <PadraoCor padrao="w" :data="data['w']" />
+              <PadraoCor padrao="w,*,*" :data="data['w,*,*']" />
+              <PadraoCor padrao="w,*,*,*" :data="data['w,*,*,*']" />
+              <PadraoCor padrao="w,*,*,*,*" :data="data['w,*,*,*,*']" />
               <PadraoCor padrao="w,w" :data="data['w,w']" />
               <PadraoCor padrao="w,r" :data="data['w,r']" />
               <PadraoCor padrao="w,b" :data="data['w,b']" />
