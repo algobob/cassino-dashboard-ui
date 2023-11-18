@@ -31,20 +31,15 @@ const adicionar = () => {
 }
 
 watch(() => props.rolls, async (newRolls, oldRolls) => {
-  console.log('newRolls[0] ', newRolls[0].roll)
-  console.log('oldRolls[0] ', oldRolls[0].roll)
-
   if (padroes.value.length && JSON.stringify(newRolls[0]) !== JSON.stringify(oldRolls[0])) {
     padroes.value.forEach(p => {
       const lastRolls = newRolls.slice(0,p.length)
-      console.log('lastRolls ', lastRolls)
       let qtdMatch = 0
       for (let i = 0; i < p.length; i++) {
         if (lastRolls[i].color === p[i]) {
           qtdMatch += 1;
         }
       }
-      console.log('qtdMatch ', qtdMatch)
       if (qtdMatch === p.length) {
         play(audioBattle, 5)
         return;
