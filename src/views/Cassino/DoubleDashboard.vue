@@ -14,6 +14,7 @@ import DoubleNumeroCor from "./components/double/DoubleNumeroCor.vue";
 import PadraoEstrategiasMinutagem from "./components/double/padroes/minutagem/PadraoEstrategiasMinutagem.vue";
 import PadroesCores from "./components/double/padroes/surf/PadroesCores.vue";
 import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
+import AlarmePadroes from "./components/double/padroes/Alarme/AlarmePadroes.vue";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
@@ -25,7 +26,6 @@ const galho = ref(0)
 const minProbabilidade = ref(50)
 const route = useRoute()
 const platform = route.params.platform
-const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 
 const load = () => {
@@ -92,16 +92,6 @@ onMounted(() => {
   load()
 });
 
-const alertIfVelasAcima50 = (value) => {
-  const percentageVerde = value?.percentageVerde
-  const isPercentageHigherThan = parseInt(percentageVerde.slice(0, 2)) >= 52
-  console.log(parseInt(percentageVerde.slice(0, 2)))
-
-  if (isPercentageHigherThan) {
-    audio.value.play();
-  }
-}
-
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Double`" v-if="estrategias">
@@ -123,6 +113,11 @@ const alertIfVelasAcima50 = (value) => {
       <div class="row">
         <div class="col">
           <DoubleContagemCores :contagem_cores="contagem_cores" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <AlarmePadroes :rolls="rolls" />
         </div>
       </div>
       <div class="row">
