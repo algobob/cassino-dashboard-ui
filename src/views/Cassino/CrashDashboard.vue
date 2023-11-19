@@ -6,6 +6,7 @@ import { useRoute } from 'vue-router'
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 
 import MediaVelas from "./components/crash/MediaVelas/MediaVelas.vue"
+import AlarmePadroes from "./components/crash/AlarmePadroes/AlarmePadroes.vue"
 import PadraoEstrategiasMinutagem from "./components/crash/padroes/minutagem/PadraoEstrategiasMinutagem.vue"
 import Padroes from "./components/crash/padroes/Padroes.vue"
 import Padrao from "./components/crash/padroes/Padrao.vue"
@@ -106,8 +107,9 @@ onMounted(() => {
         </div>
       </div>
       <div class="row">
-        <h4 style="margin-top: 40px; margin-bottom: 40px; text-decoration: underline;">ENTRAR AGORA? </h4>
-        <Padrao :padrao="estrategias?.entrada_agora?.padrao" :data="estrategias?.entrada_agora?.probabilidade" />
+        <div class="col">
+          <AlarmePadroes :velas="velas" />
+        </div>
       </div>
       <div class="row">
         <h4 style="margin-top: 40px; margin-bottom: 40px; text-decoration: underline;">Estrategias</h4>

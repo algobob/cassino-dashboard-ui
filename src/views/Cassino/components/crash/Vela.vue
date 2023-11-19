@@ -65,7 +65,7 @@ const props = defineProps({
 console.log('vela = ', props.vela)
 </script>
 <template>
-  <div style="display: flex; justify-content: center; align-items: center;flex-direction: column;">
+  <div style="display: flex; justify-content: center; align-items: center;flex-direction: column;" @click="$emit('clicked', vela)">
       <div :class="{quadradinhoPreto: vela < 2,
         quadradinho: vela >= 2}">
         <span v-if="vela != null">
