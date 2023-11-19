@@ -43,7 +43,7 @@ const props = defineProps({
    class="mb-2" v-if="data" @mouseover="hover = true" @mouseleave="hover = false">
    <span class="tooltiptext" v-if="hover">{{ data['hit'] }}/{{ data['tried'] }}</span>
     <div v-for="n in padrao" style="display: flex; gap: 3px;">
-      <Vela :vela="n" />
+      <Vela :vela="n < 2 ? 1.99 : 2" />
     </div>
       
     <h5 class="font-weight-bold p-2 mt-2"> > </h5>
