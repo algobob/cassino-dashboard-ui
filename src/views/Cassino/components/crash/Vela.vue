@@ -54,20 +54,24 @@
 import { ref } from "vue";
 
 const props = defineProps({
-  velaObj: Object
+  vela: {
+    type: Number,
+    default: null
+  }
+  ,
+  createdAt: Number,
 })
 
-const upHere = ref(false)
-
+console.log('vela = ', props.vela)
 </script>
 <template>
   <div style="display: flex; justify-content: center; align-items: center;flex-direction: column;">
-      <div :class="{quadradinhoPreto: velaObj?.vela < 2,
-        quadradinho: velaObj?.vela >= 2}">
-        <span>
-          {{ velaObj?.vela }}x
+      <div :class="{quadradinhoPreto: vela < 2,
+        quadradinho: vela >= 2}">
+        <span v-if="vela != null">
+          {{ vela }}x
         </span>
       </div>
-        <span class="hora">{{ new Date(velaObj?.created*1000).toLocaleTimeString('pt-BR') }}</span>
+        <span v-if="createdAt" class="hora">{{ new Date(createdAt*1000).toLocaleTimeString('pt-BR') }}</span>
   </div>
 </template>

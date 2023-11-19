@@ -59,7 +59,6 @@ const url = () => {
 
 const load = () => {
   const urlDashboard = url()
-  console.log('urlDashboard ', urlDashboard)
   fetch(urlDashboard)
     .then(response => response.json())
     .then(data => {
@@ -84,16 +83,6 @@ onMounted(() => {
   setNavPills();
   load()
 });
-
-const alertIfVelasAcima50 = (value) => {
-  const percentageVerde = value?.percentageVerde
-  const isPercentageHigherThan = parseInt(percentageVerde.slice(0, 2)) >= 51
-  console.log(parseInt(percentageVerde.slice(0, 2)))
-
-  if (isPercentageHigherThan) {
-    audio?.value?.play();
-  }
-}
 
 </script>
 <template>

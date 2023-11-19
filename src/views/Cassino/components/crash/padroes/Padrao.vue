@@ -28,6 +28,7 @@
 
 <script setup>
 import { ref } from "vue";
+import Vela from '../Vela.vue';
 
 const hover = ref(false)
 
@@ -42,11 +43,11 @@ const props = defineProps({
    class="mb-2" v-if="data" @mouseover="hover = true" @mouseleave="hover = false">
    <span class="tooltiptext" v-if="hover">{{ data['hit'] }}/{{ data['tried'] }}</span>
     <div v-for="n in padrao" style="display: flex; gap: 3px;">
-      <div class="rectangle" :style="{ backgroundColor: n >= 2 ? 'greenyellow' : 'black' }"></div>
+      <Vela :vela="n" />
     </div>
       
     <h5 class="font-weight-bold p-2 mt-2"> > </h5>
-    <div class="rectangle"></div>
+    <Vela :vela="2" />
     <h5 class="font-weight-bold p-2 mt-2"> ? </h5>
     <h5 class="font-weight-bold p-2 mt-2"><mark>{{ data['probabilidade'] }}%</mark></h5>
   </div>
