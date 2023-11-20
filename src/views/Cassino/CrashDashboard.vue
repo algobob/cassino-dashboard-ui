@@ -18,6 +18,7 @@ import TabelaCrashes from "./components/crash/TabelaCrashes/TabelaCrashes.vue"
 import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
+import { Collapse } from 'vue-collapsed'
 
 const estrategias = ref({})
 const contagem_cores = ref({})
@@ -34,6 +35,7 @@ const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 const loaded = ref(false)
 const minProbabilidade = ref(50)
+const isExpanded = ref(true)
 
 const url = () => {
   return `${apiHost}/api/${platform}/crash/dashboard?
@@ -112,36 +114,37 @@ onMounted(() => {
         </div>
       </div>
       <div class="row">
-        <h4 style="margin-top: 40px; margin-bottom: 40px; text-decoration: underline;">Estrategias</h4>
+        <h4 style="margin-top: 40px; margin-bottom: 40px; text-decoration: underline;" @click="isExpanded = !isExpanded">Estrategias</h4>
       </div>
-      <div class="row">
-        <div style="display: flex; flex-direction: column; gap: 20px;">
-          <div >
-            <span style="margin-right: 12px; font-size: large; width: fit-content;">Velas:</span>
-            <input name="qtdVelas" label="Quantidade de Velas" type="number" v-model="qtd_velas"
-              style="width: 60px;" />
+      <Collapse :when="isExpanded">
+        <div class="row">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <span style="margin-right: 12px; font-size: large; width: fit-content;">Velas:</span>
+              <input name="qtdVelas" label="Quantidade de Velas" type="number" v-model="qtd_velas" style="width: 60px;" />
+            </div>
+            <div style="display: flex;">
+              <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
+              <input type="number" v-model="galho" style="width: 60px;" />
+            </div>
+            <div style="display: flex;">
+              <span style="margin-right: 22px; font-size: large; width: fit-content;">Vela:</span>
+              <input type="number" v-model="targetVela" style="width: 60px;" />
+            </div>
+            <div style="display: flex;">
+              <span style="margin-right: 10px; font-size: large; width: fit-content;">Min %:</span>
+              <input type="number" v-model="minProbabilidade" style="width: 60px;" />
+            </div>
+            <button @click="load" style="width: fit-content;">Load</button>
           </div>
-          <div style="display: flex;">
-            <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
-            <input type="number" v-model="galho" style="width: 60px;" />
-          </div>
-          <div style="display: flex;">
-            <span style="margin-right: 22px; font-size: large; width: fit-content;">Vela:</span>
-            <input type="number" v-model="targetVela" style="width: 60px;" />
-          </div>
-          <div style="display: flex;">
-            <span style="margin-right: 10px; font-size: large; width: fit-content;">Min %:</span>
-            <input type="number" v-model="minProbabilidade" style="width: 60px;" />
-          </div>
-          <button @click="load" style="width: fit-content;">Load</button>
         </div>
-      </div>
-      <div class="row">
-        <Padroes :padroes="estrategias?.padroes" />
-      </div>
-      <div class="row">
-        <PadraoEstrategiasMinutagem :minutagem="estrategias?.minutagem" />
-      </div>
+        <div class="row">
+          <Padroes :padroes="estrategias?.padroes" />
+        </div>
+        <div class="row">
+          <PadraoEstrategiasMinutagem :minutagem="estrategias?.minutagem" />
+        </div>
+      </Collapse>
     </div>
     <div>
       <TabelaCrashes :velas="velas" />
