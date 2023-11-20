@@ -4,6 +4,21 @@ import { ref, watch } from 'vue';
 import pokemonBattle from '@/assets/audio/pokemon-battle.mp3'
 import pokemonVictory from '@/assets/audio/pokemon-victory.mp3'
 import marioDeath from '@/assets/audio/mario-death.mp3'
+import { useWebNotification } from '@vueuse/core'
+
+
+const options = {
+  title: 'Hello, world from VueUse!',
+  dir: 'auto',
+  lang: 'en',
+  renotify: true,
+  tag: 'test'
+}
+
+const {
+  isSupported,
+  show,
+} = useWebNotification(options)
 
 const props = defineProps({
   rolls: Array
@@ -30,6 +45,13 @@ const adicionar = () => {
   padrao.value = []
 }
 
+const notify = () => {
+  if (isSupported.value)
+    show()
+  else
+    console.log('nao suporta notification api')
+}
+
 watch(() => props.rolls, async (newRolls, oldRolls) => {
   if (padroes.value.length && JSON.stringify(newRolls[0]) !== JSON.stringify(oldRolls[0])) {
     padroes.value.forEach(p => {
@@ -42,6 +64,7 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
         }
       }
       if (qtdMatch === p.length) {
+        notify()
         play(audioBattle, 5)
         return;
       }

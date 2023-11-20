@@ -1,9 +1,24 @@
 <script setup>
 import Vela from "../Vela.vue";
 import { ref, watch } from 'vue';
+import { useWebNotification } from '@vueuse/core'
 import pokemonBattle from '@/assets/audio/pokemon-battle.mp3'
 import pokemonVictory from '@/assets/audio/pokemon-victory.mp3'
 import marioDeath from '@/assets/audio/mario-death.mp3'
+
+const options = {
+  title: 'Hello, world from VueUse!',
+  dir: 'auto',
+  lang: 'en',
+  renotify: true,
+  tag: 'test',
+  requestPermissions: true
+}
+
+const {
+  isSupported,
+  show,
+} = useWebNotification(options)
 
 const props = defineProps({
   velas: Array
@@ -29,11 +44,18 @@ const adicionar = () => {
   padrao.value = []
 }
 
+const notify = () => {
+  if (isSupported.value)
+    show()
+  else
+    console.log('nao suporta notification api')
+}
+
 watch(() => props.velas, async (newVelas, oldVelas) => {
   if (padroes.value.length && JSON.stringify(newVelas[0]) !== JSON.stringify(oldVelas[0])) {
     padroes.value.forEach(p => {
+      if (p.length) {
       const lastVelas = newVelas.slice(0,p.length)
-      console.log('lastVelas ', lastVelas)
       let qtdMatch = 0
       for (let i = 0; i < p.length; i++) {
         if (lastVelas[i].vela < 2 && p[i] < 2 || lastVelas[i].vela >= 2 && p[i] >= 2) {
@@ -41,9 +63,11 @@ watch(() => props.velas, async (newVelas, oldVelas) => {
         }
       }
       if (qtdMatch === p.length) {
+        notify()
         play(audioBattle, 5)
         return;
       }
+    }
     })
   }
 })
