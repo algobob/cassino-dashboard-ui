@@ -15,6 +15,7 @@ import PadraoEstrategiasMinutagem from "./components/double/padroes/minutagem/Pa
 import PadroesCores from "./components/double/padroes/surf/PadroesCores.vue";
 import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
 import AlarmePadroes from "./components/double/padroes/Alarme/AlarmePadroes.vue";
+import { Collapse } from 'vue-collapsed'
 
 const estrategias = ref({})
 const contagem_cores = ref({})
@@ -27,6 +28,7 @@ const minProbabilidade = ref(50)
 const route = useRoute()
 const platform = route.params.platform
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
+const isExpanded = ref(true)
 
 const load = () => {
   fetch(`${apiHost}/api/${platform}/double/dashboard?
@@ -121,43 +123,46 @@ onMounted(() => {
         </div>
       </div>
       <div class="row">
-        <h4 class="mt-2">Estrategias</h4>
+        <h4 class="mt-2" @click="isExpanded = !isExpanded">Estrategias</h4>
       </div>
-      <div class="row">
-        <div style="display: flex; gap: 2%; flex-wrap: wrap; margin-bottom: 5%;">
-          <div style="display: flex; gap: 10px;">
-            <span> Rodadas: </span>
-            <input name="qtdRolls" type="number" v-model="qtd_rolls" style="height: 30px; width: 70px;" />
+      <Collapse :when="isExpanded">
+        <div class="row">
+          <div style="display: flex; gap: 2%; flex-wrap: wrap; margin-bottom: 5%;">
+            <div style="display: flex; gap: 10px;">
+              <span> Rodadas: </span>
+              <input name="qtdRolls" type="number" v-model="qtd_rolls" style="height: 30px; width: 70px;" />
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
+              <input type="number" v-model="galho" style="width: 60px;" />
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <span> Min %: </span>
+              <input name="minProbabilidade" type="number" v-model="minProbabilidade"
+                style="height: 30px; width: 60px;" />
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <label for="targetColor">Cor:</label>
+              <select name="colors" id="colors" v-model="targetColor">
+                <option value="*">Todas</option>
+                <option value="red">Vermelha</option>
+                <option value="black">Preta</option>
+                <option value="white">Branca</option>
+              </select>
+            </div>
+            <button @click="load" style="width: fit-content; ">Load</button>
           </div>
-          <div style="display: flex; gap: 10px;">
-            <span style="margin-right: 12px; font-size: large; width: fit-content;">Galho:</span>
-            <input type="number" v-model="galho" style="width: 60px;" />
-          </div>
-          <div style="display: flex; gap: 10px;">
-            <span> Min %: </span>
-            <input name="minProbabilidade" type="number" v-model="minProbabilidade" style="height: 30px; width: 60px;" />
-          </div>
-          <div style="display: flex; gap: 10px;">
-            <label for="targetColor">Cor:</label>
-            <select name="colors" id="colors" v-model="targetColor">
-              <option value="*">Todas</option>
-              <option value="red">Vermelha</option>
-              <option value="black">Preta</option>
-              <option value="white">Branca</option>
-            </select>
-          </div>
-          <button @click="load" style="width: fit-content; ">Load</button>
         </div>
-      </div>
-      <div class="row">
-        <PadroesCores :data="estrategias?.padroes" />
-      </div>
-      <div class="row">
-        <DoubleNumeroCor :data="estrategias?.numero_cor_probabilidades" />
-      </div>
-      <div class="row">
-        <PadraoEstrategiasMinutagem :estrategias="estrategias" />
-      </div>
+        <div class="row">
+          <PadroesCores :data="estrategias?.padroes" />
+        </div>
+        <div class="row">
+          <DoubleNumeroCor :data="estrategias?.numero_cor_probabilidades" />
+        </div>
+        <div class="row">
+          <PadraoEstrategiasMinutagem :estrategias="estrategias" />
+        </div>
+      </Collapse>
       <div>
         <TabelaDouble :rolls="rolls" />
       </div>
