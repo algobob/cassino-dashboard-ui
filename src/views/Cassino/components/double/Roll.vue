@@ -52,7 +52,8 @@ import whiteRoll from "@/assets/img/white-roll.png";
 
 const props = defineProps({
   color: String,
-  roll: Number
+  roll: Number,
+  isClickable: Boolean
 })
 
 </script>
@@ -61,11 +62,17 @@ const props = defineProps({
       <div v-if="color !== 'white'" :class="{
         'red-circle': color === 'red',
         'any-circle': color === '*',
-        'black-circle': color === 'black'}">
+        'black-circle': color === 'black'}"
+        :style="{
+          'cursor': isClickable? 'pointer' : 'auto'
+        }"
+        >
         <span>
           {{ roll }}
         </span>
       </div>
-      <img v-if="color === 'white'" class="white-roll" :src="whiteRoll" alt="White">
+      <img v-if="color === 'white'" class="white-roll" :src="whiteRoll" alt="White" :style="{
+          'cursor': isClickable? 'pointer' : 'auto'
+        }">
   </div>
 </template>

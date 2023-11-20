@@ -127,7 +127,7 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
             style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px;">
             <div v-for="(padrao, index) in padroes"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
-              <Roll v-for="color in padrao" :color="color" />
+              <Roll v-for="color in padrao" :color="color" is-clickable="true"/>
               <span class="loader" style="margin-left: 30px;" v-if="padroes[index].length"></span>
               <button style="width: 40px; margin-left: 10px;" v-if="padroes[index].length"
                 @click="padroes[index] = []">X</button>
@@ -146,9 +146,9 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           </div>
           <h5>Por cores:</h5>
           <div style="display: flex; gap: 5px;">
-            <Roll color="red" @clicked="onClickColor" />
-            <Roll color="black" @clicked="onClickColor" />
-            <Roll color="white" @clicked="onClickColor" />
+            <Roll color="red" @clicked="onClickColor" is-clickable="true"/>
+            <Roll color="black" @clicked="onClickColor" is-clickable="true"/>
+            <Roll color="white" @clicked="onClickColor" is-clickable="true"/>
           </div>
           <div style="display: flex;flex-direction: column;">
             <h5>Por numeros:</h5>
