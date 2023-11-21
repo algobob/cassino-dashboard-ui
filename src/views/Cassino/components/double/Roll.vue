@@ -1,50 +1,36 @@
 <style scoped>
-.black-circle {
+.circle {
   border-radius: 50%;
   width: 52px;
   height: 50px;
   padding: 10px;
-  background: black;
-  border: 3px solid #000;
-  color: white;
   text-align: center;
   font: 22px Arial, sans-serif;
+  margin: 0 2px;
 }
 
-.red-circle {
-  border-radius: 50%;
-  width: 52px;
-  height: 50px;
-  padding: 10px;
+.red-roll {
   background: red;
   border: 3px solid red;
   color: white;
-  text-align: center;
-  font: 22px Arial, sans-serif;
+}
+
+.black-roll {
+  background: black;
+  border: 3px solid black;
+  color: white;
 }
 
 .white-roll {
-  border-radius: 50%;
-  width: 52px;
-  height: 50px;
-  padding: 10px;
   background: #fff;
   border: 1px solid black;
   color: white;
-  text-align: center;
-  margin: 0 2px;
 }
 
 .any-roll {
-  border-radius: 50%;
-  width: 52px;
-  height: 50px;
-  padding: 10px;
   background: gray;
   border: 1px solid gray;
   color: gray;
-  text-align: center;
-  margin: 0 2px;
 }
 </style>
 <script setup>
@@ -58,21 +44,21 @@ const props = defineProps({
 
 </script>
 <template>
-  <div style="display: flex; flex-direction: column; margin-bottom: 6px; text-align: center; align-content: center;" @click="$emit('clicked', color)">
-      <div v-if="color !== 'white'" :class="{
-        'red-circle': color === 'red',
-        'any-circle': color === '*',
-        'black-circle': color === 'black'}"
-        :style="{
-          'cursor': isClickable? 'pointer' : 'auto'
-        }"
-        >
-        <span>
-          {{ roll }}
-        </span>
-      </div>
-      <img v-if="color === 'white'" class="white-roll" :src="whiteRoll" alt="White" :style="{
-          'cursor': isClickable? 'pointer' : 'auto'
-        }">
+  <div style="display: flex; flex-direction: column; margin: 2px; text-align: center; align-content: center;"
+    @click="$emit('clicked', color)" :style="{'cursor': isClickable? 'pointer': 'auto'}">
+    <div v-if="color !== 'white'" :class="{
+      'circle red-roll': color === 'red' || color === 'r',
+      'circle any-roll': color === '*',
+      'circle black-roll': color === 'black' || color === 'b'
+    }" :style="{
+  'cursor': isClickable ? 'pointer' : 'auto'
+}">
+      <span>
+        {{ roll }}
+      </span>
+    </div>
+    <img v-if="color === 'white' || color === 'w'" class="circle white-roll" :src="whiteRoll" alt="White" :style="{
+      'cursor': isClickable ? 'pointer' : 'auto'
+    }">
   </div>
 </template>

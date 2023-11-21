@@ -29,6 +29,12 @@ const route = useRoute()
 const platform = route.params.platform
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 const isExpanded = ref(true)
+const padroesSelecionados = ref([])
+
+const onPadraoSelecionado = (padrao, target) => {
+  padroesSelecionados.value.push([padrao, target])
+  console.log('padroesSelecionados ', padroesSelecionados.value)
+}
 
 const load = () => {
   fetch(`${apiHost}/api/${platform}/double/dashboard?
@@ -119,7 +125,7 @@ onMounted(() => {
       </div>
       <div class="row">
         <div class="col">
-          <AlarmePadroes :rolls="rolls" />
+          <AlarmePadroes :rolls="rolls" :padroesSelecionados="padroesSelecionados"/>
         </div>
       </div>
       <div class="row">
@@ -154,7 +160,7 @@ onMounted(() => {
           </div>
         </div>
         <div class="row">
-          <PadroesCores :data="estrategias?.padroes" />
+          <PadroesCores :data="estrategias?.padroes" :on-padrao-clicked="onPadraoSelecionado" />
         </div>
         <div class="row">
           <DoubleNumeroCor :data="estrategias?.numero_cor_probabilidades" />

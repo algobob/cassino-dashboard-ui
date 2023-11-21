@@ -34,12 +34,16 @@ const hover = ref(false)
 
 const props = defineProps({
   padrao: Array,
-  data: Object
+  data: Object,
+  isClickable: {
+    type: Boolean,
+    default: true
+  }
 })
 
 </script>
 <template>
-  <div style="display: flex; align-items: center; gap: 3px; position: relative;"
+  <div :style="{'display': flex, 'align-items': center, 'gap': '3px', 'position': relative, cursor: isClickable? 'pointer':'auto'}" 
    class="mb-2" v-if="data" @mouseover="hover = true" @mouseleave="hover = false">
    <span class="tooltiptext" v-if="hover">{{ data['hit'] }}/{{ data['tried'] }}</span>
     <div v-for="n in padrao" style="display: flex; gap: 3px;">

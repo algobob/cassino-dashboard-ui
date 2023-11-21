@@ -5,10 +5,11 @@ import pokemonBattle from '@/assets/audio/pokemon-battle.mp3'
 import pokemonVictory from '@/assets/audio/pokemon-victory.mp3'
 import marioDeath from '@/assets/audio/mario-death.mp3'
 import { useWebNotification } from '@vueuse/core'
+import PadraoCorTarget from "../surf/PadraoCorTarget.vue";
 
 
 const options = {
-  title: 'Hello, world from VueUse!',
+  title: 'Opa, padrao encontrado!',
   dir: 'auto',
   lang: 'en',
   renotify: true,
@@ -21,10 +22,13 @@ const {
 } = useWebNotification(options)
 
 const props = defineProps({
-  rolls: Array
+  rolls: Array,
+  padroesSelecionados: {
+    type: Array,
+    default: []
+  }
 })
 
-const padroes = ref([])
 const padrao = ref([])
 const audioBattle = new Audio(pokemonBattle)
 const audioVictory = new Audio(pokemonVictory)
@@ -41,7 +45,7 @@ const onClickColor = (color) => {
 }
 
 const adicionar = () => {
-  padroes.value.push(padrao.value)
+  props.padroesSelecionados.push(padrao.value)
   padrao.value = []
 }
 
@@ -53,22 +57,32 @@ const notify = () => {
 }
 
 watch(() => props.rolls, async (newRolls, oldRolls) => {
-  if (padroes.value.length && JSON.stringify(newRolls[0]) !== JSON.stringify(oldRolls[0])) {
-    padroes.value.forEach(p => {
+  if (props.padroesSelecionados.length && JSON.stringify(newRolls[0]) !== JSON.stringify(oldRolls[0])) {
+    console.log('props.padroesSelecionados ', props.padroesSelecionados)
+    props.padroesSelecionados.forEach(p => {
       if (p.length) {
-      const lastRolls = newRolls.slice(0,p.length)
-      let qtdMatch = 0
-      for (let i = 0; i < p.length; i++) {
-        if (lastRolls[i].color === p[i]) {
-          qtdMatch += 1;
+        const padrao = p[0].split(',').map( c => c === 'r' ? 'red' : c === 'b' ? 'black' : 'white')
+        console.log('padrao ', padrao)
+        
+        const target = p[1]
+        const lastRolls = newRolls.slice(0, padrao.length).map( roll => roll.color)
+        console.log('lastRolls ', lastRolls)
+        let qtdMatch = 0
+        const reversedRolls = lastRolls.reverse()
+        console.log('reversedRolls ', reversedRolls)
+
+        for (let i = 0; i < padrao.length; i++) {
+          if (reversedRolls[i] === padrao[i]) {
+            qtdMatch += 1;
+          }
+        }
+        console.log('qtdMatch ', qtdMatch)
+        if (qtdMatch === padrao.length) {
+          notify()
+          play(audioBattle, 5)
+          return;
         }
       }
-      if (qtdMatch === p.length) {
-        notify()
-        play(audioBattle, 5)
-        return;
-      }
-    }
     })
   }
 })
@@ -125,10 +139,11 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           <h5>Padroes:</h5>
           <div
             style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px;">
-            <div v-for="(padrao, index) in padroes"
+            <div v-for="(padraoTarget, index) in padroesSelecionados"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
-              <Roll v-for="color in padrao" :color="color" is-clickable="true" @click="padroes[index] = []"/>
-              <span class="loader" style="margin-left: 30px;" v-if="padroes[index].length"></span>
+              <PadraoCorTarget :padrao="padraoTarget[0]" :target="padraoTarget[1]"
+                @click="padroesSelecionados[index] = []" />
+              <span class="loader" style="margin-left: 30px;" v-if="padroesSelecionados[index].length"></span>
             </div>
           </div>
         </div>
@@ -144,9 +159,9 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           </div>
           <h5>Por cores:</h5>
           <div style="display: flex; gap: 5px;">
-            <Roll color="red" @clicked="onClickColor" is-clickable="true"/>
-            <Roll color="black" @clicked="onClickColor" is-clickable="true"/>
-            <Roll color="white" @clicked="onClickColor" is-clickable="true"/>
+            <Roll color="red" @clicked="onClickColor" is-clickable="true" />
+            <Roll color="black" @clicked="onClickColor" is-clickable="true" />
+            <Roll color="white" @clicked="onClickColor" is-clickable="true" />
           </div>
           <div style="display: flex;flex-direction: column;">
             <h5>Por numeros:</h5>
