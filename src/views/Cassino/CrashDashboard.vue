@@ -36,6 +36,7 @@ const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-productio
 const loaded = ref(false)
 const minProbabilidade = ref(50)
 const isExpanded = ref(true)
+const padroesSelecionados = ref([])
 
 const url = () => {
   return `${apiHost}/api/${platform}/crash/dashboard?
@@ -75,6 +76,11 @@ const load = () => {
     })
 }
 
+const onPadraoClicked = (padrao) => {
+  console.log('onPadraoClicked ', padrao)
+  padroesSelecionados.value.push(padrao)
+}
+
 const evtSource = new EventSource("https://cassino-database-manager-production.up.railway.app/ingested");
 evtSource.onmessage = (event) => {
   console.log(`message: ${event.data}`);
@@ -110,7 +116,7 @@ onMounted(() => {
       </div>
       <div class="row">
         <div class="col">
-          <AlarmePadroes :velas="velas" />
+          <AlarmePadroes :velas="velas" :padroes="padroesSelecionados"/>
         </div>
       </div>
       <div class="row">
@@ -139,7 +145,7 @@ onMounted(() => {
           </div>
         </div>
         <div class="row">
-          <Padroes :padroes="estrategias?.padroes" />
+          <Padroes :padroes="estrategias?.padroes" :on-padrao-clicked="onPadraoClicked" />
         </div>
         <div class="row">
           <PadraoEstrategiasMinutagem :minutagem="estrategias?.minutagem" />

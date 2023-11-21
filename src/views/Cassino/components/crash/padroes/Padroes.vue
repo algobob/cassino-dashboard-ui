@@ -4,10 +4,10 @@ import { ref } from 'vue'
 
 const isExpanded = ref(true)
 const props = defineProps({
-  padroes: Object
+  padroes: Object,
+  onPadraoClicked: Function
 })
 
-console.log('padroes ', props.padroes)
 import Padrao from "./Padrao.vue"
 
 </script>
@@ -17,22 +17,22 @@ import Padrao from "./Padrao.vue"
     <Collapse :when="isExpanded">
       <div style="display: flex;  gap: 60px;">
         <div>
-          <Padrao :padrao="[2, 2, 2]" :data="padroes['2,2,2']" />
-          <Padrao :padrao="[2, 1, 2]" :data="padroes['2,1,2']" />
-          <Padrao :padrao="[1, 2, 1]" :data="padroes['1,2,1']" />
-          <Padrao :padrao="[2, 2, 1]" :data="padroes['2,2,1']" />
-          <Padrao :padrao="[2, 2, 1, 1]" :data="padroes['2,2,1,1']" />
-          <Padrao :padrao="[1, 1, 2, 2]" :data="padroes['1,1,2,2']" />
-          <Padrao :padrao="[2, 2, 2, 2]" :data="padroes['2,2,2,2']" />
-          <Padrao :padrao="[2, 2, 2, 2, 2]" :data="padroes['2,2,2,2,2']" />
-          <Padrao :padrao="[1, 1, 1]" :data="padroes['1,1,1']" />
-          <Padrao :padrao="[1, 1, 1, 1]" :data="padroes['1,1,1,1']" />
-          <Padrao :padrao="[1, 1, 1, 1, 1]" :data="padroes['1,1,1,1,1']" />
-          <Padrao :padrao="[1, 1, 1, 1, 1, 1]" :data="padroes['1,1,1,1,1,1']" />
-          <Padrao :padrao="[1, 1, 1, 1]" :data="padroes['1,1,1,1']" />
-          <Padrao :padrao="[1, 1]" :data="padroes['1,1']" />
-          <Padrao :padrao="[2, 1, 2, 1]" :data="padroes['2,1,2,1']" />
-          <Padrao :padrao="[2, 1, 2, 1, 2, 1]" :data="padroes['2,1,2,1,2,1']" />
+          <Padrao :padrao="[2, 2, 2]" :data="padroes['2,2,2']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[2, 1, 2]" :data="padroes['2,1,2']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[1, 2, 1]" :data="padroes['1,2,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[2, 2, 1]" :data="padroes['2,2,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[2, 2, 1, 1]" :data="padroes['2,2,1,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[1, 1, 2, 2]" :data="padroes['1,1,2,2']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[2, 2, 2, 2]" :data="padroes['2,2,2,2']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[2, 2, 2, 2, 2]" :data="padroes['2,2,2,2,2']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[1, 1, 1]" :data="padroes['1,1,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[1, 1, 1, 1]" :data="padroes['1,1,1,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[1, 1, 1, 1, 1]" :data="padroes['1,1,1,1,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[1, 1, 1, 1, 1, 1]" :data="padroes['1,1,1,1,1,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[1, 1, 1, 1]" :data="padroes['1,1,1,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[1, 1]" :data="padroes['1,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[2, 1, 2, 1]" :data="padroes['2,1,2,1']" @padraoClicked="onPadraoClicked" />
+          <Padrao :padrao="[2, 1, 2, 1, 2, 1]" :data="padroes['2,1,2,1,2,1']" @padraoClicked="onPadraoClicked" />
         </div>
       </div>
     </Collapse>

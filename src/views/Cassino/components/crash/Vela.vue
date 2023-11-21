@@ -62,7 +62,6 @@ const props = defineProps({
   createdAt: Number,
 })
 
-console.log('vela = ', props.vela)
 </script>
 <template>
   <div style="display: flex; justify-content: center; align-items: center;flex-direction: column;" @click="$emit('clicked', vela)">

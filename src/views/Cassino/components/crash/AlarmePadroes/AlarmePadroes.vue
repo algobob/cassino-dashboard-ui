@@ -2,6 +2,7 @@
 import Vela from "../Vela.vue";
 import { ref, watch } from 'vue';
 import { useWebNotification } from '@vueuse/core'
+import Padrao from '../padroes/Padrao.vue'
 import pokemonBattle from '@/assets/audio/pokemon-battle.mp3'
 import pokemonVictory from '@/assets/audio/pokemon-victory.mp3'
 import marioDeath from '@/assets/audio/mario-death.mp3'
@@ -21,10 +22,10 @@ const {
 } = useWebNotification(options)
 
 const props = defineProps({
-  velas: Array
+  velas: Array,
+  padroes: Array
 })
 
-const padroes = ref([])
 const padrao = ref([])
 const audioBattle = new Audio(pokemonBattle)
 const audioVictory = new Audio(pokemonVictory)
@@ -40,7 +41,7 @@ const onClickVela = (vela) => {
 }
 
 const adicionar = () => {
-  padroes.value.push(padrao.value)
+  props.padroes.push(padrao.value)
   padrao.value = []
 }
 
@@ -51,30 +52,37 @@ const notify = () => {
     console.log('nao suporta notification api')
 }
 
-watch(() => props.velas, async (newVelas, oldVelas) => {
-  if (padroes.value.length && JSON.stringify(newVelas[0]) !== JSON.stringify(oldVelas[0])) {
-    padroes.value.forEach(p => {
-      if (p.length) {
-      const lastVelas = newVelas.slice(0,p.length)
-      let qtdMatch = 0
-      for (let i = 0; i < p.length; i++) {
-        if (lastVelas[i].vela < 2 && p[i] < 2 || lastVelas[i].vela >= 2 && p[i] >= 2) {
-          qtdMatch += 1;
-        }
-      }
-      if (qtdMatch === p.length) {
-        notify()
-        play(audioBattle, 5)
+const callAttention = () => {
+  notify()
+  play(audioBattle, 5)
+}
+
+const checkPatternsFound = (velas, patterns) => {
+  console.log('patterns ', patterns)
+
+  patterns.forEach(p => {
+    if (p.length) {
+      const padrao = p.slice(0, -1)
+      const lastVelas = velas.slice(0, padrao.length).map(velaObj => velaObj.vela).reverse()
+      console.log('padrao ', padrao)
+      console.log('lastVelas ', lastVelas)
+      const allMatch = padrao.every((vela, index) => lastVelas[index] < 2 && vela < 2 || lastVelas[index] >= 2 && vela >= 2)
+      if (allMatch) {
+        callAttention();
         return;
       }
     }
-    })
+  })
+}
+
+watch(() => props.velas, async (newVelas, oldVelas) => {
+  if (props.padroes.length && JSON.stringify(newVelas[0]) !== JSON.stringify(oldVelas[0])) {
+    checkPatternsFound(newVelas, props.padroes)
   }
 })
 
 </script>
 <style scoped>
-
 .loader {
   width: 38px;
   height: 38px;
@@ -108,10 +116,9 @@ watch(() => props.velas, async (newVelas, oldVelas) => {
             style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px;">
             <div v-for="(padrao, index) in padroes"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
-              <Vela v-for="vela in padrao" :vela="vela" />
+              <Padrao v-if="padrao.length" :padrao="padrao" @click="padroes[index] = []" />
+              <!-- <Vela v-for="vela in padrao" :vela="vela" @click="padroes[index] = []"/> -->
               <span class="loader" style="margin-left: 30px;" v-if="padroes[index].length"></span>
-              <button style="width: 40px; margin-left: 10px;" v-if="padroes[index].length"
-                @click="padroes[index] = []">X</button>
             </div>
           </div>
         </div>
