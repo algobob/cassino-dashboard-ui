@@ -1,8 +1,8 @@
 <style scoped>
 .circle {
   border-radius: 50%;
-  width: 52px;
-  height: 50px;
+  width: 3.2rem;
+  height: 3.1rem;
   padding: 10px;
   text-align: center;
   font: 22px Arial, sans-serif;
