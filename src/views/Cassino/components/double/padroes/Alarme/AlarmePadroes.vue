@@ -56,30 +56,29 @@ const notify = () => {
     console.log('nao suporta notification api')
 }
 
+const callAttention = () => {
+  notify()
+  play(audioBattle, 5)
+}
+
 watch(() => props.rolls, async (newRolls, oldRolls) => {
   if (props.padroesSelecionados.length && JSON.stringify(newRolls[0]) !== JSON.stringify(oldRolls[0])) {
     console.log('props.padroesSelecionados ', props.padroesSelecionados)
     props.padroesSelecionados.forEach(p => {
       if (p.length) {
-        const padrao = p[0].split(',').map( c => c === 'r' ? 'red' : c === 'b' ? 'black' : 'white')
+        const padrao = p[0].split(',').map( c => c === 'r' ? 'red' : c === 'b' ? 'black' : 'white').slice(0,-1)
         console.log('padrao ', padrao)
         
         const target = p[1]
-        const lastRolls = newRolls.slice(0, padrao.length).map( roll => roll.color)
-        console.log('lastRolls ', lastRolls)
-        let qtdMatch = 0
-        const reversedRolls = lastRolls.reverse()
-        console.log('reversedRolls ', reversedRolls)
+        const lastRolls = newRolls.slice(0, padrao.length).map( roll => roll.color).reverse()
 
-        for (let i = 0; i < padrao.length; i++) {
-          if (reversedRolls[i] === padrao[i]) {
-            qtdMatch += 1;
-          }
-        }
-        console.log('qtdMatch ', qtdMatch)
-        if (qtdMatch === padrao.length) {
-          notify()
-          play(audioBattle, 5)
+        console.log('lastRolls ', lastRolls)
+
+        const allMatch = lastRolls.every((color, index) => color === padrao[index]);
+        console.log('allMatch ', allMatch)
+
+        if (allMatch) {
+          callAttention()
           return;
         }
       }
