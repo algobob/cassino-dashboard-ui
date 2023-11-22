@@ -9,6 +9,10 @@
   margin: 0 2px;
 }
 
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
 .red-roll {
   background: red;
   border: 3px solid red;
@@ -32,6 +36,19 @@
   border: 1px solid gray;
   color: gray;
 }
+
+@keyframes blinker {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: .5;
+        }
+        100% {
+          opacity: 1;
+        }
+    }
+
 </style>
 <script setup>
 import whiteRoll from "@/assets/img/white-roll.png";
@@ -39,7 +56,8 @@ import whiteRoll from "@/assets/img/white-roll.png";
 const props = defineProps({
   color: String,
   roll: Number,
-  isClickable: Boolean
+  isClickable: Boolean,
+  blink: Boolean
 })
 
 </script>
@@ -49,7 +67,8 @@ const props = defineProps({
     <div v-if="color !== 'white'" :class="{
       'circle red-roll': color === 'red' || color === 'r',
       'circle any-roll': color === '*',
-      'circle black-roll': color === 'black' || color === 'b'
+      'circle black-roll': color === 'black' || color === 'b',
+      'blink': blink
     }" :style="{
   'cursor': isClickable ? 'pointer' : 'auto'
 }">
@@ -59,6 +78,8 @@ const props = defineProps({
     </div>
     <img v-if="color === 'white' || color === 'w'" class="circle white-roll" :src="whiteRoll" alt="White" :style="{
       'cursor': isClickable ? 'pointer' : 'auto'
+    }" :class="{
+      'blink': blink
     }">
   </div>
 </template>

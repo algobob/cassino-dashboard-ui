@@ -23,16 +23,17 @@ const hover = ref(false)
 
 const props = defineProps({
   padrao: String,
-  target: String
+  target: String,
+  blink: Boolean
 })
 
 </script>
 <template>
   <div v-if="padrao" style='cursor: pointer;' @click="$emit('clicked', padrao, target)">
     <div style="display: flex; align-items: center; position: relative;">
-      <PadraoCor v-for="p in padrao" :padrao="p" @mouseover="hover = true" @mouseleave="hover = false" />
+      <PadraoCor v-for="p in padrao" :padrao="p" @mouseover="hover = true" @mouseleave="hover = false" :blink="blink" />
       <h5 class="font-weight-bold p-2"> > </h5>
-      <Roll :color="target" is-clickable='true' />
+      <Roll :color="target" is-clickable='true' :blink="blink"/>
     </div>
   </div>
 </template>

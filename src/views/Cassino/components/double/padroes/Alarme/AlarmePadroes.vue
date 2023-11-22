@@ -140,9 +140,9 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
             style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px;">
             <div v-for="(padraoTarget, index) in padroesSelecionados"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
-              <PadraoCorTarget :padrao="padraoTarget[0]" :target="padraoTarget[1]"
+              <PadraoCorTarget :padrao="padraoTarget[0]" :target="padraoTarget[1]" :blink="true"
                 @click="padroesSelecionados[index] = []" />
-              <span class="loader" style="margin-left: 30px;" v-if="padroesSelecionados[index].length"></span>
+              <!-- <span class="loader" style="margin-left: 30px;" v-if="padroesSelecionados[index].length"></span> -->
             </div>
           </div>
         </div>

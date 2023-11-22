@@ -22,13 +22,14 @@ const hover = ref(false)
 
 const props = defineProps({
   padrao: String,
+  blink: Boolean
 })
 
 </script>
 <template>
   <div v-if="padrao" style='cursor: pointer;'>
   <div style="display: flex; align-items: center; position: relative; gap: 10px;">
-    <Roll v-for="p in padrao" :color="p" @mouseover="hover = true" @mouseleave="hover = false" is-clickable="true"/>
+    <Roll v-for="p in padrao" :color="p" @mouseover="hover = true" @mouseleave="hover = false" is-clickable="true" :blink="blink"/>
   </div>
 </div>
 </template>
