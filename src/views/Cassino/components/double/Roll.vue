@@ -10,7 +10,7 @@
 }
 
 .blink {
-  animation: blinker 3s linear infinite both;
+  animation: blinker 4s linear infinite both;
 }
 
 .red-roll {
