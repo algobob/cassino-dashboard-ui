@@ -10,7 +10,7 @@
 }
 
 .blink {
-  animation: blinker 1s linear infinite;
+  animation: blinker 3s linear infinite both;
 }
 
 .red-roll {
@@ -38,15 +38,15 @@
 }
 
 @keyframes blinker {
-        0% {
-          opacity: 0;
-        }
-        50% {
-          opacity: .5;
-        }
-        100% {
-          opacity: 1;
-        }
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
     }
 
 </style>
