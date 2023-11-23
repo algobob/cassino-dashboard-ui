@@ -44,6 +44,7 @@ const url = () => {
           qtdVelas=${qtd_velas.value}&
           qtdGalho=${galho.value}&
           targetVela=${targetVela.value}&
+          padrao=2,2&
           padrao=2,2,2&
           padrao=2,1,2&
           padrao=1,2,1&

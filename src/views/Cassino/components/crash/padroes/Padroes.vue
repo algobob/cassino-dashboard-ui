@@ -17,6 +17,7 @@ import Padrao from "./Padrao.vue"
     <Collapse :when="isExpanded">
       <div style="display: flex;  gap: 60px;">
         <div>
+          <Padrao :padrao="[2, 2]" :data="padroes['2,2']" @padraoClicked="onPadraoClicked" />
           <Padrao :padrao="[2, 2, 2]" :data="padroes['2,2,2']" @padraoClicked="onPadraoClicked" />
           <Padrao :padrao="[2, 1, 2]" :data="padroes['2,1,2']" @padraoClicked="onPadraoClicked" />
           <Padrao :padrao="[1, 2, 1]" :data="padroes['1,2,1']" @padraoClicked="onPadraoClicked" />
