@@ -13,12 +13,12 @@ import Padrao from "./components/crash/padroes/Padrao.vue"
 import ContagemCores from "./components/crash/ContagemCores.vue"
 import Caixa from "./components/crash/Caixa.vue"
 import GraficoLinha from "./components/crash/GraficoLinha.vue"
-import Clock from "./components/Clock.vue"
 import TabelaCrashes from "./components/crash/TabelaCrashes/TabelaCrashes.vue"
 import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
 import { Collapse } from 'vue-collapsed'
+import Tools from "./components/Tools/index.vue";
 
 const estrategias = ref({})
 const contagem_cores = ref({})
@@ -100,7 +100,7 @@ onMounted(() => {
     <div class="container" v-if="loaded">
       <div class="row">
         <div class="col-3">
-          <Clock />
+          <Tools />
         </div>
         <div class="col-3">
           <Caixa :balance="balance" />

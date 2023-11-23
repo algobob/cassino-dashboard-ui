@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router'
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 import DoubleContagemCores from "./components/double/DoubleContagemCores.vue"
 import Caixa from "./components/double/Caixa.vue"
-import Clock from "./components/Clock.vue"
+import Tools from "./components/Tools/index.vue"
 import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
@@ -106,13 +106,7 @@ onMounted(() => {
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <div style="display: flex; gap: 20px; flex-direction: column;">
-                <Clock />
-              </div>
-            </div>
-          </div>
+          <Tools />
         </div>
         <div class="col">
           <Caixa :balance="balance" />
