@@ -9,7 +9,6 @@ import MediaVelas from "./components/crash/MediaVelas/MediaVelas.vue"
 import AlarmePadroes from "./components/crash/AlarmePadroes/AlarmePadroes.vue"
 import PadraoEstrategiasMinutagem from "./components/crash/padroes/minutagem/PadraoEstrategiasMinutagem.vue"
 import Padroes from "./components/crash/padroes/Padroes.vue"
-import Padrao from "./components/crash/padroes/Padrao.vue"
 import ContagemCores from "./components/crash/ContagemCores.vue"
 import Caixa from "./components/crash/Caixa.vue"
 import GraficoLinha from "./components/crash/GraficoLinha.vue"
@@ -19,6 +18,13 @@ import { startCase } from 'lodash';
 import setNavPills from "@/assets/js/nav-pills";
 import { Collapse } from 'vue-collapsed'
 import Tools from "./components/Tools/index.vue";
+import { getPermutations } from '@/utils.js'
+
+const padroes = [].concat(getPermutations([1,2], 2))
+                  .concat(getPermutations([1,2], 3))
+                  .concat(getPermutations([1,2], 4))
+                  .concat(getPermutations([1,2], 5))
+                  .concat(getPermutations([1,2], 6))
 
 const estrategias = ref({})
 const contagem_cores = ref({})
@@ -31,12 +37,19 @@ const balance = ref(0)
 const qtd_velas = ref("200")
 const route = useRoute()
 const platform = route.params.platform
-const audio = ref()
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 const loaded = ref(false)
 const minProbabilidade = ref(50)
 const isExpanded = ref(true)
 const padroesSelecionados = ref([])
+
+const buildUrlPadroesParam = () => {
+  let params = ''
+  for ( const padrao of padroes) {
+      params = params.concat(`padrao=${padrao.join()}&`)
+  }
+  return params;
+}
 
 const url = () => {
   return `${apiHost}/api/${platform}/crash/dashboard?
@@ -44,22 +57,7 @@ const url = () => {
           qtdVelas=${qtd_velas.value}&
           qtdGalho=${galho.value}&
           targetVela=${targetVela.value}&
-          padrao=2,2&
-          padrao=2,2,2&
-          padrao=2,1,2&
-          padrao=1,2,1&
-          padrao=2,2,1&
-          padrao=2,2,2,2&
-          padrao=2,2,2,2,2&
-          padrao=1,1,1&
-          padrao=2,2,1,1&
-          padrao=1,1,2,2&
-          padrao=2,1,2,1&
-          padrao=2,1,2,1,2,1&
-          padrao=1,1,1,1,1&
-          padrao=1,1,1,1,1,1&
-          padrao=1,1&
-          padrao=1,1,1,1`.replace(/ /g, '')
+          ${buildUrlPadroesParam()}`.replace(/ /g, '')
 }
 
 const load = () => {
