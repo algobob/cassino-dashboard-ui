@@ -19,7 +19,6 @@ import { Collapse } from 'vue-collapsed'
 import MaterialProgress from "@/components/MaterialProgress.vue";
 
 const estrategias = ref({})
-const padroes = ref({})
 const contagem_cores = ref({})
 const balance = ref({})
 const rolls = ref([])
