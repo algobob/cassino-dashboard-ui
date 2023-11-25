@@ -21,7 +21,7 @@ import PadraoCorTargetProbabilidade from "./PadraoCorTargetProbabilidade.vue"
         <Collapse :when="isExpanded">
         <div class="card-body">
           <div style="display: flex; gap: 60px;">
-            <div style="display: flex; flex-direction: column; max-height: 800px; overflow-y: auto;">
+            <div style="display: flex; flex-direction: column; max-height: 800px; overflow-y: auto; padding-top: 25px;">
               <PadraoCorTargetProbabilidade v-if="Object.keys(padroes).length" v-for="padrao in Object.keys(padroes)" :padrao="padrao" :data="padroes[padrao]" :onPadraoSelecionado="onPadraoClicked"/>
             </div>
           </div>

@@ -8,9 +8,16 @@ import { useWebNotification } from '@vueuse/core'
 import PadraoCorTarget from "../surf/PadraoCorTarget.vue";
 
 const padraoEncontradoIndex = ref(-1)
+const padroesRefs = ref([])
+
+const props = defineProps({
+  rolls: Array,
+  padroesSelecionados: Array,
+  platform: String
+})
 
 const options = {
-  title: 'Opa, padrao encontrado!',
+  title: `Djabet | ${props.platform} | Double`,
   dir: 'auto',
   lang: 'en',
   renotify: true,
@@ -21,14 +28,6 @@ const {
   isSupported,
   show,
 } = useWebNotification(options)
-
-const props = defineProps({
-  rolls: Array,
-  padroesSelecionados: {
-    type: Array,
-    default: []
-  }
-})
 
 const padrao = ref([])
 const audioBattle = new Audio(pokemonBattle)
@@ -42,7 +41,6 @@ const play = (audio, seconds) => {
 
 const onClickColor = (color) => {
   padrao.value.push(color)
-  console.log('padrao = ', padrao.value)
 }
 
 const adicionar = () => {
@@ -65,22 +63,18 @@ const callAttention = () => {
 watch(() => props.rolls, async (newRolls, oldRolls) => {
   if (props.padroesSelecionados.length && JSON.stringify(newRolls[0]) !== JSON.stringify(oldRolls[0])) {
     padraoEncontradoIndex.value = -1
-    console.log('props.padroesSelecionados ', props.padroesSelecionados)
     props.padroesSelecionados.forEach((p, index) => {
       if (p.length) {
         const padrao = p[0].split(',').map(c => c === 'r' ? 'red' : c === 'b' ? 'black' : 'white').slice(0, -1)
-        console.log('padrao ', padrao)
 
         const target = p[1]
         const lastRolls = newRolls.slice(0, padrao.length).map(roll => roll.color).reverse()
 
-        console.log('lastRolls ', lastRolls)
-
         const allMatch = lastRolls.every((color, index) => color === padrao[index]);
-        console.log('allMatch ', allMatch)
 
         if (allMatch) {
           padraoEncontradoIndex.value = index
+          padroesRefs.value[index].scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
           callAttention()
           return;
         }
@@ -141,11 +135,10 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           <h5>Padroes:</h5>
           <div
             style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px; max-height: 400px; overflow-y: auto;">
-            <div v-for="(padraoTarget, index) in padroesSelecionados"
+            <div v-for="(padraoTarget, index) in padroesSelecionados" ref="padroesRefs"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
               <PadraoCorTarget :padrao="padraoTarget[0]" :target="padraoTarget[1]" :blink="index === padraoEncontradoIndex"
                 @click="padroesSelecionados[index] = []" />
-              <!-- <span class="loader" style="margin-left: 30px;" v-if="padroesSelecionados[index].length"></span> -->
             </div>
           </div>
         </div>

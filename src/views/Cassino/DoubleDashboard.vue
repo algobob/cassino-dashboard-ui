@@ -71,6 +71,7 @@ evtSource.onmessage = (event) => {
 
 //hook
 onMounted(() => {
+  document.title = `Djabet | ${startCase(platform)} | Double`
   setNavPills();
   loadDashboard()
 });
@@ -94,7 +95,7 @@ onMounted(() => {
       </div>
       <div class="row">
         <div class="col">
-          <AlarmePadroes :rolls="rolls" :padroesSelecionados="padroesSelecionados" />
+          <AlarmePadroes :rolls="rolls" :padroesSelecionados="padroesSelecionados" :platform="startCase(platform)"/>
         </div>
       </div>
       <div class="row">
@@ -125,7 +126,7 @@ onMounted(() => {
                 <option value="white">Branca</option>
               </select>
             </div>
-            <button @click="loadEstrategias" style="width: fit-content; ">Load</button>
+            <button @click="loadEstrategias" style="width: fit-content; ">Carregar</button>
           </div>
         </div>
         <div class="row">

@@ -82,12 +82,12 @@ const onPadraoClicked = (padrao) => {
 
 const evtSource = new EventSource("https://cassino-database-manager-production.up.railway.app/ingested");
 evtSource.onmessage = (event) => {
-  console.log(`message: ${event.data}`);
   load()
 };
 
 //hook
 onMounted(() => {
+  document.title = `Djabet | ${startCase(platform)} | Crash`
   setNavPills();
   load()
 });
@@ -115,7 +115,7 @@ onMounted(() => {
       </div>
       <div class="row">
         <div class="col">
-          <AlarmePadroes :velas="velas" :padroes="padroesSelecionados"/>
+          <AlarmePadroes :velas="velas" :padroes="padroesSelecionados" :platform="startCase(platform)"/>
         </div>
       </div>
       <div class="row">
@@ -140,7 +140,7 @@ onMounted(() => {
               <span style="margin-right: 10px; font-size: large; width: fit-content;">Min %:</span>
               <input type="number" v-model="minProbabilidade" style="width: 60px;" />
             </div>
-            <button @click="load" style="width: fit-content;">Load</button>
+            <button @click="load" style="width: fit-content;">Carregar</button>
           </div>
         </div>
         <div class="row">

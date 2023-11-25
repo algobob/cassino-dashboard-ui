@@ -7,8 +7,14 @@ import pokemonBattle from '@/assets/audio/pokemon-battle.mp3'
 import pokemonVictory from '@/assets/audio/pokemon-victory.mp3'
 import marioDeath from '@/assets/audio/mario-death.mp3'
 
+const props = defineProps({
+  velas: Array,
+  padroes: Array,
+  platform: String
+})
+
 const options = {
-  title: 'Hello, world from VueUse!',
+  title: `Djabet | ${props.platform} | Crash`,
   dir: 'auto',
   lang: 'en',
   renotify: true,
@@ -21,13 +27,11 @@ const {
   show,
 } = useWebNotification(options)
 
-const props = defineProps({
-  velas: Array,
-  padroes: Array
-})
+
 
 const padrao = ref([])
 const padraoEncontradoIndex = ref(-1)
+const padroesRefs = ref([])
 const audioBattle = new Audio(pokemonBattle)
 const audioVictory = new Audio(pokemonVictory)
 
@@ -59,17 +63,14 @@ const callAttention = () => {
 }
 
 const checkPatternsFound = (velas, patterns) => {
-  console.log('patterns ', patterns)
-
   patterns.forEach((p, index) => {
     if (p.length) {
       const padrao = p.slice(0, -1)
       const lastVelas = velas.slice(0, padrao.length).map(velaObj => velaObj.vela).reverse()
-      console.log('padrao ', padrao)
-      console.log('lastVelas ', lastVelas)
       const allMatch = padrao.every((vela, index) => lastVelas[index] < 2 && vela < 2 || lastVelas[index] >= 2 && vela >= 2)
       if (allMatch) {
         padraoEncontradoIndex.value = index
+        padroesRefs.value[index].scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         callAttention();
         return;
       }
@@ -83,7 +84,6 @@ watch(() => props.velas, async (newVelas, oldVelas) => {
     checkPatternsFound(newVelas, props.padroes)
   }
 })
-
 </script>
 <style scoped>
 .loader {
@@ -117,7 +117,7 @@ watch(() => props.velas, async (newVelas, oldVelas) => {
           <h5>Padroes:</h5>
           <div
             style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px; max-height: 400px; overflow-y: auto;">
-            <div v-for="(padrao, index) in padroes"
+            <div v-for="(padrao, index) in padroes" ref="padroesRefs"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
               <Padrao v-if="padrao.length" :padrao="padrao" @click="padroes[index] = []" :blink="index === padraoEncontradoIndex"/>
             </div>
