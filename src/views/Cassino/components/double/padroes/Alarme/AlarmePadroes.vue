@@ -66,11 +66,11 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
     console.log('props.padroesSelecionados ', props.padroesSelecionados)
     props.padroesSelecionados.forEach(p => {
       if (p.length) {
-        const padrao = p[0].split(',').map( c => c === 'r' ? 'red' : c === 'b' ? 'black' : 'white').slice(0,-1)
+        const padrao = p[0].split(',').map(c => c === 'r' ? 'red' : c === 'b' ? 'black' : 'white').slice(0, -1)
         console.log('padrao ', padrao)
-        
+
         const target = p[1]
-        const lastRolls = newRolls.slice(0, padrao.length).map( roll => roll.color).reverse()
+        const lastRolls = newRolls.slice(0, padrao.length).map(roll => roll.color).reverse()
 
         console.log('lastRolls ', lastRolls)
 
@@ -137,7 +137,7 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
         <div style="display: flex; flex-direction: column;">
           <h5>Padroes:</h5>
           <div
-            style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px;">
+            style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px; max-height: 400px; overflow-y: auto;">
             <div v-for="(padraoTarget, index) in padroesSelecionados"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
               <PadraoCorTarget :padrao="padraoTarget[0]" :target="padraoTarget[1]" :blink="true"
@@ -158,30 +158,30 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           </div>
           <h5>Por cores:</h5>
           <div style="display: flex; gap: 5px;">
-            <Roll color="red" @clicked="onClickColor" is-clickable="true" />
-            <Roll color="black" @clicked="onClickColor" is-clickable="true" />
-            <Roll color="white" @clicked="onClickColor" is-clickable="true" />
+            <Roll color="red" @clicked="onClickColor" :is-clickable=true />
+            <Roll color="black" @clicked="onClickColor" :is-clickable=true />
+            <Roll color="white" @clicked="onClickColor" :is-clickable=true />
           </div>
           <div style="display: flex;flex-direction: column;">
             <h5>Por numeros:</h5>
             <div style="display: flex; gap: 5px; flex-direction: column;">
               <div style="display: flex; gap: 5px;">
-                <Roll color="red" roll="1" />
-                <Roll color="red" roll="2" />
-                <Roll color="red" roll="3" />
-                <Roll color="red" roll="4" />
-                <Roll color="red" roll="5" />
-                <Roll color="red" roll="6" />
-                <Roll color="red" roll="7" />
+                <Roll color="red" :roll=1 />
+                <Roll color="red" :roll=2 />
+                <Roll color="red" :roll=3 />
+                <Roll color="red" :roll=4 />
+                <Roll color="red" :roll=5 />
+                <Roll color="red" :roll=6 />
+                <Roll color="red" :roll=7 />
               </div>
               <div style="display: flex; gap: 5px;">
-                <Roll color="black" roll=8 />
-                <Roll color="black" roll=9 />
-                <Roll color="black" roll=10 />
-                <Roll color="black" roll=11 />
-                <Roll color="black" roll=12 />
-                <Roll color="black" roll=13 />
-                <Roll color="black" roll=14 />
+                <Roll color="black" :roll=8 />
+                <Roll color="black" :roll=9 />
+                <Roll color="black" :roll=10 />
+                <Roll color="black" :roll=11 />
+                <Roll color="black" :roll=12 />
+                <Roll color="black" :roll=13 />
+                <Roll color="black" :roll=14 />
               </div>
             </div>
           </div>

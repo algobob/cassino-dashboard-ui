@@ -18,34 +18,30 @@ import { ref } from 'vue'
 
 const isExpanded = ref(true)
 const props = defineProps({
-  estrategias: {
-    type: Object,
-    default: () => { },
-    required: true,
-  }
+  minutagem: Object
 })
 
 </script>
 <template>
-  <div class="container" style="margin-bottom: 40px; margin-top: 40px;" v-if="estrategias">
+  <div class="container" style="margin-bottom: 40px; margin-top: 40px;" v-if="minutagem">
     <h4 style="text-decoration: underline;" @click="isExpanded = !isExpanded">Minutagem</h4>
     <Collapse :when="isExpanded">
       <div class="row">
         <h5 style="text-decoration: underline;margin-top: 40px;">Minuto fixo</h5>
         <div class="col">
-          <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos?.red" color="red" isMinFixo />
+          <MinutosProbabilidades :probabilidades="minutagem?.fixos?.red" color="red" isMinFixo />
         </div>
         <div class="col">
-          <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.fixos?.black" color="black" isMinFixo />
+          <MinutosProbabilidades :probabilidades="minutagem?.fixos?.black" color="black" isMinFixo />
         </div>
       </div>
       <div class="row">
         <h5 style="text-decoration: underline; margin-top: 80px;">Intervalo de X min</h5>
         <div class="col">
-          <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.intervalos?.red" color="red" />
+          <MinutosProbabilidades :probabilidades="minutagem?.intervalos?.red" color="red" />
         </div>
         <div class="col">
-          <MinutosProbabilidades :probabilidades="estrategias?.minutagem?.intervalos?.black" color="black" />
+          <MinutosProbabilidades :probabilidades="minutagem?.intervalos?.black" color="black" />
         </div>
       </div>
     </Collapse>

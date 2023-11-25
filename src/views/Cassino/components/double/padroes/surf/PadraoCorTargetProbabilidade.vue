@@ -68,10 +68,9 @@ const props = defineProps({
   onPadraoSelecionado: Function
 })
 
-console.log('prob ', props.data)
 </script>
 <template>
-  <div v-if="data" style="cursor: pointer;">
+  <div v-if="Object.keys(data).length" style="cursor: pointer;">
     <div style="display: flex; align-items: center; position: relative;" v-if="data['red']" @mouseover="hoverRed = true"
     @mouseleave="hoverRed = false" >
     <span class="tooltiptext" v-if="hoverRed">{{ data['red']['hit'] }}/{{ data['red']['tried'] }}</span>

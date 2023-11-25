@@ -33,7 +33,7 @@ const props = defineProps({
     <div style="display: flex; align-items: center; position: relative;">
       <PadraoCor v-for="p in padrao" :padrao="p" @mouseover="hover = true" @mouseleave="hover = false" :blink="blink" />
       <h5 class="font-weight-bold p-2"> > </h5>
-      <Roll :color="target" is-clickable='true' :blink="blink"/>
+      <Roll :color="target" :is-clickable=true :blink="blink"/>
     </div>
   </div>
 </template>

@@ -29,7 +29,7 @@ const props = defineProps({
 <template>
   <div v-if="padrao" style='cursor: pointer;'>
   <div style="display: flex; align-items: center; position: relative; gap: 10px;">
-    <Roll v-for="p in padrao" :color="p" @mouseover="hover = true" @mouseleave="hover = false" is-clickable="true" :blink="blink"/>
+    <Roll v-for="p in padrao" :color="p" @mouseover="hover = true" @mouseleave="hover = false" :is-clickable="true" :blink="blink"/>
   </div>
 </div>
 </template>

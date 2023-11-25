@@ -16,8 +16,10 @@ import PadroesCores from "./components/double/padroes/surf/PadroesCores.vue";
 import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
 import AlarmePadroes from "./components/double/padroes/Alarme/AlarmePadroes.vue";
 import { Collapse } from 'vue-collapsed'
+import MaterialProgress from "@/components/MaterialProgress.vue";
 
 const estrategias = ref({})
+const padroes = ref({})
 const contagem_cores = ref({})
 const balance = ref({})
 const rolls = ref([])
@@ -29,6 +31,7 @@ const route = useRoute()
 const platform = route.params.platform
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
 const isExpanded = ref(true)
+const loading = ref(false)
 const padroesSelecionados = ref([])
 
 const onPadraoSelecionado = (padrao, target) => {
@@ -36,53 +39,26 @@ const onPadraoSelecionado = (padrao, target) => {
   console.log('padroesSelecionados ', padroesSelecionados.value)
 }
 
-const load = () => {
-  fetch(`${apiHost}/api/${platform}/double/dashboard?
+const loadEstrategias = () => {
+  estrategias.value = {}
+  loading.value = true
+  fetch(`${apiHost}/api/${platform}/double/estrategias?
   qtdRolls=${qtd_rolls.value}&
   qtdGalho=${galho.value}&
   minProbabilidade=${minProbabilidade.value}&
-  targetColor=${targetColor.value}&
-  padrao=w&
-  padrao=w,*,*&
-  padrao=w,*,*,*&
-  padrao=w,*,*,*,*&
-  padrao=w,w&
-  padrao=w,r&
-  padrao=w,b&
-  padrao=w,r,r&
-  padrao=w,b,b&
-  padrao=r,w,b&
-  padrao=b,w,r&
-  padrao=b,b,w&
-  padrao=r,r,w&
-  padrao=b,r,w&
-  padrao=r,b,r&
-  padrao=r,b,w&
-  padrao=r,r&
-  padrao=r,r,r&
-  padrao=b,b,b&
-  padrao=b,b&
-  padrao=r,r,r,r&
-  padrao=b,b,b,b&
-  padrao=r,r,r,r,r&
-  padrao=b,b,b,b,b&
-  padrao=r,r,r,r,r,r&
-  padrao=b,b,b,b,b,b&
-  padrao=b,r,b,r&
-  padrao=b,r,b,r,b&
-  padrao=r,b,r,b&
-  padrao=r,b,r,b,r&
-  padrao=r,r,b,r,r&
-  padrao=r,r,b,r,r,b&
-  padrao=r,r,b,b,r&
-  padrao=b,b,r,b,b&
-  padrao=b,b,r,b,b,r&
-  padrao=w,b,r,b,b,r&
-  `.replace(/ /g, ''))
+  targetColor=${targetColor.value}`.replace(/ /g, ''))
+    .then(response => response.json())
+    .then(data => {
+      loading.value = false
+      estrategias.value = data['estrategias']
+    })
+}
+
+const loadDashboard = () => {
+  fetch(`${apiHost}/api/${platform}/double/dashboard?qtdRolls=${qtd_rolls.value}`.replace(/ /g, ''))
     .then(response => response.json())
     .then(data => {
       contagem_cores.value = data['contagem_cores']
-      estrategias.value = data['estrategias']
       rolls.value = data['rolls']
       balance.value = data['balance']
     })
@@ -91,18 +67,18 @@ const load = () => {
 const evtSource = new EventSource("https://cassino-database-manager-production.up.railway.app/ingested");
 evtSource.onmessage = (event) => {
   console.log(`message: ${event.data}`);
-  load()
+  loadDashboard()
 };
 
 //hook
 onMounted(() => {
   setNavPills();
-  load()
+  loadDashboard()
 });
 
 </script>
 <template>
-  <BaseLayout :title="`${startCase(platform)} - Double`" v-if="estrategias">
+  <BaseLayout :title="`${startCase(platform)} - Double`" v-if="rolls">
     <div class="container">
       <div class="row">
         <div class="col">
@@ -119,11 +95,11 @@ onMounted(() => {
       </div>
       <div class="row">
         <div class="col">
-          <AlarmePadroes :rolls="rolls" :padroesSelecionados="padroesSelecionados"/>
+          <AlarmePadroes :rolls="rolls" :padroesSelecionados="padroesSelecionados" />
         </div>
       </div>
       <div class="row">
-        <h4 class="mt-2" @click="isExpanded = !isExpanded">Estrategias</h4>
+        <h4 class="mt-2" @click="isExpanded = !isExpanded" style="width: fit-content;">Estrategias</h4>
       </div>
       <Collapse :when="isExpanded">
         <div class="row">
@@ -150,17 +126,18 @@ onMounted(() => {
                 <option value="white">Branca</option>
               </select>
             </div>
-            <button @click="load" style="width: fit-content; ">Load</button>
+            <button @click="loadEstrategias" style="width: fit-content; ">Load</button>
           </div>
         </div>
         <div class="row">
-          <PadroesCores :data="estrategias?.padroes" :on-padrao-clicked="onPadraoSelecionado" />
+          <MaterialProgress v-if="loading" color="success" :value="100" />
+          <PadroesCores v-if="estrategias?.padroes" :padroes="estrategias?.padroes" :on-padrao-clicked="onPadraoSelecionado" />
         </div>
         <div class="row">
-          <DoubleNumeroCor :data="estrategias?.numero_cor_probabilidades" />
+          <DoubleNumeroCor v-if="estrategias" :data="estrategias?.numero_cor_probabilidades" />
         </div>
         <div class="row">
-          <PadraoEstrategiasMinutagem :estrategias="estrategias" />
+          <PadraoEstrategiasMinutagem v-if="estrategias" :estrategias="estrategias?.minutagem" />
         </div>
       </Collapse>
       <div>
