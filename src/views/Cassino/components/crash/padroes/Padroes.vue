@@ -16,7 +16,10 @@ const props = defineProps({
     <Collapse :when="isExpanded">
       <div style="display: flex;  gap: 60px;">
         <div>
-          <Padrao v-if="Object.keys(padroes).length" v-for="padrao in Object.keys(padroes)" :padrao="padrao.split(',')" :data="padroes[padrao]" @padraoClicked="onPadraoClicked" />
+          <Padrao v-if="Object.keys(padroes).length" v-for="padrao in Object.keys(padroes)" 
+          :padrao="padrao.split(',')" 
+          :data="padroes[padrao]"
+          @padraoClicked="onPadraoClicked" />
         </div>
       </div>
     </Collapse>

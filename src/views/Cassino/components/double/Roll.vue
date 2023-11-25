@@ -9,10 +9,6 @@
   margin: 0 2px;
 }
 
-.blink {
-  animation: blinker 4s linear infinite both;
-}
-
 .red-roll {
   background: red;
   border: 3px solid red;
@@ -36,22 +32,10 @@
   border: 1px solid gray;
   color: gray;
 }
-
-@keyframes blinker {
-  0%,
-  50%,
-  100% {
-    opacity: 1;
-  }
-  25%,
-  75% {
-    opacity: 0;
-  }
-    }
-
 </style>
 <script setup>
 import whiteRoll from "@/assets/img/white-roll.png";
+import '@/assets/css/cassino.css' 
 
 const props = defineProps({
   color: String,

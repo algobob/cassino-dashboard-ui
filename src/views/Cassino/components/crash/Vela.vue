@@ -52,20 +52,21 @@
 </style>
 <script setup>
 import { ref } from "vue";
+import '@/assets/css/cassino.css' 
 
 const props = defineProps({
   vela: {
     type: Number,
     default: null
-  }
-  ,
+  },
   createdAt: Number,
+  blink: Boolean
 })
 
 </script>
 <template>
   <div style="display: flex; justify-content: center; align-items: center;flex-direction: column;" @click="$emit('clicked', vela)">
-      <div :class="{quadradinhoPreto: vela < 2,
+      <div :class="{blink: blink, quadradinhoPreto: vela < 2,
         quadradinho: vela >= 2}">
         <span v-if="vela != null">
           {{ vela }}x

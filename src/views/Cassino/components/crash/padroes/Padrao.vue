@@ -38,7 +38,8 @@ const props = defineProps({
   isClickable: {
     type: Boolean,
     default: true
-  }
+  },
+  blink: Boolean
 })
 
 const hasData = props.data && Object.keys(props.data).length
@@ -49,11 +50,11 @@ const hasData = props.data && Object.keys(props.data).length
     :style="{ 'cursor': isClickable ? 'pointer' : 'auto' }" class="mb-2" @mouseover="hover = true"
     @mouseleave="hover = false" @click="$emit('padraoClicked', padrao)">
     <div v-for="n in padrao" style="display: flex; gap: 3px;">
-      <Vela :vela="n < 2 ? 1.99 : 2" />
+      <Vela :vela="n < 2 ? 1.99 : 2" :blink="blink"/>
     </div>
     <span class="tooltiptext" v-if="hover && hasData">{{ data['hit'] }}/{{ data['tried'] }}</span>
     <h5 class="font-weight-bold p-2 mt-2"> > </h5>
-    <Vela :vela="2" />
+    <Vela :vela="2" :blink="blink" />
     <h5 v-if="hasData" class="font-weight-bold p-2 mt-2"> ? </h5>
     <h5 v-if="hasData" class="font-weight-bold p-2 mt-2"><mark>{{ data['probabilidade'] }}%</mark></h5>
   </div>

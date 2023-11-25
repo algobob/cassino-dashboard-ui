@@ -27,6 +27,7 @@ const props = defineProps({
 })
 
 const padrao = ref([])
+const padraoEncontradoIndex = ref(-1)
 const audioBattle = new Audio(pokemonBattle)
 const audioVictory = new Audio(pokemonVictory)
 
@@ -60,7 +61,7 @@ const callAttention = () => {
 const checkPatternsFound = (velas, patterns) => {
   console.log('patterns ', patterns)
 
-  patterns.forEach(p => {
+  patterns.forEach((p, index) => {
     if (p.length) {
       const padrao = p.slice(0, -1)
       const lastVelas = velas.slice(0, padrao.length).map(velaObj => velaObj.vela).reverse()
@@ -68,6 +69,7 @@ const checkPatternsFound = (velas, patterns) => {
       console.log('lastVelas ', lastVelas)
       const allMatch = padrao.every((vela, index) => lastVelas[index] < 2 && vela < 2 || lastVelas[index] >= 2 && vela >= 2)
       if (allMatch) {
+        padraoEncontradoIndex.value = index
         callAttention();
         return;
       }
@@ -77,6 +79,7 @@ const checkPatternsFound = (velas, patterns) => {
 
 watch(() => props.velas, async (newVelas, oldVelas) => {
   if (props.padroes.length && JSON.stringify(newVelas[0]) !== JSON.stringify(oldVelas[0])) {
+    padraoEncontradoIndex.value = -1
     checkPatternsFound(newVelas, props.padroes)
   }
 })
@@ -113,12 +116,10 @@ watch(() => props.velas, async (newVelas, oldVelas) => {
         <div style="display: flex; flex-direction: column;">
           <h5>Padroes:</h5>
           <div
-            style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px;">
+            style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px; max-height: 400px; overflow-y: auto;">
             <div v-for="(padrao, index) in padroes"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
-              <Padrao v-if="padrao.length" :padrao="padrao" @click="padroes[index] = []" />
-              <!-- <Vela v-for="vela in padrao" :vela="vela" @click="padroes[index] = []"/> -->
-              <span class="loader" style="margin-left: 30px;" v-if="padroes[index].length"></span>
+              <Padrao v-if="padrao.length" :padrao="padrao" @click="padroes[index] = []" :blink="index === padraoEncontradoIndex"/>
             </div>
           </div>
         </div>
