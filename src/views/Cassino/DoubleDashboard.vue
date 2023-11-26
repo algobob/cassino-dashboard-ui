@@ -63,7 +63,7 @@ const loadDashboard = () => {
     })
 }
 
-const evtSource = new EventSource("https://cassino-database-manager-production.up.railway.app/ingested");
+const evtSource = new EventSource(`https://cassino-database-manager-production.up.railway.app/stream/${platform}/double`);
 evtSource.onmessage = (event) => {
   console.log(`message: ${event.data}`);
   loadDashboard()

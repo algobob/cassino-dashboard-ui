@@ -80,7 +80,7 @@ const onPadraoClicked = (padrao) => {
   padroesSelecionados.value.push(padrao)
 }
 
-const evtSource = new EventSource("https://cassino-database-manager-production.up.railway.app/ingested");
+const evtSource = new EventSource(`https://cassino-database-manager-production.up.railway.app/stream/${platform}/crash`);
 evtSource.onmessage = (event) => {
   load()
 };
@@ -144,7 +144,7 @@ onMounted(() => {
           </div>
         </div>
         <div class="row">
-          <Padroes :padroes="estrategias?.padroes" :on-padrao-clicked="onPadraoClicked" />
+          <Padroes v-if="estrategias?.padroes" :padroes="estrategias?.padroes" :on-padrao-clicked="onPadraoClicked" />
         </div>
         <div class="row">
           <PadraoEstrategiasMinutagem :minutagem="estrategias?.minutagem" />
