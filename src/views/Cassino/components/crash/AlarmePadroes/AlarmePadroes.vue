@@ -24,10 +24,13 @@ const options = {
 
 const {
   isSupported,
+  onClick,
   show,
 } = useWebNotification(options)
 
-
+onClick( event => {
+  window.focus()
+})
 
 const padrao = ref([])
 const padraoEncontradoIndex = ref(-1)
