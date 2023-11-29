@@ -70,7 +70,7 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
     padraoEncontradoIndex.value = -1
     props.padroesSelecionados.forEach((p, index) => {
       if (p.length) {
-        const padrao = p[0].split(',').map(c => c === 'r' ? 'red' : c === 'b' ? 'black' : 'white').slice(0, -1)
+        const padrao = p[0].split(',').map(c => c === 'r' ? 'red' : c === 'b' ? 'black' : 'white')
 
         const target = p[1]
         const lastRolls = newRolls.slice(0, padrao.length).map(roll => roll.color).reverse()
