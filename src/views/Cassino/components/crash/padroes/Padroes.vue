@@ -11,7 +11,7 @@ const props = defineProps({
 
 </script>
 <template>
-  <div style="display: flex; flex-direction: column; margin-top: 60px;" v-if="padroes">
+  <div style="display: flex; flex-direction: column; margin-top: 60px;">
     <h4 style="text-decoration: underline; margin-bottom: 30px;" @click="isExpanded = !isExpanded">Padroes</h4>
     <Collapse :when="isExpanded">
       <div style="display: flex;  gap: 60px;">

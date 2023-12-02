@@ -18,15 +18,9 @@ import { startCase } from 'lodash';
 import setNavPills from "@/assets/js/nav-pills";
 import { Collapse } from 'vue-collapsed'
 import Tools from "./components/Tools/index.vue";
-import { getPermutations } from '@/utils.js'
+import MaterialProgress from "@/components/MaterialProgress.vue";
 
-const padroes = [].concat(getPermutations([1,2], 2))
-                  .concat(getPermutations([1,2], 3))
-                  .concat(getPermutations([1,2], 4))
-                  .concat(getPermutations([1,2], 5))
-                  .concat(getPermutations([1,2], 6))
-
-const estrategias = ref({})
+const estrategias = ref()
 const contagem_cores = ref({})
 const media_velas = ref({})
 const velas = ref([])
@@ -38,40 +32,49 @@ const qtd_velas = ref("200")
 const route = useRoute()
 const platform = route.params.platform
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
-const loaded = ref(false)
+const loading = ref(false)
+const loadedDashboard = ref(false)
 const minProbabilidade = ref(50)
 const isExpanded = ref(true)
 const padroesSelecionados = ref([])
 
-const buildUrlPadroesParam = () => {
-  let params = ''
-  for ( const padrao of padroes) {
-      params = params.concat(`padrao=${padrao.join()}&`)
-  }
-  return params;
+const urlDashboard = () => {
+  return `${apiHost}/api/${platform}/crash/dashboard?
+          qtdVelas=${qtd_velas.value}`.replace(/ /g, '')
 }
 
-const url = () => {
-  return `${apiHost}/api/${platform}/crash/dashboard?
+const urlEstrategias = () => {
+  return `${apiHost}/api/${platform}/crash/estrategias?
           minProbabilidade=${minProbabilidade.value}&
           qtdVelas=${qtd_velas.value}&
           qtdGalho=${galho.value}&
-          targetVela=${targetVela.value}&
-          ${buildUrlPadroesParam()}`.replace(/ /g, '')
+          targetVela=${targetVela.value}`.replace(/ /g, '')
 }
 
-const load = () => {
-  const urlDashboard = url()
-  fetch(urlDashboard)
+const loadDashboard = () => {
+  const url = urlDashboard()
+  fetch(url)
     .then(response => response.json())
     .then(data => {
-      estrategias.value = data['estrategias']
       contagem_cores.value = data['contagem_cores']
       media_velas.value = data['media_velas']
       velas.value = data['velas']
       qtd_velas_total.value = data['qtd_velas_total']
       balance.value = data['balance']
-      loaded.value = true
+      loadedDashboard.value = true
+    })
+}
+
+const loadEstrategias = () => {
+  estrategias.value = {}
+
+  loading.value = true
+  const url = urlEstrategias()
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      estrategias.value = data
+      loading.value = false
     })
 }
 
@@ -82,20 +85,20 @@ const onPadraoClicked = (padrao) => {
 
 const evtSource = new EventSource(`https://cassino-database-manager-production.up.railway.app/stream/${platform}/crash`);
 evtSource.onmessage = (event) => {
-  load()
+  loadDashboard()
 };
 
 //hook
 onMounted(() => {
   document.title = `Djabet | ${startCase(platform)} | Crash`
   setNavPills();
-  load()
+  loadDashboard()
 });
 
 </script>
 <template>
   <BaseLayout :title="`${startCase(platform)} - Crash`">
-    <div class="container" v-if="loaded">
+    <div class="container" v-if="loadedDashboard">
       <div class="row">
         <div class="col-3">
           <Tools />
@@ -140,14 +143,15 @@ onMounted(() => {
               <span style="margin-right: 10px; font-size: large; width: fit-content;">Min %:</span>
               <input type="number" v-model="minProbabilidade" style="width: 60px;" />
             </div>
-            <button @click="load" style="width: fit-content;">Carregar</button>
+            <button @click="loadEstrategias" style="width: fit-content;">Carregar</button>
           </div>
         </div>
         <div class="row">
+          <MaterialProgress v-if="loading" color="success" :value="100" />
           <Padroes v-if="estrategias?.padroes" :padroes="estrategias?.padroes" :on-padrao-clicked="onPadraoClicked" />
         </div>
         <div class="row">
-          <PadraoEstrategiasMinutagem :minutagem="estrategias?.minutagem" />
+          <PadraoEstrategiasMinutagem v-if="estrategias?.minutagem" :minutagem="estrategias?.minutagem" />
         </div>
       </Collapse>
     </div>
