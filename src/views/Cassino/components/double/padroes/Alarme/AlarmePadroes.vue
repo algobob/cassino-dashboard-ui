@@ -30,7 +30,7 @@ const {
   show,
 } = useWebNotification(options)
 
-onClick( event => {
+onClick(event => {
   window.focus()
 })
 
@@ -44,8 +44,8 @@ const play = (audio, seconds) => {
   setTimeout(() => { audio.pause(); }, seconds * 1000);
 }
 
-const onClickColor = (color) => {
-  padrao.value.push(color)
+const onClickRoll = (roll) => {
+  padrao.value.push(roll)
 }
 
 const adicionar = () => {
@@ -142,8 +142,8 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
             style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px; max-height: 400px; overflow-y: auto;">
             <div v-for="(padraoTarget, index) in padroesSelecionados" ref="padroesRefs"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
-              <PadraoCorTarget :padrao="padraoTarget[0]" :target="padraoTarget[1]" :blink="index === padraoEncontradoIndex"
-                @click="padroesSelecionados[index] = []" />
+              <PadraoCorTarget :padrao="padraoTarget[0]" :target="padraoTarget[1]"
+                :blink="index === padraoEncontradoIndex" @click="padroesSelecionados[index] = []" />
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           <h5>Novo padrao:</h5>
           <div
             style="display: flex; gap: 5px; align-items: center; width: 500px; height: 70px; border: groove; border-radius: 10px; margin-top: 5px; margin-bottom: 10px;">
-            <Roll v-for="color in padrao" :color="color" />
+            <Roll v-for="item in padrao" :color="color" :roll="item[1]" />
           </div>
           <div style="display: flex; gap: 5px;">
             <button style="width: 100px; margin-bottom: 30px;" @click="adicionar">Adicionar</button>
@@ -159,30 +159,30 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           </div>
           <h5>Por cores:</h5>
           <div style="display: flex; gap: 5px;">
-            <Roll color="red" @clicked="onClickColor" :is-clickable=true />
-            <Roll color="black" @clicked="onClickColor" :is-clickable=true />
-            <Roll color="white" @clicked="onClickColor" :is-clickable=true />
+            <Roll color="red" @clicked="onClickRoll" :is-clickable=true />
+            <Roll color="black" @clicked="onClickRoll" :is-clickable=true />
+            <Roll color="white" @clicked="onClickRoll" :is-clickable=true />
           </div>
           <div style="display: flex;flex-direction: column;">
             <h5>Por numeros:</h5>
             <div style="display: flex; gap: 5px; flex-direction: column;">
               <div style="display: flex; gap: 5px;">
-                <Roll color="red" :roll=1 />
-                <Roll color="red" :roll=2 />
-                <Roll color="red" :roll=3 />
-                <Roll color="red" :roll=4 />
-                <Roll color="red" :roll=5 />
-                <Roll color="red" :roll=6 />
-                <Roll color="red" :roll=7 />
+                <Roll :roll=1 @clicked="onClickRoll" />
+                <Roll :roll=2 @clicked="onClickRoll" />
+                <Roll :roll=3 @clicked="onClickRoll" />
+                <Roll :roll=4 @clicked="onClickRoll" />
+                <Roll :roll=5 @clicked="onClickRoll" />
+                <Roll :roll=6 @clicked="onClickRoll" />
+                <Roll :roll=7 @clicked="onClickRoll" />
               </div>
               <div style="display: flex; gap: 5px;">
-                <Roll color="black" :roll=8 />
-                <Roll color="black" :roll=9 />
-                <Roll color="black" :roll=10 />
-                <Roll color="black" :roll=11 />
-                <Roll color="black" :roll=12 />
-                <Roll color="black" :roll=13 />
-                <Roll color="black" :roll=14 />
+                <Roll :roll=8 @clicked="onClickRoll" />
+                <Roll :roll=9 @clicked="onClickRoll" />
+                <Roll :roll=10 @clicked="onClickRoll" />
+                <Roll :roll=11 @clicked="onClickRoll" />
+                <Roll :roll=12 @clicked="onClickRoll" />
+                <Roll :roll=13 @clicked="onClickRoll" />
+                <Roll :roll=14 @clicked="onClickRoll" />
               </div>
             </div>
           </div>

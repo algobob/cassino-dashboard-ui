@@ -48,19 +48,22 @@
 <script setup>
 import whiteRoll from "@/assets/img/white-roll.png";
 import { ref } from "vue";
+import Roll from "./Roll.vue";
 
 const hoverRed = ref(false)
 const hoverBlack = ref(false)
-const props = defineProps(['roll', 'data'])
+const props = defineProps({
+  roll: String,
+  data: Object
+})
 
 </script>
 <template>
-  <div style="display: flex; justify-content: center;" v-if="roll && data">
+  <div style="display: flex; justify-content: center;" v-if="roll">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">
-          <div v-if="roll !== '0'" class="circle">{{ roll }}</div>
-          <img v-if="roll === '0'" class="circle" :src="whiteRoll" alt="White">
+          <Roll :roll="parseInt(roll)"/> 
         </h5>
         <div class="card-text">
           <div v-if="data['red']">
