@@ -17,19 +17,22 @@
 <script setup>
 import { ref } from "vue";
 import Roll from "../../Roll.vue";
+import '@/assets/css/cassino.css'
 
 const hover = ref(false)
 
 const props = defineProps({
-  padrao: String,
+  padrao: Array,
   blink: Boolean
 })
 
 </script>
 <template>
   <div v-if="padrao" style='cursor: pointer;'>
-  <div style="display: flex; align-items: center; position: relative; gap: 10px;">
-    <Roll v-for="p in padrao" :color="p" @mouseover="hover = true" @mouseleave="hover = false" :is-clickable="true" :blink="blink"/>
+  <div style="display: flex; align-items: center; position: relative; gap: 5px;" :class="{
+    'blink': blink
+  }">
+    <Roll v-for="roll in padrao" :color="roll?.color" :roll="roll?.roll" @mouseover="hover = true" @mouseleave="hover = false" :is-clickable="true" />
   </div>
 </div>
 </template>

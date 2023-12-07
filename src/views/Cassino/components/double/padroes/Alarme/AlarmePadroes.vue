@@ -5,7 +5,7 @@ import pokemonBattle from '@/assets/audio/pokemon-battle.mp3'
 import pokemonVictory from '@/assets/audio/pokemon-victory.mp3'
 import marioDeath from '@/assets/audio/mario-death.mp3'
 import { useWebNotification } from '@vueuse/core'
-import PadraoCorTarget from "../surf/PadraoCorTarget.vue";
+import PadraoCor from "../surf/PadraoCor.vue";
 
 const padraoEncontradoIndex = ref(-1)
 const padroesRefs = ref([])
@@ -45,12 +45,15 @@ const play = (audio, seconds) => {
 }
 
 const onClickRoll = (roll) => {
+  console.log('onClickRoll ', roll)
   padrao.value.push(roll)
 }
 
 const adicionar = () => {
-  props.padroesSelecionados.push(padrao.value)
-  padrao.value = []
+  if (!props.padroesSelecionados.includes(padrao.value)) {
+    props.padroesSelecionados.push(padrao.value)
+    padrao.value = []
+  }  
 }
 
 const notify = () => {
@@ -65,24 +68,30 @@ const callAttention = () => {
   play(audioBattle, 5)
 }
 
+const patternsEquals = (pattern1, pattern2) => {
+  console.log('pattern1 ', pattern1)  
+  console.log('pattern2 ', pattern2)  
+  return pattern1.every((roll, index) => roll.roll && pattern2[index].roll? roll.roll === pattern2[index].roll : roll.color === pattern2[index].color);  
+}
+
+const checkRollColor = (padraoIndex, padrao, newRolls) => {  
+  const lastRolls = newRolls.slice(0, padrao.length).reverse()
+  const allMatch = patternsEquals(padrao, lastRolls)
+
+  if (allMatch) {
+    padraoEncontradoIndex.value = padraoIndex
+    padroesRefs.value[padraoIndex].scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+    callAttention()
+    return;
+  }
+}
+
 watch(() => props.rolls, async (newRolls, oldRolls) => {
   if (props.padroesSelecionados.length && JSON.stringify(newRolls[0]) !== JSON.stringify(oldRolls[0])) {
     padraoEncontradoIndex.value = -1
-    props.padroesSelecionados.forEach((p, index) => {
-      if (p.length) {
-        const padrao = p[0].split(',').map(c => c === 'r' ? 'red' : c === 'b' ? 'black' : 'white')
-
-        const target = p[1]
-        const lastRolls = newRolls.slice(0, padrao.length).map(roll => roll.color).reverse()
-
-        const allMatch = lastRolls.every((color, index) => color === padrao[index]);
-
-        if (allMatch) {
-          padraoEncontradoIndex.value = index
-          padroesRefs.value[index].scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-          callAttention()
-          return;
-        }
+    props.padroesSelecionados.forEach((padrao, index) => {
+      if (padrao.length) {
+          checkRollColor(index, padrao, newRolls)
       }
     })
   }
@@ -140,10 +149,9 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           <h5>Padroes:</h5>
           <div
             style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px; max-height: 400px; overflow-y: auto;">
-            <div v-for="(padraoTarget, index) in padroesSelecionados" ref="padroesRefs"
+            <div v-for="(padrao, index) in padroesSelecionados" ref="padroesRefs"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
-              <PadraoCorTarget :padrao="padraoTarget[0]" :target="padraoTarget[1]"
-                :blink="index === padraoEncontradoIndex" @click="padroesSelecionados[index] = []" />
+              <PadraoCor :padrao="padrao" :blink="index === padraoEncontradoIndex" @click="padroesSelecionados[index] = []" />
             </div>
           </div>
         </div>
@@ -151,7 +159,7 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           <h5>Novo padrao:</h5>
           <div
             style="display: flex; gap: 5px; align-items: center; width: 500px; height: 70px; border: groove; border-radius: 10px; margin-top: 5px; margin-bottom: 10px;">
-            <Roll v-for="item in padrao" :color="color" :roll="item[1]" />
+            <Roll v-for="item in padrao" :color="item?.color" :roll="item?.roll" />
           </div>
           <div style="display: flex; gap: 5px;">
             <button style="width: 100px; margin-bottom: 30px;" @click="adicionar">Adicionar</button>
@@ -167,22 +175,22 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
             <h5>Por numeros:</h5>
             <div style="display: flex; gap: 5px; flex-direction: column;">
               <div style="display: flex; gap: 5px;">
-                <Roll :roll=1 @clicked="onClickRoll" />
-                <Roll :roll=2 @clicked="onClickRoll" />
-                <Roll :roll=3 @clicked="onClickRoll" />
-                <Roll :roll=4 @clicked="onClickRoll" />
-                <Roll :roll=5 @clicked="onClickRoll" />
-                <Roll :roll=6 @clicked="onClickRoll" />
-                <Roll :roll=7 @clicked="onClickRoll" />
+                <Roll :roll=1 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=2 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=3 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=4 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=5 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=6 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=7 @clicked="onClickRoll" :is-clickable=true />
               </div>
               <div style="display: flex; gap: 5px;">
-                <Roll :roll=8 @clicked="onClickRoll" />
-                <Roll :roll=9 @clicked="onClickRoll" />
-                <Roll :roll=10 @clicked="onClickRoll" />
-                <Roll :roll=11 @clicked="onClickRoll" />
-                <Roll :roll=12 @clicked="onClickRoll" />
-                <Roll :roll=13 @clicked="onClickRoll" />
-                <Roll :roll=14 @clicked="onClickRoll" />
+                <Roll :roll=8 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=9 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=10 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=11 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=12 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=13 @clicked="onClickRoll" :is-clickable=true />
+                <Roll :roll=14 @clicked="onClickRoll" :is-clickable=true />
               </div>
             </div>
           </div>

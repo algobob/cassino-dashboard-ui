@@ -34,7 +34,7 @@ const loading = ref(false)
 const padroesSelecionados = ref([])
 
 const onPadraoSelecionado = (padrao, target) => {
-  padroesSelecionados.value.push([padrao, target])
+  padroesSelecionados.value.push(padrao)
   console.log('padroesSelecionados ', padroesSelecionados.value)
 }
 

@@ -18,22 +18,27 @@
 import { ref } from "vue";
 import PadraoCor from "./PadraoCor.vue";
 import Roll from "../../Roll.vue";
+import '@/assets/css/cassino.css'
 
 const hover = ref(false)
 
 const props = defineProps({
-  padrao: String,
+  padrao: Array,
   target: String,
   blink: Boolean
 })
 
+console.log('creuu ', props.padrao)
+
 </script>
 <template>
-  <div v-if="padrao" style='cursor: pointer;' @click="$emit('clicked', padrao, target)">
+  <div v-if="padrao" style='cursor: pointer;' @click="$emit('clicked', padrao, target)" :class="{
+    'blink': blink
+  }">
     <div style="display: flex; align-items: center; position: relative;">
-      <PadraoCor v-for="p in padrao" :padrao="p" @mouseover="hover = true" @mouseleave="hover = false" :blink="blink" />
+      <PadraoCor :padrao="padrao" @mouseover="hover = true" @mouseleave="hover = false" />
       <h5 class="font-weight-bold p-2"> > </h5>
-      <Roll :color="target" :is-clickable=true :blink="blink"/>
+      <Roll :color="target" :is-clickable=true />
     </div>
   </div>
 </template>
