@@ -43,7 +43,7 @@ const mappedPadrao = props.padrao.split(',').map( color => { return {'color': CO
     <span class="tooltiptext" v-if="hoverRed">{{ data['red']['hit'] }}/{{ data['red']['tried'] }}</span>
       <PadraoCorTarget :padrao="mappedPadrao" target="red" @clicked="onPadraoSelecionado" />
       <h5 class="font-weight-bold p-2"> ? </h5>
-      <h5 class="font-weight-bold p-2"><mark>{{ data['red']['probabilidade'] }}%</mark></h5>
+      <h5 class="font-weight-bold p-2"><mark>{{ data['red']['probabilidade'] }}% ({{ data['red']['hit'] }}/{{ data['red']['tried'] }})</mark></h5>
     </div>
     
     <div style="display: flex; align-items: center; position: relative;" v-if="data['black']"
@@ -52,7 +52,7 @@ const mappedPadrao = props.padrao.split(',').map( color => { return {'color': CO
     <span class="tooltiptext" v-if="hoverBlack">{{ data['black']['hit'] }}/{{ data['black']['tried'] }}</span>
       <PadraoCorTarget :padrao="mappedPadrao" target="black" @clicked="onPadraoSelecionado" />
       <h5 class="font-weight-bold p-2"> ? </h5>
-      <h5 class="font-weight-bold p-2"><mark>{{ data['black']['probabilidade'] }}%</mark></h5>
+      <h5 class="font-weight-bold p-2"><mark>{{ data['black']['probabilidade'] }}% ({{ data['black']['hit'] }}/{{ data['black']['tried'] }})</mark></h5>
     </div>
     
     <div style="display: flex; align-items: center; position: relative;" v-if="data['white']"
@@ -61,7 +61,7 @@ const mappedPadrao = props.padrao.split(',').map( color => { return {'color': CO
     <span class="tooltiptext" v-if="hoverWhite">{{ data['white']['hit'] }}/{{ data['white']['tried'] }}</span>
       <PadraoCorTarget :padrao="mappedPadrao" target="white" @clicked="onPadraoSelecionado" />
       <h5 class="font-weight-bold p-2"> ? </h5>
-      <h5 class="font-weight-bold p-2"><mark>{{ data['white']['probabilidade'] }}%</mark></h5>
+      <h5 class="font-weight-bold p-2"><mark>{{ data['white']['probabilidade'] }}% ({{ data['white']['hit'] }}/{{ data['white']['tried'] }})</mark></h5>
     </div>
   </div>
 </template>

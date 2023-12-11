@@ -56,6 +56,6 @@ const hasData = props.data && Object.keys(props.data).length
     <h5 class="font-weight-bold p-2 mt-2"> > </h5>
     <Vela :vela="2" :blink="blink" />
     <h5 v-if="hasData" class="font-weight-bold p-2 mt-2"> ? </h5>
-    <h5 v-if="hasData" class="font-weight-bold p-2 mt-2"><mark>{{ data['probabilidade'] }}%</mark></h5>
+    <h5 v-if="hasData" class="font-weight-bold p-2 mt-2"><mark>{{ data['probabilidade'] }}% ({{ data['hit'] }}/{{ data['tried'] }})</mark></h5>
   </div>
 </template>
