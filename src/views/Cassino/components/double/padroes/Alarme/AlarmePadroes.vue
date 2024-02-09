@@ -13,7 +13,8 @@ const padroesRefs = ref([])
 const props = defineProps({
   rolls: Array,
   padroesSelecionados: Array,
-  platform: String
+  platform: String,
+  limparPadroesSelecionados: Function
 })
 
 const options = {
@@ -153,6 +154,9 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
               <PadraoCor :padrao="padrao" :blink="index === padraoEncontradoIndex" @click="padroesSelecionados[index] = []" />
             </div>
+          </div>
+          <div>
+            <button style="width: 100px; margin-bottom: 10px;margin-top: 10px;" @click="limparPadroesSelecionados">Limpar</button>
           </div>
         </div>
         <div style="display: flex; flex-direction: column;">

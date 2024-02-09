@@ -63,6 +63,10 @@ const loadDashboard = () => {
     })
 }
 
+const limparPadroesSelecionados = () => {
+  padroesSelecionados.value = []
+}
+
 const evtSource = new EventSource(`https://cassino-database-manager-production.up.railway.app/stream/${platform}/double`);
 evtSource.onmessage = (event) => {
   console.log(`message: ${event.data}`);
@@ -95,7 +99,8 @@ onMounted(() => {
       </div>
       <div class="row">
         <div class="col">
-          <AlarmePadroes :rolls="rolls" :padroesSelecionados="padroesSelecionados" :platform="startCase(platform)"/>
+          <AlarmePadroes :rolls="rolls" :padroesSelecionados="padroesSelecionados" :platform="startCase(platform)" 
+          :limpar-padroes-selecionados="limparPadroesSelecionados"/>
         </div>
       </div>
       <div class="row">
