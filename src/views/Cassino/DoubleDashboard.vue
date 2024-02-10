@@ -26,6 +26,7 @@ const qtd_rolls = ref("200")
 const targetColor = ref("*")
 const galho = ref(0)
 const minProbabilidade = ref(50)
+const maxProbabilidade = ref(100)
 const route = useRoute()
 const platform = route.params.platform
 const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
@@ -45,6 +46,7 @@ const loadEstrategias = () => {
   qtdRolls=${qtd_rolls.value}&
   qtdGalho=${galho.value}&
   minProbabilidade=${minProbabilidade.value}&
+  maxProbabilidade=${maxProbabilidade.value}&
   targetColor=${targetColor.value}`.replace(/ /g, ''))
     .then(response => response.json())
     .then(data => {
@@ -120,6 +122,11 @@ onMounted(() => {
             <div style="display: flex; gap: 10px;">
               <span> Min %: </span>
               <input name="minProbabilidade" type="number" v-model="minProbabilidade"
+                style="height: 30px; width: 60px;" />
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <span> Max %: </span>
+              <input name="maxProbabilidade" type="number" v-model="maxProbabilidade"
                 style="height: 30px; width: 60px;" />
             </div>
             <div style="display: flex; gap: 10px;">
