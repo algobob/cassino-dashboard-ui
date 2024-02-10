@@ -59,7 +59,7 @@ const props = defineProps({
 
 </script>
 <template>
-  <div style="display: flex; justify-content: center;" v-if="roll">
+  <div style="display: flex; justify-content: center;" v-if="roll" @click="$emit('clicked', { 'roll': parseInt(roll)})">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">

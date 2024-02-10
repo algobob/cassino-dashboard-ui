@@ -28,8 +28,6 @@ const props = defineProps({
   blink: Boolean
 })
 
-console.log('creuu ', props.padrao)
-
 </script>
 <template>
   <div v-if="padrao" style='cursor: pointer;' @click="$emit('clicked', padrao, target)" :class="{

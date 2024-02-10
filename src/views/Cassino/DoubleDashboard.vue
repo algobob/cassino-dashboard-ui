@@ -35,7 +35,11 @@ const loading = ref(false)
 const padroesSelecionados = ref([])
 
 const onPadraoSelecionado = (padrao, target) => {
-  padroesSelecionados.value.push(padrao)
+  if (padrao instanceof Array){
+    padroesSelecionados.value.push(padrao)
+  } else {
+    padroesSelecionados.value.push([padrao])
+  }
   console.log('padroesSelecionados ', padroesSelecionados.value)
 }
 
@@ -146,7 +150,7 @@ onMounted(() => {
           <PadroesCores v-if="estrategias?.padroes" :padroes="estrategias?.padroes" :on-padrao-clicked="onPadraoSelecionado" />
         </div>
         <div class="row">
-          <DoubleNumeroCor v-if="estrategias" :data="estrategias?.numero_cor_probabilidades" />
+          <DoubleNumeroCor v-if="estrategias" :data="estrategias?.numero_cor_probabilidades" :on-roll-clicked="onPadraoSelecionado"/>
         </div>
         <div class="row">
           <PadraoEstrategiasMinutagem v-if="estrategias" :estrategias="estrategias?.minutagem" />

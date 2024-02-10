@@ -4,7 +4,11 @@ import { Collapse } from 'vue-collapsed'
 import { ref } from 'vue'
 
 const isExpanded = ref(true)
-const props = defineProps(['data'])
+const props = defineProps({
+  data: Object,
+  onRollClicked: Function
+}
+  )
 </script>
 <style scoped>
 .circle {
@@ -40,7 +44,7 @@ const props = defineProps(['data'])
       <Collapse :when="isExpanded">
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
           <div v-for="(value, key) in data">
-            <DoubleNumeroCorProbabilidade :roll="key" :data="value" />
+            <DoubleNumeroCorProbabilidade :roll="key" :data="value" @clicked="onRollClicked"/>
           </div>
         </div>
       </Collapse>
