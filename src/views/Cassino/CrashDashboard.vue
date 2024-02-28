@@ -35,6 +35,7 @@ const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-productio
 const loading = ref(false)
 const loadedDashboard = ref(false)
 const minProbabilidade = ref(50)
+const maxProbabilidade = ref(100)
 const isExpanded = ref(true)
 const padroesSelecionados = ref([])
 
@@ -46,6 +47,7 @@ const urlDashboard = () => {
 const urlEstrategias = () => {
   return `${apiHost}/api/${platform}/crash/estrategias?
           minProbabilidade=${minProbabilidade.value}&
+          maxProbabilidade=${maxProbabilidade.value}&
           qtdVelas=${qtd_velas.value}&
           qtdGalho=${galho.value}&
           targetVela=${targetVela.value}`.replace(/ /g, '')
@@ -142,6 +144,10 @@ onMounted(() => {
             <div style="display: flex;">
               <span style="margin-right: 10px; font-size: large; width: fit-content;">Min %:</span>
               <input type="number" v-model="minProbabilidade" style="width: 60px;" />
+            </div>
+            <div style="display: flex;">
+              <span style="margin-right: 10px; font-size: large; width: fit-content;">Max %:</span>
+              <input type="number" v-model="maxProbabilidade" style="width: 60px;" />
             </div>
             <button @click="loadEstrategias" style="width: fit-content;">Carregar</button>
           </div>
