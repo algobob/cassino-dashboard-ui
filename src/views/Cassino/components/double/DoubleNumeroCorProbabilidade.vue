@@ -1,14 +1,12 @@
 <style scoped>
 .circle {
   border-radius: 50%;
-  width: 52px;
-  height: 50px;
+  width: 3.2rem;
+  height: 3.1rem;
   padding: 10px;
-  background: #fff;
-  border: 3px solid #000;
-  color: #000;
   text-align: center;
   font: 22px Arial, sans-serif;
+  margin: 0 2px;
 }
 
 .square {
@@ -17,6 +15,12 @@
   padding: 10px;
   border: 3px solid #000;
   text-align: center;
+}
+
+.white-roll {
+  background: #fff;
+  border: 1px solid black;
+  color: white;
 }
 
 .black {
@@ -65,6 +69,7 @@ const props = defineProps({
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">
+      <img v-if="roll === '0'" class="circle white-roll" :src="whiteRoll" alt="White" width="20px" height="20px">
           <Roll :roll="parseInt(roll)"/> 
         </h5>
         <div class="card-text">
@@ -87,7 +92,6 @@ const props = defineProps({
             <p class="card-text mt-2"><mark> {{ data['white']['probabilidade'] }}%</mark></p>
           </div>
         </div>
-
       </div>
     </div>
   </div>
