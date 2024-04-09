@@ -52,6 +52,8 @@ import Roll from "./Roll.vue";
 
 const hoverRed = ref(false)
 const hoverBlack = ref(false)
+const hoverWhite = ref(false)
+
 const props = defineProps({
   roll: String,
   data: Object
@@ -73,11 +75,16 @@ const props = defineProps({
             <p><mark> {{ data['red']['probabilidade'] }}%</mark></p>
           </div>
           <div v-if="data['black']">
-
             <span class="tooltiptext" v-if="hoverBlack">{{ data['black']['hit'] }}/{{ data['black']['tried'] }}</span>
             <div class="square" style="background-color: black; position: relative;" @mouseover="hoverBlack = true"
               @mouseleave="hoverBlack = false"></div>
             <p class="card-text mt-2"><mark> {{ data['black']['probabilidade'] }}%</mark></p>
+          </div>
+          <div v-if="data['white']">
+            <span class="tooltiptext" v-if="hoverWhite">{{ data['white']['hit'] }}/{{ data['white']['tried'] }}</span>
+            <div class="square" style="background-color: black; position: relative;" @mouseover="hoverWhite = true"
+              @mouseleave="hoverWhite = false"></div>
+            <p class="card-text mt-2"><mark> {{ data['white']['probabilidade'] }}%</mark></p>
           </div>
         </div>
 
