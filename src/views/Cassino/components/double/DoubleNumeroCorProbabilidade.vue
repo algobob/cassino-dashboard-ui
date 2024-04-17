@@ -87,7 +87,7 @@ const props = defineProps({
           </div>
           <div v-if="data['white']">
             <span class="tooltiptext" v-if="hoverWhite">{{ data['white']['hit'] }}/{{ data['white']['tried'] }}</span>
-            <div class="square" style="background-color: black; position: relative;" @mouseover="hoverWhite = true"
+            <div class="square" style="background-color: white;border-style: ridge; position: relative;" @mouseover="hoverWhite = true"
               @mouseleave="hoverWhite = false"></div>
             <p class="card-text mt-2"><mark> {{ data['white']['probabilidade'] }}%</mark></p>
           </div>
