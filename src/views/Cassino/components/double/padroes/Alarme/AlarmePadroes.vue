@@ -1,14 +1,17 @@
 <script setup>
-import Roll from "../../Roll.vue";
 import { ref, watch } from 'vue';
 import pokemonBattle from '@/assets/audio/pokemon-battle.mp3'
 import pokemonVictory from '@/assets/audio/pokemon-victory.mp3'
 import marioDeath from '@/assets/audio/mario-death.mp3'
 import { useWebNotification } from '@vueuse/core'
+import { useVibrate } from '@vueuse/core'
+const { vibrate, stop } = useVibrate({ pattern: [300, 100, 300] })
 import PadraoCor from "../surf/PadraoCor.vue";
+import FiltroPadroes from "@/components/FiltroPadroes.vue";
 
 const padraoEncontradoIndex = ref(-1)
 const padroesRefs = ref([])
+const padroes = ref([])
 
 const props = defineProps({
   rolls: Array,
@@ -50,9 +53,9 @@ const onClickRoll = (roll) => {
   padrao.value.push(roll)
 }
 
-const adicionar = () => {
-  if (!props.padroesSelecionados.includes(padrao.value)) {
-    props.padroesSelecionados.push(padrao.value)
+const adicionar = (padrao) => {
+  if (!padroes.value.includes(padrao.value)) {
+    padroes.value.push(padrao.value)
     padrao.value = []
   }  
 }
@@ -66,6 +69,7 @@ const notify = () => {
 
 const callAttention = () => {
   notify()
+  vibrate()
   play(audioBattle, 5)
 }
 
@@ -159,46 +163,7 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
             <button style="width: 100px; margin-bottom: 10px;margin-top: 10px;" @click="limparPadroesSelecionados">Limpar</button>
           </div>
         </div>
-        <div style="display: flex; flex-direction: column;">
-          <h5>Novo padrao:</h5>
-          <div
-            style="display: flex; gap: 5px; align-items: center; width: 500px; height: 70px; border: groove; border-radius: 10px; margin-top: 5px; margin-bottom: 10px;">
-            <Roll v-for="item in padrao" :color="item?.color" :roll="item?.roll" />
-          </div>
-          <div style="display: flex; gap: 5px;">
-            <button style="width: 100px; margin-bottom: 30px;" @click="adicionar">Adicionar</button>
-            <button style="width: 100px; margin-bottom: 30px;" @click="padrao = []">Limpar</button>
-          </div>
-          <h5>Por cores:</h5>
-          <div style="display: flex; gap: 5px;">
-            <Roll color="red" @clicked="onClickRoll" :is-clickable=true />
-            <Roll color="black" @clicked="onClickRoll" :is-clickable=true />
-            <Roll color="white" @clicked="onClickRoll" :is-clickable=true />
-          </div>
-          <div style="display: flex;flex-direction: column;">
-            <h5>Por numeros:</h5>
-            <div style="display: flex; gap: 5px; flex-direction: column;">
-              <div style="display: flex; gap: 5px;">
-                <Roll :roll=1 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=2 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=3 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=4 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=5 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=6 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=7 @clicked="onClickRoll" :is-clickable=true />
-              </div>
-              <div style="display: flex; gap: 5px;">
-                <Roll :roll=8 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=9 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=10 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=11 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=12 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=13 @clicked="onClickRoll" :is-clickable=true />
-                <Roll :roll=14 @clicked="onClickRoll" :is-clickable=true />
-              </div>
-            </div>
-          </div>
-        </div>
+        <FiltroPadroes actionButtonName="Adicionar" :onClickAction="adicionar"/>
       </div>
     </div>
   </div>

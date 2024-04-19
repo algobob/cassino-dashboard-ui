@@ -16,7 +16,7 @@
 
 <script setup>
 import { ref } from "vue";
-import Roll from "../../Roll.vue";
+import Roll from "@/components/Roll.vue";
 import '@/assets/css/cassino.css'
 
 const hover = ref(false)

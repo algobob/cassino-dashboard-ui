@@ -52,7 +52,7 @@
 <script setup>
 import whiteRoll from "@/assets/img/white-roll.png";
 import { ref } from "vue";
-import Roll from "./Roll.vue";
+import Roll from "@/components/Roll.vue";
 
 const hoverRed = ref(false)
 const hoverBlack = ref(false)

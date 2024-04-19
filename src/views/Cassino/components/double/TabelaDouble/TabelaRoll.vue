@@ -36,7 +36,7 @@
 }
 </style>
 <script setup>
-import Roll from "@/views/Cassino/components/double/Roll.vue";
+import Roll from "@/components/Roll.vue";
 
 const props = defineProps({
   roll: Object
