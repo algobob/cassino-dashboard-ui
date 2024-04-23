@@ -14,6 +14,7 @@
     })
 
   const padrao = ref([])
+
   const onClickRoll = (roll) => {
     console.log('onClickRoll ', roll)
     padrao.value.push(roll)

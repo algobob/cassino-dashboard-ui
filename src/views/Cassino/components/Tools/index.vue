@@ -3,6 +3,7 @@
 import Alarm from './Alarm.vue';
 import Clock from './Clock.vue';
 import GaleCalculator from './GaleCalculator.vue';
+import Timer from './Timer.vue';
 </script>
 <template>
     <div style="display: flex; width: 500px;">
@@ -13,6 +14,7 @@ import GaleCalculator from './GaleCalculator.vue';
                     <Clock />
                     <GaleCalculator />
                 <Alarm />
+                <Timer />
                     </div>
                 </div>
             </div>
