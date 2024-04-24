@@ -21,6 +21,10 @@ const {
   show,
 } = useWebNotification(options)
 
+onClick(event => {
+  window.focus()
+})
+
 const play = (audio, seconds) => {
   if (audio.paused) {
     audio.currentTime = 0
