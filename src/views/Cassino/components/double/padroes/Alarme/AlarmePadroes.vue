@@ -48,16 +48,9 @@ const play = (audio, seconds) => {
   setTimeout(() => { audio.pause(); }, seconds * 1000);
 }
 
-const onClickRoll = (roll) => {
-  console.log('onClickRoll ', roll)
-  padrao.value.push(roll)
-}
-
 const adicionar = (padrao) => {
-  if (!padroes.value.includes(padrao.value)) {
     padroes.value.push(padrao.value)
     padrao.value = []
-  }  
 }
 
 const notify = () => {
@@ -74,8 +67,6 @@ const callAttention = () => {
 }
 
 const patternsEquals = (pattern1, pattern2) => {
-  console.log('pattern1 ', pattern1)  
-  console.log('pattern2 ', pattern2)  
   return pattern1.every((roll, index) => roll.roll && pattern2[index].roll? roll.roll === pattern2[index].roll : roll.color === pattern2[index].color);  
 }
 

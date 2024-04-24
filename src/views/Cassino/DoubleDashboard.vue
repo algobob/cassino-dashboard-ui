@@ -40,7 +40,6 @@ const onPadraoSelecionado = (padrao, target) => {
   } else {
     padroesSelecionados.value.push([padrao])
   }
-  console.log('padroesSelecionados ', padroesSelecionados.value)
 }
 
 const loadEstrategias = () => {
