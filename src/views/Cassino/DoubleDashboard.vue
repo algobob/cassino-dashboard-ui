@@ -72,7 +72,7 @@ const limparPadroesSelecionados = () => {
   padroesSelecionados.value = []
 }
 
-const evtSource = new EventSource(`https://cassino-database-manager-production.up.railway.app/stream/${platform}/double`);
+const evtSource = new EventSource(`https://djabet-repository-api-production.up.railway.app/api/double/sse`);
 evtSource.onmessage = (event) => {
   console.log(`message: ${event.data}`);
   loadDashboard()
