@@ -29,6 +29,13 @@ export default defineConfig({
         target: 'https://cassino-online-api-production.up.railway.app',
         secure: false,
         changeOrigin: true,
-      }}
+      },
+      '/sse': {
+        target: 'https://djabet-repository-api-production.up.railway.app',
+        secure: false,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/sse/, '/api/double/sse'),
+      },
+    }
   }
 });
