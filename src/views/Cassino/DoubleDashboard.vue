@@ -68,14 +68,25 @@ const loadDashboard = () => {
     })
 }
 
+const loadRolls = () => {
+  fetch(`/rolls?platform=${platform}&sort=desc&qtd=${qtd_rolls.value}`.replace(/ /g, ''))
+    .then(response => response.json())
+    .then(data => {
+      rolls.value = data;
+    });
+}
+
 const limparPadroesSelecionados = () => {
   padroesSelecionados.value = []
 }
 
 const evtSource = new EventSource(`https://djabet-repository-api-production.up.railway.app/api/double/sse`);
 evtSource.onmessage = (event) => {
-  console.log(`message: ${event.data}`);
-  loadDashboard()
+  const roll = JSON.parse(event.data);
+  if (roll.platform === platform) {
+     console.log(`message: ${event.data}`);
+     loadRolls();
+  }
 };
 
 //hook

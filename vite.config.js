@@ -36,6 +36,12 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/sse/, '/api/double/sse'),
       },
+      '/rolls': {
+        target: 'https://djabet-repository-api-production.up.railway.app',
+        secure: false,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/rolls/, '/api/double/rolls'),
+      },
     }
   }
 });
