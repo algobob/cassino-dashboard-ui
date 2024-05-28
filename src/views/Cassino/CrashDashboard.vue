@@ -17,7 +17,7 @@ import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
 import { Collapse } from 'vue-collapsed'
-import Tools from "./components/Tools/index.vue";
+import Tools from "@/components/Tools/index.vue";
 import MaterialProgress from "@/components/MaterialProgress.vue";
 
 const estrategias = ref()

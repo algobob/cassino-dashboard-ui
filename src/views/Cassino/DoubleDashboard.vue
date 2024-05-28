@@ -4,17 +4,17 @@ import { useRoute } from 'vue-router'
 
 // Sections components
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
-import DoubleContagemCores from "./components/double/DoubleContagemCores.vue"
-import Caixa from "./components/double/Caixa.vue"
-import Tools from "./components/Tools/index.vue"
+import DoubleContagemCores from "@/components/double/DoubleContagemCores.vue"
+import Caixa from "@/components/double/Caixa.vue"
+import Tools from "@/components/Tools/index.vue"
 import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";
-import DoubleNumeroCor from "./components/double/DoubleNumeroCor.vue";
-import PadraoEstrategiasMinutagem from "./components/double/padroes/minutagem/PadraoEstrategiasMinutagem.vue";
-import PadroesCores from "./components/double/padroes/surf/PadroesCores.vue";
-import TabelaDouble from "./components/double/TabelaDouble/TabelaDouble.vue";
-import AlarmePadroes from "./components/double/padroes/Alarme/AlarmePadroes.vue";
+import DoubleNumeroCor from "@/components/double/DoubleNumeroCor.vue";
+import PadraoEstrategiasMinutagem from "@/components/double/padroes/minutagem/PadraoEstrategiasMinutagem.vue";
+import PadroesCores from "@/components/double/padroes/surf/PadroesCores.vue";
+import TabelaDouble from "@/components/double/TabelaDouble/TabelaDouble.vue";
+import AlarmePadroes from "@/components/double/padroes/Alarme/AlarmePadroes.vue";
 import { Collapse } from 'vue-collapsed'
 import MaterialProgress from "@/components/MaterialProgress.vue";
 
