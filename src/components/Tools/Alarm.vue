@@ -1,11 +1,12 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import VueTimepicker from 'vue3-timepicker/src/VueTimepicker.vue'
-import pokemonVictory from '@/assets/audio/pokemon-victory.mp3'
-import { useWebNotification } from '@vueuse/core'
+import { callAttention, stop } from '@/assets/js/callAttention.js'
 
-const audioVictory = new Audio(pokemonVictory)
 const isAlarmando = ref(false)
+const isCallingAttention = ref(false)
+const currentTime = ref(0)
+
 const getHours = () => {
     const date = new Date();
     const currentHours = date.getHours();
@@ -15,56 +16,36 @@ const getMinutes = () => {
     const date = new Date();
     const currentMinutes = date.getMinutes();
     return ("0" + currentMinutes).slice(-2);
- }
+}
+
 const horario = ref(`${getHours()}:${getMinutes()}`)
-const options = {
-  title: 'Hora da entrada!',
-  dir: 'auto',
-  lang: 'en',
-  renotify: true,
-  tag: 'test'
-}
-
-const {
-  isSupported,
-  onClick,
-  show,
-} = useWebNotification(options)
-
-const play = (audio, seconds) => {
-  if (audio.paused) {
-    audio.currentTime = 0
-    audio.play();
-  setTimeout(() => { audio.pause(); }, seconds * 1000);
-  }
-}
-
-const notify = () => {
-  if (isSupported.value){
-    show()
-  }
-  else {
-    console.log('nao suporta notification api')
-  }
-}
-
 
 const alarmar = () => {
     isAlarmando.value = !isAlarmando.value 
 }
 
 onMounted(() => {
-    setInterval(() => {
+  setInterval(() => {
+    currentTime.value = new Date()
+  }, 1000)
+})
+
+watch(() => currentTime.value, async (newValue, oldValue) => {
         if (isAlarmando.value) {
-            const hourAndMinutesNow = `${getHours()}:${getMinutes()}` 
-            if (hourAndMinutesNow === horario.value) {
-                play(audioVictory, 60)
-                notify()
-            }
+          const timePickerTime = horario.value.split(":")
+          console.log(timePickerTime)
+          console.log(newValue.getHours())
+          console.log(newValue.getMinutes())
+         if (parseInt(timePickerTime[0]) === newValue.getHours() && parseInt(timePickerTime[1]) === newValue.getMinutes()) {
+          if (!isCallingAttention.value) {
+          callAttention()
+          isCallingAttention.value = true
+          }
+         }
         } else {
-            audioVictory.pause()
+          isCallingAttention.value = false
+          stop()
         }
-    }, 1000)
 })
 
 </script>
