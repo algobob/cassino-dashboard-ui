@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router'
 import BaseLayout from "../../layouts/sections/components/BaseLayout.vue";
 import DoubleContagemCores from "@/components/double/DoubleContagemCores.vue"
 import Caixa from "@/components/double/Caixa.vue"
-import Tools from "@/components/Tools/index.vue"
+import Tools from "@/components/commons/index.vue"
 import { startCase } from 'lodash';
 //nav-pills
 import setNavPills from "@/assets/js/nav-pills";

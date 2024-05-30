@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue'
 import VueTimepicker from 'vue3-timepicker/src/VueTimepicker.vue'
-import { callAttention, stop } from '@/assets/js/callAttention.js'
+import { callAttention, stopCallAttention } from '@/assets/js/callAttention.js'
 
 const isAlarmando = ref(false)
 const isCallingAttention = ref(false)
@@ -44,7 +44,7 @@ watch(() => currentTime.value, async (newValue, oldValue) => {
          }
         } else {
           isCallingAttention.value = false
-          stop()
+          stopCallAttention()
         }
 })
 
