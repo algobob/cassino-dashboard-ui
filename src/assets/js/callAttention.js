@@ -13,12 +13,6 @@ const notify = () => {
         vibrate: true
     });
 
-    // close the notification after 10 seconds
-    // setTimeout(() => {
-    //     notification.close();
-    // }, 10 * 1000);
-
-    // navigate to a URL
     notification.addEventListener('click', () => {
   window.focus()
     });
@@ -34,12 +28,12 @@ const play = (seconds) => {
     navigator.vibrate(200);
  }
 
-export const callAttention = () => {
+export const callAttention = (seconds) => {
   notify();
   vibrate()
-  play(60)
+  play(seconds ? seconds : 60)
 }
 
-export const stop = () => {
+export const stopCallAttention = () => {
   audioBattle.pause();
 }

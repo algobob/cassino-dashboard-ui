@@ -1,12 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
-import pokemonBattle from '@/assets/audio/pokemon-battle.mp3'
-import pokemonVictory from '@/assets/audio/pokemon-victory.mp3'
-import marioDeath from '@/assets/audio/mario-death.mp3'
-import { useWebNotification } from '@vueuse/core'
-import { useVibrate } from '@vueuse/core'
-const { vibrate, stop } = useVibrate({ pattern: [300, 100, 300] })
 import PadraoCor from "../surf/PadraoCor.vue";
+import { callAttention, stopCallAttention } from "@/assets/js/callAttention.js"
 import FiltroPadroes from "@/components/FiltroPadroes.vue";
 
 const padraoEncontradoIndex = ref(-1)
@@ -20,50 +15,11 @@ const props = defineProps({
   limparPadroesSelecionados: Function
 })
 
-const options = {
-  title: `Djabet | ${props.platform} | Double`,
-  dir: 'auto',
-  lang: 'en',
-  renotify: true,
-  tag: 'test'
-}
-
-const {
-  isSupported,
-  onClick,
-  show,
-} = useWebNotification(options)
-
-onClick(event => {
-  window.focus()
-})
-
 const padrao = ref([])
-const audioBattle = new Audio(pokemonBattle)
-const audioVictory = new Audio(pokemonVictory)
-
-const play = (audio, seconds) => {
-  audio.currentTime = 0
-  audio.play();
-  setTimeout(() => { audio.pause(); }, seconds * 1000);
-}
 
 const adicionar = (padrao) => {
     padroes.value.push(padrao.value)
     padrao.value = []
-}
-
-const notify = () => {
-  if (isSupported.value)
-    show()
-  else
-    console.log('nao suporta notification api')
-}
-
-const callAttention = () => {
-  notify()
-  vibrate()
-  play(audioBattle, 5)
 }
 
 const patternsEquals = (pattern1, pattern2) => {
@@ -77,7 +33,7 @@ const checkRollColor = (padraoIndex, padrao, newRolls) => {
   if (allMatch) {
     padraoEncontradoIndex.value = padraoIndex
     padroesRefs.value[padraoIndex].scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-    callAttention()
+    callAttention(5)
     return;
   }
 }
