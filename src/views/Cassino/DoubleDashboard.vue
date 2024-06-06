@@ -69,7 +69,7 @@ const loadDashboard = () => {
 }
 
 const loadRolls = () => {
-  fetch(`${import.meta.env.DEV ? '':'https://djabet-repository-api-production.up.railway.app/api/double' }/rolls?platform=${platform}&sort=desc&qtd=${qtd_rolls.value}`.replace(/ /g, ''))
+  fetch(`${import.meta.env.DEV ? '':'https://djabet-repository-api-production.up.railway.app/api/double'}?platform=${platform}&sort=desc&qtd=${qtd_rolls.value}`.replace(/ /g, ''))
     .then(response => response.json())
     .then(data => {
       rolls.value = data;

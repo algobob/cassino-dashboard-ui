@@ -40,7 +40,7 @@ export default defineConfig({
         target: 'https://djabet-repository-api-production.up.railway.app',
         secure: false,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/rolls/, '/api/double/rolls'),
+        rewrite: (path) => path.replace(/^\/rolls/, '/api/double'),
       },
     }
   }
