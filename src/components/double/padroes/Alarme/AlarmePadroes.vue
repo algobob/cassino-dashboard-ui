@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import PadraoCor from "../cores/PadraoCor.vue";
+import PadraoCorTarget from "../cores/PadraoCorTarget.vue";
 import { callAttention, stopCallAttention } from "@/assets/js/callAttention.js"
 import FiltroPadroes from "@/components/FiltroPadroes.vue";
 
@@ -101,9 +101,9 @@ watch(() => props.rolls, async (newRolls, oldRolls) => {
           <h5>Padroes:</h5>
           <div
             style="display: flex; flex-direction: column; width: 500px; height: 400px; border: groove; border-radius: 10px; max-height: 400px; overflow-y: auto;">
-            <div v-for="(padrao, index) in padroesSelecionados" ref="padroesRefs"
+            <div v-for="(padraoCor, index) in padroesSelecionados" ref="padroesRefs"
               style="display: flex; flex-direction: row; gap: 5px; margin-left: 2px; align-items: center;">
-              <PadraoCor :padrao="padrao" :blink="index === padraoEncontradoIndex" @click="padroesSelecionados[index] = []" />
+              <PadraoCorTarget :padrao="padraoCor.padrao" :target="padraoCor.target" />
             </div>
           </div>
           <div>

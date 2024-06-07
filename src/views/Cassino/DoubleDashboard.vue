@@ -36,9 +36,9 @@ const padroesSelecionados = ref([])
 
 const onPadraoSelecionado = (padrao, target) => {
   if (padrao instanceof Array){
-    padroesSelecionados.value.push(padrao)
+    padroesSelecionados.value.push({padrao, target})
   } else {
-    padroesSelecionados.value.push([padrao])
+    padroesSelecionados.value.push([{padrao, target}])
   }
 }
 
