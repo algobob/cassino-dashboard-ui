@@ -12,7 +12,7 @@ import { startCase } from 'lodash';
 import setNavPills from "@/assets/js/nav-pills";
 import DoubleNumeroCor from "@/components/double/DoubleNumeroCor.vue";
 import PadraoEstrategiasMinutagem from "@/components/double/padroes/minutagem/PadraoEstrategiasMinutagem.vue";
-import PadroesCores from "@/components/double/padroes/surf/PadroesCores.vue";
+import PadroesCores from "@/components/double/padroes/cores/PadroesCores.vue";
 import TabelaDouble from "@/components/double/TabelaDouble/TabelaDouble.vue";
 import AlarmePadroes from "@/components/double/padroes/Alarme/AlarmePadroes.vue";
 import { Collapse } from 'vue-collapsed'

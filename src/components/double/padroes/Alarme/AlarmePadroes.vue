@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import PadraoCor from "../surf/PadraoCor.vue";
+import PadraoCor from "../cores/PadraoCor.vue";
 import { callAttention, stopCallAttention } from "@/assets/js/callAttention.js"
 import FiltroPadroes from "@/components/FiltroPadroes.vue";
 
