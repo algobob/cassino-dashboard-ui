@@ -17,6 +17,9 @@ import TabelaDouble from "@/components/double/TabelaDouble/TabelaDouble.vue";
 import AlarmePadroes from "@/components/double/padroes/Alarme/AlarmePadroes.vue";
 import { Collapse } from 'vue-collapsed'
 import MaterialProgress from "@/components/MaterialProgress.vue";
+import readXlsxFile from 'read-excel-file'
+import { forEach } from "lodash";
+
 
 const estrategias = ref({})
 const contagem_cores = ref({})
@@ -25,6 +28,8 @@ const rolls = ref([])
 const qtd_rolls = ref("200")
 const targetColor = ref("*")
 const galho = ref(0)
+const fileInput = ref()
+const files = ref()
 const minProbabilidade = ref(50)
 const maxProbabilidade = ref(100)
 const route = useRoute()
@@ -35,10 +40,10 @@ const loading = ref(false)
 const padroesSelecionados = ref([])
 
 const onPadraoSelecionado = (padrao, target) => {
-  if (padrao instanceof Array){
-    padroesSelecionados.value.push({padrao, target})
+  if (padrao instanceof Array) {
+    padroesSelecionados.value.push({ padrao, target })
   } else {
-    padroesSelecionados.value.push([{padrao, target}])
+    padroesSelecionados.value.push([{ padrao, target }])
   }
 }
 
@@ -69,7 +74,7 @@ const loadDashboard = () => {
 }
 
 const loadRolls = () => {
-  fetch(`${import.meta.env.DEV ? '':'https://djabet-repository-api-production.up.railway.app/api/double'}?platform=${platform}&sort=desc&qtd=${qtd_rolls.value}`.replace(/ /g, ''))
+  fetch(`${import.meta.env.DEV ? '' : 'https://djabet-repository-api-production.up.railway.app/api/double'}?platform=${platform}&sort=desc&qtd=${qtd_rolls.value}`.replace(/ /g, ''))
     .then(response => response.json())
     .then(data => {
       rolls.value = data;
@@ -80,12 +85,50 @@ const limparPadroesSelecionados = () => {
   padroesSelecionados.value = []
 }
 
+const handleFileChange = () => {
+  files.value = fileInput.value?.files
+}
+
+const _parseDate = (dateString, timeString) => {
+  const date = dateString.split('/').map(d => parseInt(d))
+  const time = timeString.split(':').map(t => parseInt(t))
+
+  const dateObj = new Date()
+  dateObj.setYear(date[2])
+  dateObj.setMonth(date[1])
+  dateObj.setDate(date[0])
+  dateObj.setUTCHours(time[0])
+  dateObj.setMinutes(time[1])
+  dateObj.setSeconds(time[2])
+
+  console.log(dateObj)
+  return dateObj
+}
+
+const loadRolls2 = () => {
+  const file = files.value[0]
+  let i = 0
+  readXlsxFile(file).then((rows) => {
+      forEach(rows.slice(2, rows.length+1), row => {
+        const roll = {
+          roll: row[0],
+          color: row[1] === 'vermelho' ? 'red' : row[1] === 'preto' ? 'black' : 'white',
+          created: _parseDate(row[2], row[3])
+        }
+
+        rolls.value.push(roll)
+        console.log("row:", roll)
+      })
+  })
+  // and do other things...
+}
+
 const evtSource = new EventSource(`https://djabet-repository-api-production.up.railway.app/api/double/sse`);
 evtSource.onmessage = (event) => {
   const roll = JSON.parse(event.data);
   if (roll.platform === platform) {
-     console.log(`message: ${event.data}`);
-     loadRolls();
+    console.log(`message: ${event.data}`);
+    loadRolls();
   }
 };
 
@@ -102,6 +145,12 @@ onMounted(() => {
     <div class="container">
       <div class="row">
         <div class="col">
+          <input ref="fileInput" type="file" @change="handleFileChange" />
+          <button @click="loadRolls2">do something</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
           <Tools />
         </div>
         <div class="col">
@@ -115,8 +164,8 @@ onMounted(() => {
       </div>
       <div class="row">
         <div class="col">
-          <AlarmePadroes :rolls="rolls" :padroesSelecionados="padroesSelecionados" :platform="startCase(platform)" 
-          :limpar-padroes-selecionados="limparPadroesSelecionados"/>
+          <AlarmePadroes :rolls="rolls" :padroesSelecionados="padroesSelecionados" :platform="startCase(platform)"
+            :limpar-padroes-selecionados="limparPadroesSelecionados" />
         </div>
       </div>
       <div class="row">
@@ -157,10 +206,12 @@ onMounted(() => {
         </div>
         <div class="row">
           <MaterialProgress v-if="loading" color="success" :value="100" />
-          <PadroesCores v-if="estrategias?.padroes" :padroes="estrategias?.padroes" :on-padrao-clicked="onPadraoSelecionado" />
+          <PadroesCores v-if="estrategias?.padroes" :padroes="estrategias?.padroes"
+            :on-padrao-clicked="onPadraoSelecionado" />
         </div>
         <div class="row">
-          <DoubleNumeroCor v-if="estrategias" :data="estrategias?.numero_cor_probabilidades" :on-roll-clicked="onPadraoSelecionado"/>
+          <DoubleNumeroCor v-if="estrategias" :data="estrategias?.numero_cor_probabilidades"
+            :on-roll-clicked="onPadraoSelecionado" />
         </div>
         <div class="row">
           <PadraoEstrategiasMinutagem v-if="estrategias" :estrategias="estrategias?.minutagem" />

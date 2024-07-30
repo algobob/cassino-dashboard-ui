@@ -42,12 +42,16 @@ const props = defineProps({
   roll: Object
 })
 
-const rollTime = new Date(props.roll.created*1000).toLocaleTimeString('pt-BR').split(':')
+// const rollTime = new Date(props.roll.created*1000)
+const rollTime = new Date(props.roll.created*1000).toLocaleString('pt-BR')
+const created = props.roll?.created
+console.log('creu ', props.roll.created)
 
 </script>
 <template>
   <div style="display: flex; flex-direction: column; margin-bottom: 6px; text-align: center; align-content: center;">
       <Roll :color="roll?.color" :roll="roll?.roll"  />
-      <span class="hora">{{ rollTime[0] }}:{{ rollTime[1] }}</span>
+      <span class="hora">{{ created.getHours() < 10 ? '0'+created.getHours() : created.getHours() }}:{{ created.getMinutes() }}</span>
+      <!-- <span class="hora">{{ created.getDate() }}/{{ created.getMonth() }}</span> -->
   </div>
 </template>
