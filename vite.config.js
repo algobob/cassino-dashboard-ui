@@ -26,7 +26,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://cassino-online-api-production.up.railway.app',
+        target: 'https://djabet-api-production.up.railway.app',
         secure: false,
         changeOrigin: true,
       },

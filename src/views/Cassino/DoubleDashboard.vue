@@ -34,7 +34,7 @@ const minProbabilidade = ref(50)
 const maxProbabilidade = ref(100)
 const route = useRoute()
 const platform = route.params.platform
-const apiHost = import.meta.env.DEV ? '' : 'https://cassino-online-api-production.up.railway.app'
+const apiHost = import.meta.env.DEV ? '' : 'https://djabet-api-production.up.railway.app'
 const isExpanded = ref(true)
 const loading = ref(false)
 const padroesSelecionados = ref([])
@@ -64,12 +64,13 @@ const loadEstrategias = () => {
 }
 
 const loadDashboard = () => {
-  fetch(`${apiHost}/api/${platform}/double/dashboard?qtdRolls=${qtd_rolls.value}`.replace(/ /g, ''))
+  fetch(`${apiHost}/api/double/dashboard`.replace(/ /g, ''))
     .then(response => response.json())
     .then(data => {
+      console.log('creuuuuu ', data)
       contagem_cores.value = data['contagem_cores']
-      rolls.value = data['rolls']
-      balance.value = data['balance']
+      // rolls.value = data['rolls']
+      // balance.value = data['balance']
     })
 }
 
@@ -117,26 +118,25 @@ const loadRolls2 = () => {
         }
 
         rolls.value.push(roll)
-        console.log("row:", roll)
       })
+      loadDashboard()
   })
   // and do other things...
 }
 
-const evtSource = new EventSource(`https://djabet-repository-api-production.up.railway.app/api/double/sse`);
-evtSource.onmessage = (event) => {
-  const roll = JSON.parse(event.data);
-  if (roll.platform === platform) {
-    console.log(`message: ${event.data}`);
-    loadRolls();
-  }
-};
+// const evtSource = new EventSource(`https://djabet-repository-api-production.up.railway.app/api/double/sse`);
+// evtSource.onmessage = (event) => {
+//   const roll = JSON.parse(event.data);
+//   if (roll.platform === platform) {
+//     console.log(`message: ${event.data}`);
+//     loadRolls();
+//   }
+// };
 
 //hook
 onMounted(() => {
   document.title = `Djabet | ${startCase(platform)} | Double`
   setNavPills();
-  loadDashboard()
 });
 
 </script>
@@ -146,7 +146,7 @@ onMounted(() => {
       <div class="row">
         <div class="col">
           <input ref="fileInput" type="file" @change="handleFileChange" />
-          <button @click="loadRolls2">do something</button>
+          <button @click="loadRolls2">Upload</button>
         </div>
       </div>
       <div class="row">
