@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import CrashDashboard from "../views/Cassino/CrashDashboard.vue";
 import DoubleDashboard from "../views/Cassino/DoubleDashboard.vue";
+import ValueBet from "../views/Sports/ValueBet.vue";
 import PresentationView from "../views/Presentation/PresentationView.vue";
 import AboutView from "../views/LandingPages/AboutUs/AboutView.vue";
 import ContactView from "../views/LandingPages/ContactUs/ContactView.vue";
@@ -157,6 +158,11 @@ const router = createRouter({
       path: "/:platform/double",
       name: "Double",
       component: DoubleDashboard,
+    },
+    {
+      path: "/sports/valuebets",
+      name: "ValueBets",
+      component: ValueBet,
     },
   ],
 });
